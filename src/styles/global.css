@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Menlo + Ayu Mirage variables */
+:root {
+  --font-sans: Menlo, monospace;
+
+  --color-bg: #1f2430;
+  --color-panel: #232a36;
+  --color-border: #2b3240;
+  --color-text: #cbccc6;
+  --color-subtext: #9da5b4;
+
+  --color-accent-blue: #59c2ff;
+  --color-accent-green: #bae67e;
+  --color-accent-yellow: #ffcc66;
+  --color-accent-orange: #f28779;
+  --color-accent-purple: #d4bfff;
+}
+
+html, body, #root {
+  height: 100%;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+html { scroll-behavior: smooth; }
+a { color: var(--color-accent-blue); transition: color .2s ease; }
+a:hover { color: var(--color-accent-green); }
+.panel { background-color: var(--color-panel); border: 1px solid var(--color-border); border-radius: 1rem; padding: 1rem; }
