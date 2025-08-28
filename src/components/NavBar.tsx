@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import Container from "@/components/Container";
+import Brandmark from "@/components/Brandmark";
 import { Menu, X, Github, Linkedin } from "lucide-react";
 
 const hoverAccents = [
@@ -36,9 +37,11 @@ export default function Navbar() {
           {/* Left: Name */}
           <a
             href="#top"
-            className="font-semibold tracking-tight text-accent-blue transition-colors hover:text-accent-purple"
+            className="group text-subtext transition-colors hover:text-accent-yellow"
+            aria-label="Ojas M"
           >
-            Ojas M
+            <Brandmark className="h-6 w-6" />
+            <span className="sr-only">Ojas M</span>
           </a>
 
           {/* Center: Nav */}

@@ -17,17 +17,23 @@ export default function Contact() {
         </p>
 
         <div className="mt-8 space-y-4 text-sm text-subtext">
-          <div className="flex items-center gap-2">
-            <MapPin className="size-4" /> {PROFILE.location}
-          </div>
           <a
             href={`mailto:${PROFILE.email}`}
             className="flex items-center gap-2 underline-offset-4 hover:text-accent-purple hover:underline transition-colors"
           >
             <Mail className="size-4" /> {PROFILE.email}
           </a>
+          <a
+            href={`mailto:${PROFILE.email2}`}
+            className="flex items-center gap-2 underline-offset-4 hover:text-accent-purple hover:underline transition-colors"
+          >
+            <Mail className="size-4" /> {PROFILE.email2}
+          </a>
           <div className="flex items-center gap-2">
             <Phone className="size-4" /> {PROFILE.phone}
+          </div>
+          <div className="flex items-center gap-2">
+            <MapPin className="size-4" /> {PROFILE.location}
           </div>
         </div>
       </Container>
