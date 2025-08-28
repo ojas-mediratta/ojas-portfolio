@@ -17,16 +17,16 @@ export type Publication = {
 
 export const PUBLICATIONS: Publication[] = [
   // Example — delete or replace these with your own:
-  {
-    title: "Underwater Robotic Platform for Dolphin Vocalization Studies",
-    outlet: "GT Contextual Computing Group (project report)",
-    date: "2025",
-    type: "demo",
-    authors: "O. Mediratta, C. Ramey, et al.",
-    tags: ["DSP", "Robotics", "Embedded", "UUV"],
-    href: "https://example.com/project",
-    pdf: "media/dolphin_uuv_report.pdf",
-    thumb: "media/dolphin_uuv_thumb.jpg",
-    previewVideo: "media/dolphin_uuv_preview.mp4"
-  }
+  // {
+  //   title: "Underwater Robotic Platform for Dolphin Vocalization Studies",
+  //   outlet: "GT Contextual Computing Group (project report)",
+  //   date: "2025",
+  //   type: "demo",
+  //   authors: "O. Mediratta, C. Ramey, et al.",
+  //   tags: ["DSP", "Robotics", "Embedded", "UUV"],
+  //   href: "https://example.com/project",
+  //   pdf: "media/dolphin_uuv_report.pdf",
+  //   thumb: "media/dolphin_uuv_thumb.jpg",
+  //   previewVideo: "media/dolphin_uuv_preview.mp4"
+  // }
 ];
