@@ -1,8 +1,7 @@
 import React, { useMemo, useState } from "react";
 import Container from "@/components/Container";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Github, Linkedin } from "lucide-react";
 
-// Tailwind classes for your accent colors
 const hoverAccents = [
   "hover:border-accent-blue hover:text-accent-blue",
   "hover:border-accent-green hover:text-accent-green",
@@ -33,8 +32,8 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-[rgba(31,36,48,0.6)] backdrop-blur">
       <Container>
-        <div className="flex h-16 items-center justify-between">
-          {/* Brand */}
+        <div className="relative flex h-16 items-center justify-between">
+          {/* Left: Name */}
           <a
             href="#top"
             className="font-semibold tracking-tight text-accent-blue transition-colors hover:text-accent-purple"
@@ -42,8 +41,8 @@ export default function Navbar() {
             Ojas M
           </a>
 
-          {/* Desktop nav */}
-          <nav className="hidden items-center gap-4 md:flex">
+          {/* Center: Nav */}
+          <nav className="absolute left-1/2 -translate-x-1/2 hidden items-center gap-4 md:flex">
             {navWithAccents.map((n) => (
               <a
                 key={n.href}
@@ -54,6 +53,26 @@ export default function Navbar() {
               </a>
             ))}
           </nav>
+
+          {/* Right: Social links */}
+          <div className="hidden md:flex items-center gap-4">
+            <a
+              href="https://github.com/ojas-mediratta"
+              target="_blank"
+              rel="noreferrer"
+              className="text-subtext hover:text-accent-purple transition-colors"
+            >
+              <Github className="size-5" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/ojas-mediratta/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-subtext hover:text-accent-blue transition-colors"
+            >
+              <Linkedin className="size-5" />
+            </a>
+          </div>
 
           {/* Mobile menu button */}
           <button

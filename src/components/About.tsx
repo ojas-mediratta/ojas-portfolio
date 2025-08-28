@@ -2,6 +2,7 @@ import React from "react";
 import Section from "@/components/Section";
 import Container from "@/components/Container";
 import TypingEffect from "@/components/TypingEffect";
+import avatarFile from "@/assets/avatar.jpg";
 import { Mail, Phone, MapPin, Github, Linkedin, Download } from "lucide-react";
 import { PROFILE } from "@/data/links";
 
@@ -29,7 +30,7 @@ export default function About() {
             {/* Resume button */}
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
-                href={PROFILE.resumeUrl}
+                href={resumeHref}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors hover:border-accent-blue hover:text-accent-blue"
@@ -37,52 +38,16 @@ export default function About() {
                 <Download className="size-4" /> Résumé
               </a>
             </div>
-
-            {/* Contact info stacked */}
-            <div className="mt-6 flex flex-col gap-3 text-sm text-subtext">
-              <span className="inline-flex items-center gap-2">
-                <MapPin className="size-4" /> {PROFILE.location}
-              </span>
-              <a
-                href={`mailto:${PROFILE.email}`}
-                className="inline-flex items-center gap-2 underline-offset-4 transition-colors hover:text-accent-purple hover:underline"
-              >
-                <Mail className="size-4" /> {PROFILE.email}
-              </a>
-              <span className="inline-flex items-center gap-2">
-                <Phone className="size-4" /> {PROFILE.phone}
-              </span>
-              <div className="mt-2 flex items-center gap-4">
-                <a
-                  href={PROFILE.social.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="transition-colors hover:text-accent-blue"
-                  aria-label="GitHub"
-                >
-                  <Github className="size-5" />
-                </a>
-                <a
-                  href={PROFILE.social.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="transition-colors hover:text-accent-purple"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin className="size-5" />
-                </a>
-              </div>
-            </div>
           </div>
 
           {/* Avatar panel */}
           <div className="rounded-3xl border border-border bg-panel md:col-span-2">
             <div className="p-6">
               <img
-                src={PROFILE.assets.avatar}
+                src={avatarFile}
                 alt="Headshot"
-                className="aspect-square w-full rounded-2xl object-cover"
-              />
+                className="w-full rounded-2xl object-cover transition-transform hover:scale-105">
+              </img>
             </div>
           </div>
         </div>
