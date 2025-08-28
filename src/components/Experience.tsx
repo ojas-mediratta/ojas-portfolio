@@ -4,7 +4,7 @@ import Container from "@/components/Container";
 
 const EXPERIENCES = [
   {
-    role: "Research Assistant",
+    role: "Graduate Research Assistant",
     org: "Contextual Computing Group, Georgia Tech",
     date: "Aug 2024 – Present",
     desc: `Built and deployed an autonomous underwater robot for dolphin research,
