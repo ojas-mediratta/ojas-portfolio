@@ -46,7 +46,7 @@ export default function About() {
               <img
                 src={avatarFile}
                 alt="Headshot"
-                className="w-full rounded-2xl object-cover transition-transform hover:scale-105">
+                className="w-full rounded-2xl object-cover scale-105">
               </img>
             </div>
           </div>

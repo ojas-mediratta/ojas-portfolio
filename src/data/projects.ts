@@ -1,19 +1,26 @@
 export type Project = {
-    title: string
-    description: string
-    tags: string[]
-    link?: string
-    image?: string
-}
-
+  title: string;
+  blurb: string;
+  tags: string[];
+  // media in /public/media or remote:
+  thumb?: string;          // image poster
+  previewVideo?: string;   // mp4/webm (hover autoplay)
+  previewGif?: string;     // gif fallback
+  links?: {
+    live?: string;
+    code?: string;
+  };
+  area?: "Robotics" | "Embedded" | "ML" | "Systems" | "Other";
+};
 
 export const PROJECTS: Project[] = [
-    // fill with your real projects; example structure below
-    // {
-    // title: 'BLIP: Cetacean Research AUV',
-    // description: 'Autonomous underwater vehicle for dolphin research with on-device whistle detection (Goertzel/FFT/CNN), ROS2 telemetry, and a field-tested control stack.',
-    // tags: ['ROS2', 'DSP', 'Controls', 'Android DSP', 'ESP32'],
-    // link: 'https://…',
-    // image: '/assets/projects/blip.jpg'
-    // },
-]
+//   {
+//     title: "Underwater Acoustic Rover",
+//     blurb: "Autonomous UUV prototype with real-time whistle/click classification and closed-loop control.",
+//     tags: ["DSP", "PX4", "ESP32", "Controls"],
+//     area: "Robotics",
+//     thumb: "media/placeholder_uuv.jpg",
+//     previewVideo: "media/placeholder_uuv.mp4",
+//     links: { live: "#", code: "#" }
+//   },
+];

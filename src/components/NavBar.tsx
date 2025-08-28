@@ -18,8 +18,8 @@ export default function Navbar() {
     () => [
       { label: "About", href: "#about" },
       { label: "Projects", href: "#projects" },
-      { label: "Publications", href: "#publications" },
       { label: "Experience", href: "#experience" },
+      { label: "Publications", href: "#publications" },
       { label: "Contact", href: "#contact" },
     ],
     []
