@@ -23,7 +23,7 @@ export default function About() {
               <TypingEffect words={PROFILE.titles} />
             </p>
 
-            <p className="mt-6 max-w-2xl leading-relaxed text-subtext">
+            <p className="mt-6 max-w-2xl leading-relaxed text-subtext whitespace-pre-line">
               {PROFILE.tagline}
             </p>
 
