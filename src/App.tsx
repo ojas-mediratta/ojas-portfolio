@@ -25,8 +25,8 @@ export default function App() {
       <main className="relative z-10">
         <About />
         <Projects />
-        <Publications />
         <Experience />
+        <Publications />
         <Contact />
       </main>
 

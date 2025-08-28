@@ -8,11 +8,10 @@ const EXPERIENCES = [
     org: "Contextual Computing Group, Georgia Tech",
     date: "Aug 2024 – Present",
     desc: `Built and deployed an autonomous underwater robot for dolphin research,
-with a real-time DSP pipeline for whistle/click classification (>95% accuracy,
-<100ms latency). Programmed ESP32 firmware for closed-loop thruster PID control,
-developed an Android telemetry/control app, and created a web dashboard for
-post-mission analysis. Also designed a submersible bone-conduction headset and
-worked on a wireless canine chew sensor for research trials.`
+with a real-time DSP pipeline for whistle/click classification. Programmed ESP32 
+firmware for closed-loop thruster PID control, developed an Android telemetry/control 
+app, and created a web dashboard for post-mission analysis. Also designed a submersible 
+bone-conduction headset and worked on a wireless canine chew sensor for research trials.`
   },
     {
     role: "Graduate Teaching Assistant - Prototyping Intelligent Devices",
@@ -28,7 +27,7 @@ hardware/software integration, debugging, and design trade-offs.`
     role: "Graduate Teaching Assistant - Mobile & Ubiquitous Computing",
     org: "Georgia Institute of Technology",
     date: "May 2025 – Aug 2025",
-    desc: `Assisted a graduate HCI course on ubiquitous computing. Supported lectures
+    desc: `Served as teaching assistant for a graduate HCI course on ubiquitous computing. Supported lectures
 and labs, co-designed assignments, and mentored project teams on IoT systems,
 wearables, and mobile prototypes. Managed grading and provided feedback in office
 hours.`
