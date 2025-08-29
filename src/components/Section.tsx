@@ -1,10 +1,19 @@
-import React from 'react'
-
-
-export default function Section({ id, className = '', children }: { id: string; className?: string; children: React.ReactNode }) {
-    return (
-        <section id={id} className={`scroll-mt-24 ${className}`}>
-        {children}
-        </section>
-    )
+// Section.tsx
+export default function Section({
+  id,
+  children,
+  className = "",
+}: {
+  id?: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <section
+      id={id}
+      className={`py-8 md:py-16 ${className}`}  // ↓ from py-12/md:py-20
+    >
+      {children}
+    </section>
+  );
 }

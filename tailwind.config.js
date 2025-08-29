@@ -17,6 +17,7 @@ export default {
         "accent-yellow": "#ffcc66",
         "accent-orange": "#f28779",
         "accent-purple": "#d4bfff",
+        "accent-cyan": "#95e6cb",
       },
       fontFamily: {
         sans: ["Menlo", "monospace"],

@@ -5,7 +5,7 @@ type BrandmarkProps = React.SVGProps<SVGSVGElement> & {
 };
 
 export default function Brandmark({
-  strokeWidth = 4, // heavier than before, close to Lucide weight
+  strokeWidth = 4, 
   className,
   ...props
 }: BrandmarkProps) {

@@ -1,10 +1,13 @@
-import { defineConfig } from "vite";
+import { defineConfig, type PluginOption } from "vite";
 import react from "@vitejs/plugin-react";
+import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
 
-// If deploying to GitHub Pages under a repo (e.g. /ojas-portfolio/),
-// uncomment and set base to '/<repo-name>/'.
-export default defineConfig(({ mode }) => ({
-  plugins: [react(), tsconfigPaths()],
-  base: mode === "production" ? "/ojas-portfolio/" : "/", 
-}));
+export default defineConfig({
+  plugins: [
+    tsconfigPaths() as unknown as PluginOption,
+    svgr() as unknown as PluginOption,
+    react(),
+  ],
+  base: "/ojas-portfolio/",
+});

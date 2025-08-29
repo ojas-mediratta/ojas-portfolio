@@ -7,6 +7,7 @@ import Publications from "@/components/Publications";
 import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 import MouseGlow from "@/components/MouseGlow";
+import Education from "@/components/Education";
 import { THEME } from "@/data/theme";
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
         <About />
         <Projects />
         <Experience />
+        <Education />
         <Publications />
         <Contact />
       </main>

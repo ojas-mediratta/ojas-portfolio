@@ -27,10 +27,10 @@ hardware/software integration, debugging, and design trade-offs.`
     role: "Graduate Teaching Assistant - Mobile & Ubiquitous Computing",
     org: "Georgia Institute of Technology",
     date: "May 2025 – Aug 2025",
-    desc: `Served as teaching assistant for a graduate HCI course on ubiquitous computing. Supported lectures
-and labs, co-designed assignments, and mentored project teams on IoT systems,
-wearables, and mobile prototypes. Managed grading and provided feedback in office
-hours.`
+    desc: `Served as teaching assistant for a graduate HCI course on ubiquitous computing. 
+    Supported lectures and labs, co-designed assignments, and mentored project teams on 
+    IoT systems, wearables, and mobile prototypes. Managed grading and provided feedback in 
+    office hours.`
   },
   {
     role: "Technical Support Agent (Student Lead)",
@@ -58,7 +58,7 @@ export default function Experience() {
         <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">Experience</h2>
         <div className="mt-8 space-y-8">
           {EXPERIENCES.map((exp, i) => (
-            <div key={i} className="rounded-xl border border-border bg-panel p-5 hover:border-accent-blue transition-colors">
+            <div key={i} className="rounded-xl border border-border bg-panel p-5 hover:border-accent-green transition-colors">
               <h3 className="text-lg font-medium">{exp.role}</h3>
               <p className="text-sm text-accent-green">{exp.org}</p>
               <p className="text-xs text-subtext">{exp.date}</p>

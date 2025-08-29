@@ -5,10 +5,11 @@ import { Menu, X, Github, Linkedin } from "lucide-react";
 
 const hoverAccents = [
   "hover:border-accent-blue hover:text-accent-blue",
+  "hover:border-accent-purple hover:text-accent-purple",
   "hover:border-accent-green hover:text-accent-green",
   "hover:border-accent-yellow hover:text-accent-yellow",
   "hover:border-accent-orange hover:text-accent-orange",
-  "hover:border-accent-purple hover:text-accent-purple",
+  "hover:border-accent-cyan hover:text-accent-cyan",
 ];
 
 export default function Navbar() {
@@ -19,6 +20,7 @@ export default function Navbar() {
       { label: "About", href: "#about" },
       { label: "Projects", href: "#projects" },
       { label: "Experience", href: "#experience" },
+      { label: "Education", href: "#education" },
       { label: "Publications", href: "#publications" },
       { label: "Contact", href: "#contact" },
     ],
@@ -37,7 +39,7 @@ export default function Navbar() {
           {/* Left: Name */}
           <a
             href="#top"
-            className="group text-subtext transition-colors hover:text-accent-yellow"
+            className="group text-subtext transition-colors hover:text-accent-cyan"
             aria-label="Ojas M"
           >
             <Brandmark className="h-6 w-6" />
