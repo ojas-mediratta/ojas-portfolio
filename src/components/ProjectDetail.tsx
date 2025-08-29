@@ -80,7 +80,7 @@ export default function ProjectDetail() {
             </div>
 
             {/* Top-right links: Live / Code */}
-            <div className="mb-3 flex items-center gap-4 md:absolute md:right-6 md:top-6 md:mt-0 ">
+            <div className="mb-3 flex items-center gap-4 md:absolute md:right-8 md:top-8 md:mt-0 ">
               {project.links?.live && (
                 <a
                   href={project.links.live}

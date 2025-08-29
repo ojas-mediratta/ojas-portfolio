@@ -24,7 +24,7 @@ export const PUBLICATIONS: Publication[] = [
   //   authors: ["Riley Mehrman", "Ojas Mediratta", "Charles D. Ramey", "et al."],
   //   href: "https://example.com/project", // external paper link
   //   code: "https://github.com/ojas-mediratta/BLIP-AUV", // optional GitHub code link
-  //   thumb: "media/dolphin_uuv_thumb.jpg",
-  //   previewVideo: "media/dolphin_uuv_preview.mp4",
+  //   thumb: "media/blip-auv/blip_1.jpg",
+  //   previewVideo: "media/blip-auv/blip_preview.mp4",
   // }
 ];
