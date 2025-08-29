@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import Container from "@/components/Container";
 import Brandmark from "@/components/Brandmark";
-import { Menu, X, Github, Linkedin } from "lucide-react";
+import { Menu, X, Github, Linkedin, Instagram } from "lucide-react";
 
 const hoverAccents = [
   "hover:border-accent-blue hover:text-accent-blue",
@@ -76,6 +76,14 @@ export default function Navbar() {
               className="text-subtext hover:text-accent-blue transition-colors"
             >
               <Linkedin className="size-5" />
+            </a>
+            <a
+              href="https://www.instagram.com/ojas.mediratta_/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-subtext hover:text-accent-orange transition-colors"
+            >
+              <Instagram className="size-5" />
             </a>
           </div>
 

@@ -12,7 +12,7 @@ export default function About() {
   return (
     <Section id="about">
       <Container>
-        <div className="grid gap-10 py-16 md:grid-cols-5 md:items-center md:gap-12 md:py-24">
+        <div className="grid gap-10 py-16 md:grid-cols-5 md:items-center md:gap-12 md:py-5">
           <div className="md:col-span-3">
             <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
               {PROFILE.name}

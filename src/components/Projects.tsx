@@ -98,7 +98,7 @@ export default function Projects() {
                 {/* Title */}
                 <Link
                   to={`/projects/${p.slug}`}
-                  className="text-base font-medium hover:underline hover:text-accent-purple"
+                  className="text-base font-medium group-hover:text-accent-purple hover:underline"
                 >
                   {p.title}
                 </Link>
@@ -113,14 +113,14 @@ export default function Projects() {
                   <div className="mt-3 flex flex-wrap gap-2">
                     {p.tags.map((t, i) => {
                       const accents = [
-                        'border-accent-blue text-accent-blue',
                         'border-accent-green text-accent-green',
+                        'border-accent-blue text-accent-blue',
                         'border-accent-yellow text-accent-yellow',
                         'border-accent-orange text-accent-orange',
                         'border-accent-purple text-accent-purple',
                         'border-accent-cyan text-accent-cyan',
                       ]
-                      const style = accents[(idx + i) % accents.length]
+                      const style = accents[i % accents.length]
                       return (
                         <span
                           key={t}
@@ -141,7 +141,7 @@ export default function Projects() {
                         href={p.links.live}
                         target="_blank"
                         rel="noreferrer"
-                        className="group inline-flex items-center gap-1 text-accent-blue hover:text-accent-purple hover:underline"
+                        className="group inline-flex items-center gap-1 text-accent-blue group-hover:text-accent-purple hover:underline"
                       >
                         Live{' '}
                         <ExternalLink className="size-4 transition-transform group-hover:translate-x-0.5" />
@@ -152,7 +152,7 @@ export default function Projects() {
                         href={p.links.code}
                         target="_blank"
                         rel="noreferrer"
-                        className="group inline-flex items-center gap-1 text-accent-blue hover:text-accent-purple hover:underline"
+                        className="group inline-flex items-center gap-1 text-accent-blue group-hover:text-accent-purple hover:underline"
                       >
                         Code{' '}
                         <Github className="size-4 transition-transform group-hover:translate-x-0.5" />

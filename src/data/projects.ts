@@ -16,7 +16,7 @@ export type Project = {
 export const PROJECTS: Project[] = [
   {
     slug: "blip-auv",
-    title: "Blip: Autonomous Underwater Vehicle for Dolphin Vocalization Research",
+    title: "BLIP: Autonomous Underwater Vehicle for Dolphin Vocalization Research",
     blurb: "AUV robot with real-time whistle/click vocalization classification and closed-loop control.",
     tags: ["Robotics", "C++", "ESP32", "Android", "Controls", "Audio DSP"],
     area: "Robotics",
@@ -24,7 +24,7 @@ export const PROJECTS: Project[] = [
     previewVideo: "media/blip-auv/blip_preview.mp4",
     mainVideo: "media/blip-auv/blip_main.mp4",
     links: { live: "https://www.linkedin.com/posts/ojas-mediratta_robotics-embedded-signalprocessing-activity-7358290478351478784-0Afr?utm_source=share&utm_medium=member_desktop&rcm=ACoAADdTxJgB6uIFgkQecw_eTHt3ywpT-XIfTt8" },
-    body: `BLIP (Bio-inspired Listening & Interaction Platform) is an autonomous underwater vehicle (AUV) designed for dolphin communication research. Developed in collaboration with the Wild Dolphin Project and Georgia Tech’s Contextual Computing Group, the system combines marine-ready hardware, embedded control systems, and onboard machine learning to enable real-time acoustic interaction with wild dolphins.
+    body: `BLIP (Bio-acoustic Learning Interactive Platform) is an autonomous underwater vehicle (AUV) designed for dolphin communication research. Developed in collaboration with the Wild Dolphin Project and Georgia Tech’s Contextual Computing Group, the system combines marine-ready hardware, embedded control systems, and onboard machine learning to enable real-time acoustic interaction with wild dolphins.
 
       The project has been through more than 15 pool trials and 4 deployments in the Atlantic, evolving into a modular, field-tested platform capable of withstanding harsh marine conditions while running sophisticated signal processing onboard. BLIP represents a unique convergence of robotics, embedded systems, and marine biology, and my contributions have centered on the vehicle’s intelligence and software integration.
 
@@ -38,7 +38,14 @@ export const PROJECTS: Project[] = [
     gallery: [
       "media/blip-auv/blip_1.jpg", 
       "media/blip-auv/blip_2.jpg", 
-      "media/blip-auv/blip_3.jpg"]
+      "media/blip-auv/blip_3.jpg",
+      "media/blip-auv/blip_4.mp4",
+      "media/blip-auv/blip_5.jpg",
+      "media/blip-auv/blip_6.jpg",
+      "media/blip-auv/blip_7.jpg",
+      "media/blip-auv/blip_8.jpg",
+      "media/blip-auv/blip_9.jpg",
+      "media/blip-auv/blip_10.jpg",]
   },
   {
     slug: "et55-keyboard",
@@ -94,7 +101,7 @@ export const PROJECTS: Project[] = [
     slug: "keyboard-design",
     title: "Freelance Custom Mechanical Keyboard Design and Manufacturing",
     blurb: "Completely bespoke mechanical keyboards, tailored to client specifications and preferences, and machined out of premium materials.",
-    tags: ["Design and Manufacturing", "Fusion360", "Blender", "CNC"],
+    tags: ["Design and Manufacturing", "Fusion360", "Blender", "DFM"],
     area: "Other",
     thumb: "media/keyboard-design/keyboard-design_thumb.jpg",
     previewVideo: "media/keyboard-design/keyboard-design_preview.mp4",
@@ -109,7 +116,6 @@ export const PROJECTS: Project[] = [
 
       This journey has been as much about problem-solving as it has been about craft. What began as a personal desire for a one-off board turned into a series of freelance collaborations where I could merge technical design with the culture of enthusiast keyboards, producing pieces that are at once tools and expressions of identity.`,
     gallery: [
-      "media/keyboard-design/keyboard-design_1.mp4",
       "media/keyboard-design/keyboard-design_2.mp4",
       "media/keyboard-design/keyboard-design_3.mp4",
       "media/keyboard-design/keyboard-design_5.jpg",

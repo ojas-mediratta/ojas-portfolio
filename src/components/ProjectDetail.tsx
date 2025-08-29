@@ -2,6 +2,7 @@ import React, { useMemo, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Container from "@/components/Container";
 import Section from "@/components/Section";
+import Gallery from "@/components/Gallery";
 import { PROJECTS } from "@/data/projects";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 
@@ -133,38 +134,44 @@ export default function ProjectDetail() {
             </div>
           )}
 
-            {/* Gallery */}
+            {/* Gallery (masonry) */}
             {project.gallery?.length ? (
-            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {project.gallery.map((g, idx) => {
-              const isVideo = g.endsWith('.mp4') || g.endsWith('.webm');
-              return (
-                <a 
-                key={idx}
-                href={withBase(g)}
-                target="_blank"
-                rel="noreferrer"
-                >
-                {isVideo ? (
-                  <video
-                  src={withBase(g)}
-                  className="w-full rounded-2xl border border-border object-cover hover:opacity-90 transition-opacity"
-                  muted
-                  playsInline
-                  controls
-                  preload="metadata"
-                  />
-                ) : (
-                  <img
-                  src={withBase(g)}
-                  className="w-full rounded-2xl border border-border object-cover hover:opacity-90 transition-opacity"
-                  alt={`${project.title} gallery ${idx + 1}`}
-                  />
-                )}
-                </a>
-              );
-              })}
-            </div>
+              <div
+                className="mt-8 columns-1 gap-4 sm:columns-2 lg:columns-3 [column-fill:balance]"
+              >
+                {project.gallery.map((g, idx) => {
+                  const isVideo = g.endsWith('.mp4') || g.endsWith('.webm');
+                  const commonClass =
+                    'mb-4 w-full rounded-2xl border border-border bg-bg/50 object-cover hover:opacity-90 transition-opacity';
+                  return (
+                    <a
+                      key={idx}
+                      href={withBase(g)}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-block break-inside-avoid"
+                    >
+                      {isVideo ? (
+                        <video
+                          src={withBase(g)}
+                          className={commonClass}
+                          muted
+                          playsInline
+                          controls
+                          preload="metadata"
+                        />
+                      ) : (
+                        <img
+                          src={withBase(g)}
+                          className={commonClass}
+                          alt={`${project.title} gallery ${idx + 1}`}
+                          loading="lazy"
+                        />
+                      )}
+                    </a>
+                  );
+                })}
+              </div>
             ) : null}
         </div>
       </Container>
