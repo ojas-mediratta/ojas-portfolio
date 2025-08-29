@@ -19,7 +19,7 @@ export default function About() {
             </h1>
 
             {/* Typing line */}
-            <p className="mt-2 text-xl lg:text-2xl text-accent-green">
+            <p className="mt-2 text-xl lg:text-2xl text-accent-cyan">
               <TypingEffect words={PROFILE.titles} />
             </p>
 
@@ -41,7 +41,7 @@ export default function About() {
           </div>
 
           {/* Avatar panel */}
-          <div className="rounded-3xl border border-border bg-panel md:col-span-2 hover:border-accent-green hover:shadow-sm">
+          <div className="rounded-3xl border border-border bg-panel md:col-span-2 hover:border-accent-cyan hover:shadow-sm">
             <div className="p-6">
               <img
                 src={avatarFile}

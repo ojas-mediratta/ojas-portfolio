@@ -3,7 +3,7 @@ import Section from "@/components/Section";
 import Container from "@/components/Container";
 import { PROJECTS } from "@/data/projects";
 import { Link } from "react-router-dom";
-import { Github } from "lucide-react";
+import { Github, ExternalLink } from "lucide-react";
 
 const withBase = (path?: string) =>
   path ? `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}` : undefined;
@@ -138,17 +138,30 @@ export default function Projects() {
                 ) : null}
 
                 {/* Code Link */}
-                {p.links?.code && (
-                  <div className="mt-4">
-                    <a
-                      href={p.links.code}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="group inline-flex items-center gap-1 text-accent-blue hover:text-accent-purple hover:underline"
-                    >
-                      Code{" "}
-                      <Github className="size-4 transition-transform group-hover:translate-x-0.5" />
-                    </a>
+                {(p.links?.live || p.links?.code) && (
+                  <div className="mt-4 flex items-center gap-4">
+                    {p.links?.live && (
+                      <a
+                        href={p.links.live}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group inline-flex items-center gap-1 text-accent-blue hover:text-accent-purple hover:underline"
+                      >
+                        Live
+                        <ExternalLink className="size-4 transition-transform group-hover:translate-x-0.5" />
+                      </a>
+                    )}
+                    {p.links?.code && (
+                      <a
+                        href={p.links.code}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group inline-flex items-center gap-1 text-accent-blue hover:text-accent-purple hover:underline"
+                      >
+                        Code
+                        <Github className="size-4 transition-transform group-hover:translate-x-0.5" />
+                      </a>
+                    )}
                   </div>
                 )}
               </div>

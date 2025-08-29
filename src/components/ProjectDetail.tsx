@@ -78,17 +78,29 @@ export default function ProjectDetail() {
               ) : null}
             </div>
 
-            {/* Right side: Code link */}
-            {project.links?.code && (
-              <a
-                href={project.links.code}
-                target="_blank"
-                rel="noreferrer"
-                className="group inline-flex items-center gap-1 text-accent-blue hover:text-accent-purple hover:underline"
-              >
-                Code <Github className="size-4 transition-transform group-hover:translate-x-0.5" />
-              </a>
-            )}
+            {/* Top-right links: Live / Code */}
+            <div className="mt-3 flex items-center gap-4 md:absolute md:right-6 md:top-6 md:mt-0">
+              {project.links?.live && (
+                <a
+                  href={project.links.live}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group inline-flex items-center gap-1 text-accent-blue hover:text-accent-purple hover:underline"
+                >
+                  Live <ExternalLink className="size-4 transition-transform group-hover:translate-x-0.5" />
+                </a>
+              )}
+              {project.links?.code && (
+                <a
+                  href={project.links.code}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group inline-flex items-center gap-1 text-accent-blue hover:text-accent-purple hover:underline"
+                >
+                  Code <Github className="size-4 transition-transform group-hover:translate-x-0.5" />
+                </a>
+              )}
+            </div>
           </div>
 
           {/* Hero media */}
