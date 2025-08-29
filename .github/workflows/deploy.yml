@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NPM_CONFIG_PRODUCTION: "false" # ensure devDependencies install (svgr, etc.)
+      NPM_CONFIG_PRODUCTION: "false"
       CI: "true"
     steps:
       - name: Checkout
@@ -27,7 +27,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "22.12.x" # Vite 7 compatible
+          node-version: "22.12.x"
           cache: "npm"
 
       - name: Install dependencies
@@ -36,8 +36,14 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Add CNAME to artifact
+        run: echo "ojasmediratta.com" > dist/CNAME
+
       - name: Create SPA fallback for GitHub Pages
         run: cp dist/index.html dist/404.html
+
+      - name: Inspect artifact
+        run: ls -la dist && echo "----- CNAME -----" && cat dist/CNAME
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

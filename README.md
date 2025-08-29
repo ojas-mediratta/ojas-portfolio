@@ -1,69 +1,68 @@
-# React + TypeScript + Vite
+# Ojas Mediratta — Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is my personal portfolio website, built with **React**, **TypeScript**, and **Vite**.  
+It serves as a central place to highlight my projects, research, and experiences in robotics, embedded systems, and applied machine learning.
 
-Currently, two official plugins are available:
+## 🎨 Design & Inspirations
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The site design was inspired by a mix of modern portfolio trends and my own aesthetic preferences:
 
-## Expanding the ESLint configuration
+- **Color theme**: Based on the [Ayu Mirage](https://github.com/ayu-theme) palette for a clean, dark-but-soft feel.
+- **Mouse glow effect**: Inspired by [Brittany Chiang’s portfolio](https://brittanychiang.com/) and adapted for React.
+- **Typing effect**: Borrowed from countless developer portfolios online, fine-tuned to fit my site’s introduction.
+- **Layout & feel**: Iteratively shaped after exploring an innumerable number of online portfolios for ideas on section flow, animations, and responsiveness.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The goal was to create something visually engaging but lightweight, putting the focus on content.
 
-```js
+## ⚡ Tech Stack
+
+- **React + TypeScript + Vite** for a fast, modern frontend setup.
+- **TailwindCSS** for styling and responsive design.
+- **GitHub Pages** for deployment and hosting.
+
+## 🚀 Development Setup
+
+This project started from the Vite + React + TypeScript template. It supports hot module replacement (HMR) and linting out of the box.
+
+To run locally:
+
+```bash
+npm install
+npm run dev
+```
+
+## 🛠 ESLint Configuration
+
+The repo uses @vitejs/plugin-react and includes ESLint rules for TypeScript/React projects.
+For production-grade apps, consider expanding the configuration with type-aware lint rules:
+
+```bash
 export default tseslint.config([
   globalIgnores(['dist']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
       ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
+      // or stricter rules:
       ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
       ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
     ],
     languageOptions: {
       parserOptions: {
         project: ['./tsconfig.node.json', './tsconfig.app.json'],
         tsconfigRootDir: import.meta.dirname,
       },
-      // other options...
     },
   },
 ])
 ```
+You can also use:
+	•	eslint-plugin-react-x
+	•	eslint-plugin-react-dom
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+for React-specific lint rules.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🌐 Deployment
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+The site is deployed through GitHub Pages using a custom domain:
+👉 ojasmediratta.com
