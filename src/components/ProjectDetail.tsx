@@ -133,19 +133,39 @@ export default function ProjectDetail() {
             </div>
           )}
 
-          {/* Gallery */}
-          {project.gallery?.length ? (
+            {/* Gallery */}
+            {project.gallery?.length ? (
             <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {project.gallery.map((g, idx) => (
-                <img
-                  key={idx}
+              {project.gallery.map((g, idx) => {
+              const isVideo = g.endsWith('.mp4') || g.endsWith('.webm');
+              return (
+                <a 
+                key={idx}
+                href={withBase(g)}
+                target="_blank"
+                rel="noreferrer"
+                >
+                {isVideo ? (
+                  <video
                   src={withBase(g)}
-                  className="w-full rounded-2xl border border-border object-cover"
+                  className="w-full rounded-2xl border border-border object-cover hover:opacity-90 transition-opacity"
+                  muted
+                  playsInline
+                  controls
+                  preload="metadata"
+                  />
+                ) : (
+                  <img
+                  src={withBase(g)}
+                  className="w-full rounded-2xl border border-border object-cover hover:opacity-90 transition-opacity"
                   alt={`${project.title} gallery ${idx + 1}`}
-                />
-              ))}
+                  />
+                )}
+                </a>
+              );
+              })}
             </div>
-          ) : null}
+            ) : null}
         </div>
       </Container>
     </Section>
