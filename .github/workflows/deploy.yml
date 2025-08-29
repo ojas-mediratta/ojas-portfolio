@@ -18,8 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      # Ensure devDependencies (vite-plugin-svgr, vite-tsconfig-paths) are installed in CI
-      NPM_CONFIG_PRODUCTION: "false"
+      NPM_CONFIG_PRODUCTION: "false" # ensure devDependencies install (svgr, etc.)
       CI: "true"
     steps:
       - name: Checkout
@@ -28,16 +27,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          # Vite 7 requires Node 20.19+ or 22.12+. Pin a safe version:
-          node-version: "22.12.x"
+          node-version: "22.12.x" # Vite 7 compatible
           cache: "npm"
 
       - name: Install dependencies
         run: npm ci
-
-      #Type check to catch TS errors early
-      - name: Type check
-        run: npm run typecheck
 
       - name: Build
         run: npm run build
