@@ -17,17 +17,36 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # Ensure devDependencies (vite-plugin-svgr, vite-tsconfig-paths) are installed in CI
+      NPM_CONFIG_PRODUCTION: "false"
+      CI: "true"
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          # Vite 7 requires Node 20.19+ or 22.12+. Pin a safe version:
+          node-version: "22.12.x"
           cache: "npm"
-      - run: npm ci
-      - run: npm run build
+
+      - name: Install dependencies
+        run: npm ci
+
+      #Type check to catch TS errors early
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+
       - name: Create SPA fallback for GitHub Pages
         run: cp dist/index.html dist/404.html
-      - uses: actions/upload-pages-artifact@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
@@ -38,5 +57,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - id: deployment
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4

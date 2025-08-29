@@ -30,18 +30,19 @@ export default function Education() {
               >
                 <div className="flex items-center gap-4">
                   {/* Left: logo — left-justified, vertically centered */}
-                  <Logo
-                    className={"text-subtext transition-colors group-hover:text-accent-yellow [&_*]:fill-current"}
-                    style={{
-                      width: size,
-                      height: size,
-                      strokeWidth: stroke,
-                      strokeLinecap: "round",
-                      strokeLinejoin: "round",
-                    }}
-                    aria-hidden
-                  />
-
+                  {Logo && (
+                    <Logo
+                      className={"text-subtext transition-colors group-hover:text-accent-yellow [&_*]:fill-current"}
+                      style={{
+                        width: size,
+                        height: size,
+                        strokeWidth: stroke,
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                      }}
+                      aria-hidden
+                    />
+                  )}
                   {/* Right: content */}
                   <div className="min-w-0 flex-1">
                     <h3 className="text-lg font-medium">{edu.school}</h3>
