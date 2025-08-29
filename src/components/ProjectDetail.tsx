@@ -52,7 +52,7 @@ export default function ProjectDetail() {
 
         <div className="relative z-10 rounded-3xl border border-border bg-panel p-5 md:p-8">
           <div className="mb-6">
-            <Link to="/" className="inline-flex items-center gap-1 text-accent-blue hover:text-accent-purple hover:underline">
+            <Link to="/" className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple">
               <ArrowLeft className="size-4" /> Back
             </Link>
           </div>
@@ -80,13 +80,13 @@ export default function ProjectDetail() {
             </div>
 
             {/* Top-right links: Live / Code */}
-            <div className="mt-3 flex items-center gap-4 md:absolute md:right-6 md:top-6 md:mt-0">
+            <div className="mb-3 flex items-center gap-4 md:absolute md:right-6 md:top-6 md:mt-0 ">
               {project.links?.live && (
                 <a
                   href={project.links.live}
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-center gap-1 text-accent-blue hover:text-accent-purple hover:underline"
+                  className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple"
                 >
                   Live <ExternalLink className="size-4 transition-transform group-hover:translate-x-0.5" />
                 </a>
@@ -96,7 +96,7 @@ export default function ProjectDetail() {
                   href={project.links.code}
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-center gap-1 text-accent-blue hover:text-accent-purple hover:underline"
+                  className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple"
                 >
                   Code <Github className="size-4 transition-transform group-hover:translate-x-0.5" />
                 </a>
@@ -134,45 +134,45 @@ export default function ProjectDetail() {
             </div>
           )}
 
-            {/* Gallery (masonry) */}
-            {project.gallery?.length ? (
-              <div
-                className="mt-8 columns-1 gap-4 sm:columns-2 lg:columns-3 [column-fill:balance]"
-              >
-                {project.gallery.map((g, idx) => {
-                  const isVideo = g.endsWith('.mp4') || g.endsWith('.webm');
-                  const commonClass =
-                    'mb-4 w-full rounded-2xl border border-border bg-bg/50 object-cover hover:opacity-90 transition-opacity';
-                  return (
-                    <a
-                      key={idx}
-                      href={withBase(g)}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-block break-inside-avoid"
-                    >
-                      {isVideo ? (
-                        <video
-                          src={withBase(g)}
-                          className={commonClass}
-                          muted
-                          playsInline
-                          controls
-                          preload="metadata"
-                        />
-                      ) : (
-                        <img
-                          src={withBase(g)}
-                          className={commonClass}
-                          alt={`${project.title} gallery ${idx + 1}`}
-                          loading="lazy"
-                        />
-                      )}
-                    </a>
-                  );
-                })}
-              </div>
-            ) : null}
+          {/* Gallery (masonry) */}
+          {project.gallery?.length ? (
+            <div
+              className="mt-8 columns-1 gap-4 sm:columns-2 lg:columns-3 [column-fill:balance]"
+            >
+              {project.gallery.map((g, idx) => {
+                const isVideo = g.endsWith('.mp4') || g.endsWith('.webm');
+                const commonClass =
+                  'mb-4 w-full rounded-2xl border border-border bg-bg/50 object-cover hover:opacity-90 transition-opacity';
+                return (
+                  <a
+                    key={idx}
+                    href={withBase(g)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-block break-inside-avoid"
+                  >
+                    {isVideo ? (
+                      <video
+                        src={withBase(g)}
+                        className={commonClass}
+                        muted
+                        playsInline
+                        controls
+                        preload="metadata"
+                      />
+                    ) : (
+                      <img
+                        src={withBase(g)}
+                        className={commonClass}
+                        alt={`${project.title} gallery ${idx + 1}`}
+                        loading="lazy"
+                      />
+                    )}
+                  </a>
+                );
+              })}
+            </div>
+          ) : null}
         </div>
       </Container>
     </Section>

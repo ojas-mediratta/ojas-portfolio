@@ -81,24 +81,24 @@ export default function Projects() {
           {items.map((p, idx) => (
             <article
               key={p.slug}
-              className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-panel transition-all hover:-translate-y-0.5 hover:border-accent-purple hover:shadow-sm"
+              className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-panel transition-all hover:border-accent-purple hover:shadow-sm"
               onMouseEnter={() => setHoveredSlug(p.slug)}
               onMouseLeave={() => setHoveredSlug(null)}
             >
-              <Link to={`/projects/${p.slug}`} className="block">
+                <Link to={`/projects/${p.slug}`} className="block p-4">
                 <Preview
                   title={p.title}
                   thumb={p.thumb}
                   previewVideo={p.previewVideo}
                   hovering={hoveredSlug === p.slug}
                 />
-              </Link>
+                </Link>
 
               <div className="flex flex-1 flex-col p-5">
                 {/* Title */}
                 <Link
                   to={`/projects/${p.slug}`}
-                  className="text-base font-medium group-hover:text-accent-purple hover:underline"
+                  className="text-base font-medium text-accent-white transition-all hover:text-accent-purple hover:underline"
                 >
                   {p.title}
                 </Link>
@@ -113,11 +113,11 @@ export default function Projects() {
                   <div className="mt-3 flex flex-wrap gap-2">
                     {p.tags.map((t, i) => {
                       const accents = [
-                        'border-accent-green text-accent-green',
-                        'border-accent-blue text-accent-blue',
-                        'border-accent-yellow text-accent-yellow',
-                        'border-accent-orange text-accent-orange',
                         'border-accent-purple text-accent-purple',
+                        'border-accent-green text-accent-green',
+                        'border-accent-orange text-accent-orange',
+                        'border-accent-yellow text-accent-yellow',
+                        'border-accent-blue text-accent-blue',
                         'border-accent-cyan text-accent-cyan',
                       ]
                       const style = accents[i % accents.length]
@@ -141,21 +141,21 @@ export default function Projects() {
                         href={p.links.live}
                         target="_blank"
                         rel="noreferrer"
-                        className="group inline-flex items-center gap-1 text-accent-blue group-hover:text-accent-purple hover:underline"
+                        className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple"
                       >
                         Live{' '}
-                        <ExternalLink className="size-4 transition-transform group-hover:translate-x-0.5" />
+                        <ExternalLink className="size-4 transition-transform" />
                       </a>
                     )}
                     {p.links?.code && (
-                      <a
+                        <a
                         href={p.links.code}
                         target="_blank"
                         rel="noreferrer"
-                        className="group inline-flex items-center gap-1 text-accent-blue group-hover:text-accent-purple hover:underline"
+                        className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple"
                       >
                         Code{' '}
-                        <Github className="size-4 transition-transform group-hover:translate-x-0.5" />
+                        <Github className="size-4 transition-transform" />
                       </a>
                     )}
                   </div>

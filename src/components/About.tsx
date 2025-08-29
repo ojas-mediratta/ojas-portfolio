@@ -13,7 +13,7 @@ export default function About() {
     <Section id="about">
       <Container>
         <div className="grid gap-10 py-16 md:grid-cols-5 md:items-center md:gap-12 md:py-5">
-          <div className="md:col-span-3">
+            <div className="md:col-span-3">
             <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
               {PROFILE.name}
             </h1>
@@ -30,15 +30,16 @@ export default function About() {
             {/* Resume button */}
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
-                href={resumeHref}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors hover:border-accent-blue hover:text-accent-blue"
+              href={resumeHref}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-2xl border border-border bg-panel px-4 py-2 text-sm text-accent-white transition-colors hover:border-accent-cyan hover:text-accent-cyan"
               >
-                <Download className="size-4" /> Résumé
+              <span className="font-mono">Résumé</span>
+              <Download className="size-4" />
               </a>
             </div>
-          </div>
+            </div>
 
           {/* Avatar panel */}
           <div className="rounded-3xl border border-border bg-panel md:col-span-2 hover:border-accent-cyan hover:shadow-sm">

@@ -4,12 +4,12 @@ import Brandmark from "@/components/Brandmark";
 import { Menu, X, Github, Linkedin, Instagram } from "lucide-react";
 
 const hoverAccents = [
-  "hover:border-accent-blue hover:text-accent-blue",
+  "hover:border-accent-cyan hover:text-accent-cyan",
   "hover:border-accent-purple hover:text-accent-purple",
   "hover:border-accent-green hover:text-accent-green",
   "hover:border-accent-yellow hover:text-accent-yellow",
   "hover:border-accent-orange hover:text-accent-orange",
-  "hover:border-accent-cyan hover:text-accent-cyan",
+  "hover:border-accent-blue hover:text-accent-blue",
 ];
 
 export default function Navbar() {

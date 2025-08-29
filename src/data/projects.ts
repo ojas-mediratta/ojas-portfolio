@@ -36,8 +36,8 @@ export const PROJECTS: Project[] = [
 
       BLIP continues to serve as a first-of-its-kind testbed for experimental dolphin communication studies. Ongoing work includes expanding its acoustic vocabulary, improving robustness for long-duration ocean trials, and exploring broader applications in marine human–robot interaction research.`,
     gallery: [
-      "media/blip-auv/blip_1.jpg", 
-      "media/blip-auv/blip_2.jpg", 
+      "media/blip-auv/blip_1.jpg",
+      "media/blip-auv/blip_2.jpg",
       "media/blip-auv/blip_3.jpg",
       "media/blip-auv/blip_4.mp4",
       "media/blip-auv/blip_5.jpg",
@@ -46,30 +46,6 @@ export const PROJECTS: Project[] = [
       "media/blip-auv/blip_8.jpg",
       "media/blip-auv/blip_9.jpg",
       "media/blip-auv/blip_10.jpg",]
-  },
-  {
-    slug: "et55-keyboard",
-    title: "ET55: A Custom 55‑key, Hand‑Wired Mechanical Keyboard.",
-    blurb: "An ultra-compact board blending the vintage feel of IBM Model F layouts with modern touches—QMK firmware, USB-C, an OLED status screen, and a rotary-encoder volume knob.",
-    tags: ["Embedded Systems", "C++", "ATMega34U4", "Fusion360"],
-    area: "Embedded",
-    thumb: "media/et55/et55_thumb.jpg",
-    previewVideo: "media/placeholder.mp4",
-    links: { code: "https://github.com/ojas-mediratta/ET55-Keyboard" },
-    body: `Mechanical keyboards have always captured my attention, both for their tactile feel and for the design creativity in the enthusiast scene. When I took ECE 4180 (Embedded Systems Design), I saw the chance to build something that would push me technically while letting me create a keyboard that was truly my own. That idea became ET55, a 55-key, hand-wired mechanical keyboard inspired by vintage IBM layouts but updated with modern embedded features.
-
-      The project brought together hardware craftsmanship and embedded development in equal measure. I hand-wired the switch matrix with diodes for full NKRO support, routing each connection with care and heat-shrinking joints to prevent shorts. For control, I used an ATmega32U4 Pro Micro running QMK firmware, giving the keyboard a flexible four-layer layout that could be easily compiled and flashed.
-
-      I also added modern conveniences: a USB-C port for reliable connectivity, a rotary encoder that doubled as both a volume knob and layer switcher, and a crisp OLED display that could show system status or playful animations. To finish the build, I modeled and 3D-printed a custom case and plate, iterating on alignment and fit until the enclosure felt polished and cohesive despite the hand-wired internals.
-
-      The result was more than just a keyboard. It was a full exercise in end-to-end embedded system design: prototyping, debugging, firmware integration, and enclosure fabrication all coming together in one device. ET55 showed me how compact hardware projects can combine nostalgic design influences with the flexibility of modern microcontrollers, and it gave me another opportunity to merge my personal passions with academic work.
-      
-      See the repo README for full build notes.`,
-    gallery: [
-      "media/et55/et55_1.jpg",
-      "media/et55/et55_2.jpg",
-      "media/et55/et55_3.jpg"
-    ]
   },
   {
     slug: "buzzcaster-guitar",
@@ -94,7 +70,38 @@ export const PROJECTS: Project[] = [
     gallery: [
       "media/buzzcaster/buzzcaster_1.jpg",
       "media/buzzcaster/buzzcaster_2.jpg",
-      "media/buzzcaster/buzzcaster_3.jpg"
+      "media/buzzcaster/buzzcaster_3.jpg",
+      "media/buzzcaster/buzzcaster_4.mp4",
+      "media/buzzcaster/buzzcaster_5.jpg",
+      "media/buzzcaster/buzzcaster_6.jpg",
+      "media/buzzcaster/buzzcaster_7.jpg",
+      "media/buzzcaster/buzzcaster_8.jpg",
+      "media/buzzcaster/buzzcaster_9.jpg",
+      "media/buzzcaster/buzzcaster_10.jpg",
+      "media/buzzcaster/buzzcaster_11.jpg",]
+  },
+  {
+    slug: "et55-keyboard",
+    title: "ET55: A Custom 55‑key, Hand‑Wired Mechanical Keyboard.",
+    blurb: "An ultra-compact board blending the vintage feel of IBM Model F layouts with modern touches—QMK firmware, USB-C, an OLED status screen, and a rotary-encoder volume knob.",
+    tags: ["Embedded Systems", "C++", "ATMega34U4", "Fusion360"],
+    area: "Embedded",
+    thumb: "media/et55/et55_thumb.jpg",
+    previewVideo: "media/placeholder.mp4",
+    links: { code: "https://github.com/ojas-mediratta/ET55-Keyboard" },
+    body: `Mechanical keyboards have always captured my attention, both for their tactile feel and for the design creativity in the enthusiast scene. When I took ECE 4180 (Embedded Systems Design), I saw the chance to build something that would push me technically while letting me create a keyboard that was truly my own. That idea became ET55, a 55-key, hand-wired mechanical keyboard inspired by vintage IBM layouts but updated with modern embedded features.
+
+      The project brought together hardware craftsmanship and embedded development in equal measure. I hand-wired the switch matrix with diodes for full NKRO support, routing each connection with care and heat-shrinking joints to prevent shorts. For control, I used an ATmega32U4 Pro Micro running QMK firmware, giving the keyboard a flexible four-layer layout that could be easily compiled and flashed.
+
+      I also added modern conveniences: a USB-C port for reliable connectivity, a rotary encoder that doubled as both a volume knob and layer switcher, and a crisp OLED display that could show system status or playful animations. To finish the build, I modeled and 3D-printed a custom case and plate, iterating on alignment and fit until the enclosure felt polished and cohesive despite the hand-wired internals.
+
+      The result was more than just a keyboard. It was a full exercise in end-to-end embedded system design: prototyping, debugging, firmware integration, and enclosure fabrication all coming together in one device. ET55 showed me how compact hardware projects can combine nostalgic design influences with the flexibility of modern microcontrollers, and it gave me another opportunity to merge my personal passions with academic work.
+      
+      See the repo README for full build notes.`,
+    gallery: [
+      "media/et55/et55_1.jpg",
+      "media/et55/et55_2.jpg",
+      "media/et55/et55_3.jpg"
     ]
   },
   {
@@ -139,5 +146,5 @@ export const PROJECTS: Project[] = [
       "media/keyboard-design/keyboard-design_23.jpg",
       "media/keyboard-design/keyboard-design_24.jpg",
     ]
-  }
+  },
 ];
