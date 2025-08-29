@@ -15,7 +15,7 @@ export const EDUCATION: Education[] = [
         date: "2025 – 2027",
         details: [
             "Concentration: Artificial Intelligence, Perception, and Controls",
-            "Coursework: Artificial Intelligence, Machine Learning, Computer Vision, Deep Learning, Deep Reinforcement Learning, Linear and Nonlinear Control Systems",
+            "Coursework: Artificial Intelligence, Machine Learning, Computer Vision, Deep Learning, Deep Reinforcement Learning, Linear Control Systems, Nonlinear Control Systems",
         ],
         logoKey: "gt",
         logoSize: 72,

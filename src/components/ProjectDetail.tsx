@@ -105,7 +105,7 @@ export default function ProjectDetail() {
 
           {/* Hero media */}
           <div className="mt-6 overflow-hidden rounded-2xl border border-border bg-panel">
-            {project.previewVideo ? (
+            {project.mainVideo ? (
               <video
                 className="h-[340px] sm:h-[420px] md:h-[500px] w-full object-contain"
                 muted
@@ -113,7 +113,7 @@ export default function ProjectDetail() {
                 controls
                 preload="metadata"
                 poster={project.thumb ? withBase(project.thumb) : undefined}
-                src={withBase(project.previewVideo)}
+                src={withBase(project.mainVideo)}
               />
             ) : project.thumb ? (
               <img

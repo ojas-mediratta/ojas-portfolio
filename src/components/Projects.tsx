@@ -1,46 +1,38 @@
-import React, { useMemo, useRef, useState } from "react";
-import Section from "@/components/Section";
-import Container from "@/components/Container";
-import { PROJECTS } from "@/data/projects";
-import { Link } from "react-router-dom";
-import { Github, ExternalLink } from "lucide-react";
+import React, { useMemo, useRef, useState, useEffect } from 'react'
+import Section from '@/components/Section'
+import Container from '@/components/Container'
+import { PROJECTS } from '@/data/projects'
+import { Link } from 'react-router-dom'
+import { Github, ExternalLink } from 'lucide-react'
 
 const withBase = (path?: string) =>
-  path ? `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}` : undefined;
+  path ? `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}` : undefined
 
 function Preview({
   title,
   thumb,
   previewVideo,
+  hovering,
 }: {
-  title: string;
-  thumb?: string;
-  previewVideo?: string;
+  title: string
+  thumb?: string
+  previewVideo?: string
+  hovering: boolean
 }) {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [hovering, setHovering] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null)
 
-  const onEnter = () => {
-    setHovering(true);
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(() => { });
+  useEffect(() => {
+    if (hovering && videoRef.current) {
+      videoRef.current.currentTime = 0
+      videoRef.current.play().catch(() => { })
+    } else if (!hovering && videoRef.current) {
+      videoRef.current.pause()
+      videoRef.current.currentTime = 0
     }
-  };
-  const onLeave = () => {
-    setHovering(false);
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    }
-  };
+  }, [hovering])
 
   return (
-    <div
-      className="relative overflow-hidden rounded-2xl border border-border bg-bg"
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}
-    >
+    <div className="relative overflow-hidden rounded-2xl border border-border bg-bg">
       {hovering && previewVideo ? (
         <video
           ref={videoRef}
@@ -65,21 +57,22 @@ function Preview({
         </div>
       )}
     </div>
-  );
+  )
 }
 
 export default function Projects() {
   const [activeFilter] = useState<
-    "All" | "Robotics" | "Embedded" | "ML" | "Systems" | "Other"
-  >("All");
+    'All' | 'Robotics' | 'Embedded' | 'ML' | 'Systems' | 'Other'
+  >('All')
+  const [hoveredSlug, setHoveredSlug] = useState<string | null>(null)
 
   const items = useMemo(() => {
-    if (activeFilter === "All") return PROJECTS;
-    return PROJECTS.filter((p) => p.area === activeFilter);
-  }, [activeFilter]);
+    if (activeFilter === 'All') return PROJECTS
+    return PROJECTS.filter((p) => p.area === activeFilter)
+  }, [activeFilter])
 
   return (
-    <Section id="projects" className="py-12 md:py-0">
+    <Section id="projects" className="py-12 md:py-20">
       <Container>
         <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
           Projects
@@ -89,12 +82,15 @@ export default function Projects() {
             <article
               key={p.slug}
               className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-panel transition-all hover:-translate-y-0.5 hover:border-accent-purple hover:shadow-sm"
+              onMouseEnter={() => setHoveredSlug(p.slug)}
+              onMouseLeave={() => setHoveredSlug(null)}
             >
               <Link to={`/projects/${p.slug}`} className="block">
                 <Preview
                   title={p.title}
                   thumb={p.thumb}
                   previewVideo={p.previewVideo}
+                  hovering={hoveredSlug === p.slug}
                 />
               </Link>
 
@@ -117,14 +113,14 @@ export default function Projects() {
                   <div className="mt-3 flex flex-wrap gap-2">
                     {p.tags.map((t, i) => {
                       const accents = [
-                        "border-accent-blue text-accent-blue",
-                        "border-accent-green text-accent-green",
-                        "border-accent-yellow text-accent-yellow",
-                        "border-accent-orange text-accent-orange",
-                        "border-accent-purple text-accent-purple",
-                        "border-accent-cyan text-accent-cyan", // includes your cyan
-                      ];
-                      const style = accents[(idx + i) % accents.length];
+                        'border-accent-blue text-accent-blue',
+                        'border-accent-green text-accent-green',
+                        'border-accent-yellow text-accent-yellow',
+                        'border-accent-orange text-accent-orange',
+                        'border-accent-purple text-accent-purple',
+                        'border-accent-cyan text-accent-cyan',
+                      ]
+                      const style = accents[(idx + i) % accents.length]
                       return (
                         <span
                           key={t}
@@ -132,12 +128,12 @@ export default function Projects() {
                         >
                           {t}
                         </span>
-                      );
+                      )
                     })}
                   </div>
                 ) : null}
 
-                {/* Code Link */}
+                {/* Links */}
                 {(p.links?.live || p.links?.code) && (
                   <div className="mt-4 flex items-center gap-4">
                     {p.links?.live && (
@@ -147,7 +143,7 @@ export default function Projects() {
                         rel="noreferrer"
                         className="group inline-flex items-center gap-1 text-accent-blue hover:text-accent-purple hover:underline"
                       >
-                        Live
+                        Live{' '}
                         <ExternalLink className="size-4 transition-transform group-hover:translate-x-0.5" />
                       </a>
                     )}
@@ -158,7 +154,7 @@ export default function Projects() {
                         rel="noreferrer"
                         className="group inline-flex items-center gap-1 text-accent-blue hover:text-accent-purple hover:underline"
                       >
-                        Code
+                        Code{' '}
                         <Github className="size-4 transition-transform group-hover:translate-x-0.5" />
                       </a>
                     )}
@@ -170,5 +166,5 @@ export default function Projects() {
         </div>
       </Container>
     </Section>
-  );
+  )
 }

@@ -5,6 +5,7 @@ export type Project = {
   tags: string[];
   thumb?: string;
   previewVideo?: string;
+  mainVideo?: string;
   previewGif?: string;
   links?: { live?: string; code?: string };
   area?: "Robotics" | "Embedded" | "ML" | "Systems" | "Other";
@@ -21,7 +22,8 @@ export const PROJECTS: Project[] = [
     area: "Robotics",
     thumb: "media/blip-auv/blip_thumb.jpg",
     previewVideo: "media/blip-auv/blip_preview.mp4",
-    links: { live: "link.com" },
+    mainVideo: "media/blip-auv/blip_main.mp4",
+    links: { live: "https://www.linkedin.com/posts/ojas-mediratta_robotics-embedded-signalprocessing-activity-7358290478351478784-0Afr?utm_source=share&utm_medium=member_desktop&rcm=ACoAADdTxJgB6uIFgkQecw_eTHt3ywpT-XIfTt8" },
     body: `BLIP (Bio-inspired Listening & Interaction Platform) is an autonomous underwater vehicle (AUV) designed for dolphin communication research. Developed in collaboration with the Wild Dolphin Project and Georgia Tech’s Contextual Computing Group, the system blends marine-ready hardware, embedded control systems, and onboard machine learning to enable real-time acoustic interaction with wild dolphins.
 
     Over the course of 15+ pool trials and 4+ Atlantic deployments, BLIP has evolved into a modular, field-tested research platform capable of withstanding harsh marine conditions while running sophisticated signal processing onboard. My role has spanned hardware, electronics, firmware, and signal processing pipelines.
@@ -35,7 +37,9 @@ export const PROJECTS: Project[] = [
       -	Field testing: Conducted 15+ pool trials and 4+ open-ocean deployments in the Bahamas, validating pressure housing, buoyancy, thruster balance, and DSP pipelines under real conditions.
       -	Research contribution: Provides a first-of-its-kind platform for experimental dolphin communication studies, bridging robotics, embedded systems, and marine biology.
 
-    BLIP continues to serve as a testbed for marine HRI (human–robot interaction) research, with ongoing work focusing on extending its acoustic vocabulary, improving robustness, and scaling the platform for broader field use."`,
+      BLIP represents a convergence of robotics, embedded systems, and marine biology, but my personal contributions have centered on the vehicle’s intelligence and integration. I engineered the DSP pipeline on Android, enabling real-time whistle detection and classification, and built the communication layer linking the ESP32 control board with the onboard phone. I also developed the supporting software ecosystem — including Android dashboards, OTA update systems, and a live web-based telemetry site — that made the platform usable and adaptable during deployments.
+
+      BLIP continues to serve as a testbed for marine HRI (human–robot interaction) research, with ongoing work focusing on extending its acoustic vocabulary, improving robustness, and scaling the platform for broader field use."`,
     gallery: [
       "media/blip-auv/blip_1.jpg", 
       "media/blip-auv/blip_2.jpg", 
