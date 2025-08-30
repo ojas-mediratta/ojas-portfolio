@@ -9,5 +9,5 @@ export default defineConfig({
     svgr() as unknown as PluginOption,
     react(),
   ],
-  base: "/ojas-portfolio/",
+  base: "/",
 });
