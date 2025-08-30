@@ -32,7 +32,7 @@ export const PROJECTS: Project[] = [
 
       To make the system deployable, I built the supporting software ecosystem that researchers used during experiments. This included custom Android dashboards for real-time monitoring, OTA update systems for rapid iteration in the field, and a live web-based telemetry site for tracking robot state and acoustic events during deployments. These tools ensured the platform remained adaptable, testable, and transparent to researchers in both lab and field environments.
 
-      From a hardware standpoint, the vehicle itself has iterated significantly, incorporating syntactic foam thruster mounts, TPU-based protective skins, and a vacuum-tested pressure vessel for electronics and batteries. While I was not the lead on mechanical design, I worked closely with the hardware team to integrate electronics, sensors, and communication layers into the evolving enclosure.
+      From a hardware standpoint, the vehicle itself has iterated significantly, incorporating syntactic foam thruster mounts, TPU-based protective skins, and a vacuum-tested pressure vessel for electronics and batteries. While I was not the lead on mechanical design, I was greatly responsible for electronics and hardware integration—developing the sensor stack, power systems, and communication layers to interface reliably within the evolving enclosure.
 
       BLIP continues to serve as a first-of-its-kind testbed for experimental dolphin communication studies. Ongoing work includes expanding its acoustic vocabulary, improving robustness for long-duration ocean trials, and exploring broader applications in marine human–robot interaction research.`,
     gallery: [
