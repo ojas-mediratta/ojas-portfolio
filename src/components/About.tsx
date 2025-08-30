@@ -42,7 +42,7 @@ export default function About() {
           </div>
 
           {/* Avatar panel */}
-          <div className="rounded-3xl border border-border bg-panel md:col-span-2 hover:border-accent-cyan hover:shadow-sm">
+          <div className="rounded-3xl border border-border bg-panel md:col-span-2 transition-all hover:border-accent-cyan hover:shadow-sm">
             <div className="p-6">
               <img
                 src={avatarFile}

@@ -8,7 +8,7 @@ export type Experience = {
 export const EXPERIENCES: Experience[] = [
   {
     role: "Graduate Research Assistant",
-    org: "Contextual Computing Group, Georgia Tech",
+    org: "Contextual Computing Group @ Georgia Tech",
     date: "Aug 2024 – Present",
     desc: `Built and deployed an autonomous underwater robot for dolphin research, with a real-time DSP pipeline for whistle/click classification. Programmed ESP32 firmware for closed-loop thruster PID control, developed an Android telemetry/control app, and created a web dashboard for post-mission analysis. Also designed a submersible bone-conduction headset and worked on a wireless canine chew sensor for research trials.`
   },
