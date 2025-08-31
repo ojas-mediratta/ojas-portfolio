@@ -8,7 +8,7 @@ import { PROFILE } from "@/data/links";
 
 
 const STATUS_MESSAGES = [
-  "IoT prototype.",
+  "an IoT device proto.",
   "Inventure Prize 26.",
   "portfolio UI polish.",
   "conference papers.",
