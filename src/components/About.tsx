@@ -1,4 +1,5 @@
 import React from "react";
+const GLITCH_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*+-_=:;<>/?";
 import Section from "@/components/Section";
 import Container from "@/components/Container";
 import TypingEffect from "@/components/TypingEffect";
@@ -8,8 +9,8 @@ import { PROFILE } from "@/data/links";
 
 
 const STATUS_MESSAGES = [
-  "an IoT device proto.",
-  "Inventure Prize 26.",
+  "a secret IoT thing.",
+  "Inventure Prize '26.",
   "portfolio UI polish.",
   "conference papers.",
   "learning ROS2.",
@@ -17,8 +18,64 @@ const STATUS_MESSAGES = [
 
 const resumeHref = `${import.meta.env.BASE_URL}resume.pdf`;
 
-export default function About() {
+
+function useGlitchCycle(messages: string[], dwellMs = 2000, scrambleMs = 450) {
   const [idx, setIdx] = React.useState(0);
+  const [text, setText] = React.useState(messages[0] ?? "");
+
+  React.useEffect(() => {
+    if (!messages.length) return;
+    let raf: number | null = null;
+    let dwellTimer: number | null = null;
+
+    const startScramble = () => {
+      const from = messages[idx] ?? "";
+      const to = messages[(idx + 1) % messages.length] ?? "";
+      const maxLen = Math.max(from.length, to.length);
+      const start = performance.now();
+
+      const step = (now: number) => {
+        const t = Math.min(1, (now - start) / scrambleMs);
+        const reveal = Math.floor(t * maxLen);
+        let out = "";
+        for (let i = 0; i < maxLen; i++) {
+          if (i < reveal) {
+            out += to[i] ?? " ";
+          } else {
+            out += GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)];
+          }
+        }
+        setText(out);
+        if (t < 1) {
+          raf = requestAnimationFrame(step);
+        } else {
+          setIdx((i) => (i + 1) % messages.length);
+          setText(to);
+          schedule();
+        }
+      };
+
+      raf = requestAnimationFrame(step);
+    };
+
+    const schedule = () => {
+      dwellTimer = window.setTimeout(startScramble, dwellMs);
+    };
+
+    // initialize current text and schedule first scramble
+    setText(messages[idx] ?? "");
+    schedule();
+
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      if (dwellTimer) clearTimeout(dwellTimer);
+    };
+  }, [idx, messages, dwellMs, scrambleMs]);
+
+  return { text };
+}
+
+export default function About() {
 
   return (
     <Section id="about">
@@ -64,18 +121,16 @@ export default function About() {
               </img>
               <div className="mt-4 text-sm text-subtext flex items-center gap-2">
                 <span className="font-medium whitespace-nowrap">Currently hacking on:</span>
-                <div className="relative flex-1 h-6">
-                  <span
-                    onAnimationIteration={() => setIdx((i) => (i + 1) % STATUS_MESSAGES.length)}
-                    className="block leading-6 font-semibold text-accent-cyan animate-about-fade"
-                  >
-                    {STATUS_MESSAGES[idx]}
-                  </span>
-                  <style>{`
-                    @keyframes about-fade { 0% { opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { opacity: 0; } }
-                    .animate-about-fade { animation: about-fade 3s ease-in-out infinite; }
-                  `}</style>
-                </div>
+                {(() => {
+                  const { text } = useGlitchCycle(STATUS_MESSAGES, 2000, 450);
+                  return (
+                    <div className="relative flex-1 h-6">
+                      <span className="block leading-6 font-semibold text-accent-cyan font-mono">
+                        {text}
+                      </span>
+                    </div>
+                  );
+                })()}
               </div>
             </div>
           </div>
