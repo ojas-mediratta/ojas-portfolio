@@ -87,7 +87,8 @@ export const PROJECTS: Project[] = [
     tags: ["Embedded Systems", "C++", "ATMega34U4", "Fusion360"],
     area: "Embedded",
     thumb: "media/et55/et55_thumb.jpg",
-    previewVideo: "media/placeholder.mp4",
+    previewVideo: "media/et55/et55_preview.mp4",
+    mainVideo: "media/et55/et55_main.mp4",
     links: { code: "https://github.com/ojas-mediratta/ET55-Keyboard" },
     body: `Mechanical keyboards have always captured my attention, both for their tactile feel and for the design creativity in the enthusiast scene. When I took ECE 4180 (Embedded Systems Design), I saw the chance to build something that would push me technically while letting me create a keyboard that was truly my own. That idea became ET55, a 55-key, hand-wired mechanical keyboard inspired by vintage IBM layouts but updated with modern embedded features.
 
@@ -101,7 +102,8 @@ export const PROJECTS: Project[] = [
     gallery: [
       "media/et55/et55_1.jpg",
       "media/et55/et55_2.jpg",
-      "media/et55/et55_3.jpg"
+      "media/et55/et55_3.jpg", 
+      "media/et55/et55_4.mp4",
     ]
   },
   {
