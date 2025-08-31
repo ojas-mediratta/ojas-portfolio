@@ -6,9 +6,20 @@ import avatarFile from "@/assets/avatar.jpg";
 import { Mail, Phone, MapPin, Github, Linkedin, Download } from "lucide-react";
 import { PROFILE } from "@/data/links";
 
+
+const STATUS_MESSAGES = [
+  "IoT prototype.",
+  "Inventure Prize 26.",
+  "portfolio UI polish.",
+  "conference papers.",
+  "learning ROS2.",
+];
+
 const resumeHref = `${import.meta.env.BASE_URL}resume.pdf`;
 
 export default function About() {
+  const [idx, setIdx] = React.useState(0);
+
   return (
     <Section id="about">
       <Container>
@@ -42,13 +53,30 @@ export default function About() {
           </div>
 
           {/* Avatar panel */}
-          <div className="rounded-3xl border border-border bg-panel md:col-span-2 transition-all hover:border-accent-cyan hover:shadow-sm">
+          <div
+            className="group rounded-3xl border border-border bg-panel md:col-span-2 transition-all hover:border-accent-cyan hover:shadow-sm"
+          >
             <div className="p-6">
               <img
                 src={avatarFile}
                 alt="Headshot"
                 className="w-full rounded-2xl object-cover scale-105">
               </img>
+              <div className="mt-4 text-sm text-subtext flex items-center gap-2">
+                <span className="font-medium whitespace-nowrap">Currently hacking on:</span>
+                <div className="relative flex-1 h-6">
+                  <span
+                    onAnimationIteration={() => setIdx((i) => (i + 1) % STATUS_MESSAGES.length)}
+                    className="block leading-6 font-semibold text-accent-cyan animate-about-fade"
+                  >
+                    {STATUS_MESSAGES[idx]}
+                  </span>
+                  <style>{`
+                    @keyframes about-fade { 0% { opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { opacity: 0; } }
+                    .animate-about-fade { animation: about-fade 3s ease-in-out infinite; }
+                  `}</style>
+                </div>
+              </div>
             </div>
           </div>
         </div>
