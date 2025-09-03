@@ -133,11 +133,11 @@ export default function Projects() {
                   </div>
                 ) : null}
 
-                {(p.links?.link || p.links?.code || p.active || p.status === 'In Progress') && (
+                {(p.links?.live || p.links?.code || p.active || p.status === 'In Progress') && (
                   <div className="mt-4 flex items-center gap-4 items-center">
-                    {p.links?.link && (
+                    {p.links?.live && (
                       <a
-                        href={p.links.link}
+                        href={p.links.live}
                         target="_blank"
                         rel="noreferrer"
                         className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple"
