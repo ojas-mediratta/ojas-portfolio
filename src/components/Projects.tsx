@@ -158,7 +158,7 @@ export default function Projects() {
                       </a>
                     )}
 
-                    {(p.active || p.status === 'In Progress') && (
+                    {(p.active || p.status === 'Active') && (
                       <span className="ml-auto inline-flex items-center gap-2 text-sm font-medium text-emerald-400 px-2">
                         <span className="relative inline-flex h-2.5 w-2.5">
                           {/* bright core */}
