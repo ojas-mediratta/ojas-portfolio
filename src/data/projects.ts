@@ -7,8 +7,13 @@ export type Project = {
   previewVideo?: string;
   mainVideo?: string;
   previewGif?: string;
-  links?: { live?: string; code?: string };
+  links?: { link?: string; code?: string };
   area?: "Robotics" | "Embedded" | "ML" | "Systems" | "Other";
+  /**
+   * Optional project status. Use `status: 'Active'` (preferred) or `active: true` for legacy checks.
+   */
+  status?: 'Active' | 'In Progress' | 'Paused' | 'Archived' | 'Complete';
+  active?: boolean;
   body?: string;             // long writeup (supports \n\n)
   gallery?: string[];        // additional images in public/media
 };
@@ -20,10 +25,11 @@ export const PROJECTS: Project[] = [
     blurb: "AUV robot with real-time whistle/click vocalization classification and closed-loop control.",
     tags: ["Robotics", "C++", "ESP32", "Android", "Controls", "Audio DSP"],
     area: "Robotics",
+    status: "In Progress",
     thumb: "media/blip-auv/blip_thumb.jpg",
     previewVideo: "media/blip-auv/blip_preview.mp4",
     mainVideo: "media/blip-auv/blip_main.mp4",
-    links: { live: "https://www.linkedin.com/posts/ojas-mediratta_robotics-embedded-signalprocessing-activity-7358290478351478784-0Afr?utm_source=share&utm_medium=member_desktop&rcm=ACoAADdTxJgB6uIFgkQecw_eTHt3ywpT-XIfTt8" },
+    links: { link: "https://www.linkedin.com/posts/ojas-mediratta_robotics-embedded-signalprocessing-activity-7358290478351478784-0Afr?utm_source=share&utm_medium=member_desktop&rcm=ACoAADdTxJgB6uIFgkQecw_eTHt3ywpT-XIfTt8" },
     body: `BLIP (Bio-acoustic Learning Interactive Platform) is an autonomous underwater vehicle (AUV) designed for dolphin communication research. Developed in collaboration with the Wild Dolphin Project and Georgia Tech’s Contextual Computing Group, the system combines marine-ready hardware, embedded control systems, and onboard machine learning to enable real-time acoustic interaction with wild dolphins.
 
       The project has been through more than 15 pool trials and 4 deployments in the Atlantic, evolving into a modular, field-tested platform capable of withstanding harsh marine conditions while running sophisticated signal processing onboard. BLIP represents a unique convergence of robotics, embedded systems, and marine biology, and my contributions have centered on the vehicle’s intelligence and software integration.
@@ -102,7 +108,7 @@ export const PROJECTS: Project[] = [
     gallery: [
       "media/et55/et55_1.jpg",
       "media/et55/et55_2.jpg",
-      "media/et55/et55_3.jpg", 
+      "media/et55/et55_3.jpg",
       "media/et55/et55_4.mp4",
     ]
   },
