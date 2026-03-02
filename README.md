@@ -1,68 +1,141 @@
 # Ojas Mediratta — Portfolio Website
 
-This is my personal portfolio website, built with **React**, **TypeScript**, and **Vite**.  
-It serves as a central place to highlight my projects, research, and experiences in robotics, embedded systems, and applied machine learning.
+This is my personal portfolio website, built with React, TypeScript, and Vite. It showcases my projects, research, and experience in robotics, embedded systems, and applied machine learning.
 
-## 🎨 Design & Inspirations
+The site is intentionally simple and lightweight. The focus is on clarity, responsiveness, and clean presentation rather than heavy frameworks or complex infrastructure.
 
-The site design was inspired by a mix of modern portfolio trends and my own aesthetic preferences:
+---
 
-- **Color theme**: Based on the [Ayu Mirage](https://github.com/ayu-theme) palette for a clean, dark-but-soft feel.
-- **Mouse glow effect**: Inspired by [Brittany Chiang’s portfolio](https://brittanychiang.com/) and adapted for React.
-- **Typing effect**: Borrowed from countless developer portfolios online, fine-tuned to fit my site’s introduction.
-- **Layout & feel**: Iteratively shaped after exploring an innumerable number of online portfolios for ideas on section flow, animations, and responsiveness.
+## How This Site Is Built
 
-The goal was to create something visually engaging but lightweight, putting the focus on content.
+If you want to build something similar, here’s the basic idea behind the stack.
 
-## ⚡ Tech Stack
+### Core Technologies
 
-- **React + TypeScript + Vite** for a fast, modern frontend setup.
-- **TailwindCSS** for styling and responsive design.
-- **GitHub Pages** for deployment and hosting.
+- **Vite** – A fast development tool that runs your project locally and builds it for production.
+- **React** – A library for building user interfaces using reusable components.
+- **TypeScript** – Adds type safety to JavaScript, helping prevent bugs as projects grow.
+- **TailwindCSS** – A utility-based CSS framework for fast, responsive styling.
 
-## 🚀 Development Setup
+Vite handles development and bundling.  
+React structures the UI.  
+TypeScript improves reliability.  
+Tailwind handles styling and layout.
 
-This project started from the Vite + React + TypeScript template. It supports hot module replacement (HMR) and linting out of the box.
+---
 
-To run locally:
+## How to Build Your Own Portfolio with Vite
+
+### 1. Install Node.js
+
+Download Node.js from https://nodejs.org.
+
+Verify installation:
 
 ```bash
+node -v
+npm -v
+```
+
+---
+
+### 2. Create a New Vite + React + TypeScript Project
+
+```bash
+npm create vite@latest my-portfolio
+```
+
+Select:
+- Framework: React  
+- Variant: TypeScript  
+
+Then run:
+
+```bash
+cd my-portfolio
 npm install
 npm run dev
 ```
 
-## 🛠 ESLint Configuration
+Your site will now run locally (usually at http://localhost:5173).
 
-The repo uses @vitejs/plugin-react and includes ESLint rules for TypeScript/React projects.
-For production-grade apps, consider expanding the configuration with type-aware lint rules:
+---
+
+### 3. Add TailwindCSS
+
+Install Tailwind:
 
 ```bash
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      ...tseslint.configs.recommendedTypeChecked,
-      // or stricter rules:
-      ...tseslint.configs.strictTypeChecked,
-      ...tseslint.configs.stylisticTypeChecked,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
-  },
-])
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
 ```
-You can also use:
-	•	eslint-plugin-react-x
-	•	eslint-plugin-react-dom
 
-for React-specific lint rules.
+Configure the `content` paths in `tailwind.config.js`, and add Tailwind’s base directives to your main CSS file. You can then style directly inside your React components using utility classes.
 
-## 🌐 Deployment
+---
 
-The site is deployed through GitHub Pages using a custom domain:
-👉 ojasmediratta.com
+### 4. Organize Your Project
+
+A simple portfolio usually includes:
+
+- Hero section (name + short intro)
+- Projects section
+- Experience section
+- Contact section
+
+Each section can be its own React component:
+
+```
+src/
+  components/
+    Hero.tsx
+    Projects.tsx
+    Experience.tsx
+  App.tsx
+```
+
+`App.tsx` acts as the layout that assembles everything.
+
+---
+
+## Using AI Effectively (Vibecoding)
+
+AI can speed up development significantly if you prompt it clearly and iterate.
+
+Instead of:
+> Make me a portfolio site
+
+Try:
+> Create a responsive hero section in React using Tailwind. Dark theme. Large name header, short paragraph underneath, and social links below.
+
+Then refine:
+- Make it more minimal  
+- Improve mobile layout  
+- Add subtle hover animations  
+- Refactor for cleaner structure  
+
+Treat AI as a fast collaborator. Guide the direction, iterate quickly, and improve the design step by step.
+
+---
+
+## Deployment
+
+You can deploy a site like this for free using:
+
+- GitHub Pages  
+- Vercel  
+- Netlify  
+
+For GitHub Pages:
+
+1. Push your project to GitHub.
+2. If deploying to a subpath, configure the `base` field in `vite.config.ts`.
+3. Build the project:
+
+```bash
+npm run build
+```
+
+4. Deploy the generated `dist` folder.
+
+You can connect a custom domain later through your domain provider.
