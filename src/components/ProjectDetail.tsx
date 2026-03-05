@@ -295,14 +295,27 @@ export default function ProjectDetail() {
                     return (
                       <div key={idx} className="flex flex-col items-center gap-2">
                         <div className="flex w-full flex-wrap justify-center gap-4">
-                          {section.items.map((src, imgIdx) => (
-                            <img
-                              key={imgIdx}
-                              src={withBase(src)}
-                              alt={section.caption || ''}
-                              className="w-[calc(50%-1rem)] min-w-[250px] max-h-[500px] rounded-2xl border border-border object-contain"
-                            />
-                          ))}
+                          {section.items.map((src, imgIdx) => {
+                            const isVideo = /\.(mp4|webm|mov)$/i.test(src);
+                            return isVideo ? (
+                              <video
+                                key={imgIdx}
+                                src={withBase(src)}
+                                className="w-[calc(50%-1rem)] min-w-[250px] max-h-[500px] rounded-2xl border border-border bg-bg/50 object-contain"
+                                muted
+                                playsInline
+                                controls
+                                preload="metadata"
+                              />
+                            ) : (
+                              <img
+                                key={imgIdx}
+                                src={withBase(src)}
+                                alt={section.caption || ''}
+                                className="w-[calc(50%-1rem)] min-w-[250px] max-h-[500px] rounded-2xl border border-border object-contain"
+                              />
+                            );
+                          })}
                         </div>
                         {section.caption && (
                           <p className="text-sm text-subtext italic">{section.caption}</p>

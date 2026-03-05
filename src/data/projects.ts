@@ -108,17 +108,19 @@ export const PROJECTS: Project[] = [
     area: "Robotics",
     status: "Active",
     thumb: "media/advanced-mobile-robotics/advanced-mobile-robotics_thumb.jpg",
-    previewVideo: "media/advanced-mobile-robotics/advanced-mobile-robotics_preview.mp4",
-    mainVideo: "media/advanced-mobile-robotics/advanced-mobile-robotics_preview.mp4",
+    previewVideo: "media/advanced-mobile-robotics/advanced-mobile-robotics_preview.mov",
+    mainVideo: "media/advanced-mobile-robotics/advanced-mobile-robotics_preview.mov",
     links: { code: "" },
     sections: [
     { type: 'text', content: `This project tracks my work in Georgia Tech's Advanced Mobile Robotics course (ECE 8803 AMR). The course has 4 different projects called 'Swim', 'Walk', 'Drive', and 'Fly'. Each of them involves the use of the GTSAM Python library and Webots for implementing things like control and filtering` },
     { type: 'text', content: `First, we worked on 'Swim', which mostly focused on state estimation and control for an underwater ROV in the Webots simulator. I implemented an EKF using GTSAM's NavStateImuEKF package to fuse IMU data with position, depth, and range measurements for real-time localization.` },
     { type: 'text', content: `We also had to build autonomous control functionality. I built a proportional controller that tracks desired trajectories. I broke it into four independent control channels: XY-plane distance error for forward thrust, depth error for vertical control, yaw error for heading, and roll error for stabilization. The key challenge was handling angle wrapping correctly—yaw and roll errors had to be mapped to [-π, π) to avoid discontinuities. I tuned the gains empirically until the robot tracked smoothly without too much oscillation.` },
-    { type: 'image', src: 'media/advanced-mobile-robotics/advanced-mobile-robotics_1.jpg', caption: 'Autonomous trajectory following and tracking error over time' },
+    { type: 'images', items: ['media/advanced-mobile-robotics/advanced-mobile-robotics_1.jpg', 'media/advanced-mobile-robotics/advanced-mobile-robotics_2.mp4'], caption: 'Autonomous trajectory following and tracking error over time' },
     { type: 'text', content: `This project gave me solid experience with nonlinear filtering on Lie groups (the state lives in SE(3)) and sensor fusion with heterogeneous measurements. Working with GTSAM's factor graph library had a learning curve but was useful for understanding how to handle uncertainty with estimation.` },
-    { type: 'text', content: `We've just moved onto the 'Walk' project, which focuses on legged locomotion and control for Boston Dynamics' spot quadruped. There's been some introduction for forward and inverse kinematics as well as probablistic roadmaps.` }
-    ],
+    { type: 'text', content: `We've just moved onto the 'Walk' project, which focuses on legged locomotion and control for Boston Dynamics' spot quadruped. There's been some introduction for forward and inverse kinematics as well as probablistic roadmaps.` },
+    { type: 'text', content: `Following the introduction to legged locomotion for Boston Dynamics' Spot quadruped, I implemented a Product of Exponentials (POE) based inverse kinematics controller for a single Spot leg. This involved building forward kinematics using body-frame screw axes, computing the body Jacobian through adjoint transformations, and developing a gradient descent IK solver that prioritizes translational accuracy over orientation. I validated the controller in Webots simulation and it performed well with a quick convergence.` },
+    { type: 'video', src: 'media/advanced-mobile-robotics/advanced-mobile-robotics_preview.mov', caption: 'Spot leg inverse kinematics demo' },
+  ],
     gallery: []
   },
   {
