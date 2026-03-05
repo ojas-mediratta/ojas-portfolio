@@ -38,7 +38,7 @@ export const EXPERIENCES: Experience[] = [
   {
     role: "Graduate Research Assistant",
     org: "Contextual Computing Group @ Georgia Tech",
-    date: "Aug 2024 – Feb 2026",
+    date: "Aug 2024 – Present",
     details: [
       "Built a remotely operated vehicle (ROV) for dolphin research and enrichment, contributing across firmware, electronics, and mechanical design; successfully deployed in 15+ pool trials and 4 open-water trials in the Atlantic",
       "Designed and implemented an ESP32 firmware stack, orchestrating a cascaded PID-based controller, ESC-driven thrusters, internal sensors, over-the-air telemetry, and LED signaling, unifying system operation in the field",
