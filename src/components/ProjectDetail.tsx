@@ -4,7 +4,7 @@ import Container from "@/components/Container";
 import Section from "@/components/Section";
 import Gallery from "@/components/Gallery";
 import { PROJECTS, ContentSection } from "@/data/projects";
-import { ArrowLeft, ExternalLink, Github, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ExternalLink, Github, ChevronLeft, ChevronRight, FileText } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { DARK_THEME, LIGHT_THEME } from "@/data/theme";
 
@@ -184,6 +184,16 @@ export default function ProjectDetail() {
                   className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple"
                 >
                   Code <Github className="size-4 transition-transform group-hover:translate-x-0.5" />
+                </a>
+              )}
+              {project.links?.paper && (
+                <a
+                  href={/^https?:\/\//.test(project.links.paper) ? project.links.paper : withBase(project.links.paper)}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple"
+                >
+                  Paper <FileText className="size-4 transition-transform group-hover:translate-x-0.5" />
                 </a>
               )}
             </div>

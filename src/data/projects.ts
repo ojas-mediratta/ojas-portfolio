@@ -18,7 +18,7 @@ export type Project = {
   mainVideo?: string;
   youtubeVideo?: string;
   previewGif?: string;
-  links?: { link?: string; code?: string };
+  links?: { link?: string; code?: string; paper?: string };
   area?: ProjectArea | ProjectArea[];
   status?: 'Active' | 'Complete';
   body?: string;
@@ -63,25 +63,6 @@ export const PROJECTS: Project[] = [
       "media/blip-auv/blip_10.jpg",
       "media/blip-auv/blip_11.jpg"]
   },
-  {
-    slug: "tactile-sensing",
-    title: "Tactile Sensing for Robotic Manipulation and Collaborative Tasks",
-    blurb: "Research in tactile sensing and reinforcement learning with dextrous manipulators for human-robot and robot-robot collaborative tasks.",
-    tags: ["Robotics", "Isaac Sim", "Sensors", "Manipulation", "Controls", "Fusion360"],
-    area: "Robotics",
-    status: "Active",
-    thumb: "media/tactile-sensing/tactile-sensing_thumb.jpeg",
-    previewVideo: "media/tactile-sensing/tactile-sensing_preview.mov",
-    mainVideo: "",
-    links: { code: "" },
-    sections: [
-      { type: 'text', content: `I'm working on the design of a parallel gripper with linear actuation for the Unitree G1, intended to accept custom flexible tactile sensors I am developing, inspired by [3D‑ViTac](https://binghao-huang.github.io/3D-ViTac/). This work is ongoing at the LIDAR Lab, Georgia Tech.` },
-      { type: 'text', content: `The second gripper I am working on engineering tasks for is the Inspire hand from Inspire robotics. This hand has built-in tactile sensing, and I am working on real to sim in Issac Sim for this hand too. We're working on collecting tactile sensor data at the moment, and beyond characterizing the real pressure to analog value mapping, we've done some initial testing to see which gripper design works best for the collaborative tasks we're trying to optimize for. I wrote a python script that outputs the sensor readings to a GUI and logs pose as well as tactile sensor values to a csv.` },
-      { type: 'video', src: `media/tactile-sensing/lipobattery-grip-trial.mp4`, caption: 'Testing of the inspire hand.' },
-    ],
-    gallery: [
-    ]
-  },
   // {
   //   slug: "mine-track",
   //   title: "MineTrack: Visual Odometry from Minecraft Gameplay",
@@ -94,7 +75,7 @@ export const PROJECTS: Project[] = [
   //   mainVideo: "",
   //   links: { code: "" },
   //   sections: [
-  //     { type: 'text', content: `This project is currently in the planning stage.` },
+  //     { type: 'text', content: `This project is currently being built.` },
   //     { type: 'text', content: `MineTrack is a machine learning course project that combines unsupervised representation learning with supervised regression to study vision-based motion estimation. Minecraft gameplay data will be used as a synthetic dataset, pairing video frames with ground-truth pose information for training and evaluation.` },
   //     { type: 'text', content: `Further details, experiments, and results will be added as the project is implemented.` },
   //   ],
@@ -120,9 +101,47 @@ export const PROJECTS: Project[] = [
     { type: 'text', content: `We've just moved onto the 'Walk' project, which focuses on legged locomotion and control for Boston Dynamics' spot quadruped. There's been some introduction for forward and inverse kinematics as well as probablistic roadmaps.` },
     { type: 'text', content: `Following the introduction to legged locomotion for Boston Dynamics' Spot quadruped, I implemented a Product of Exponentials (POE) based inverse kinematics controller for a single Spot leg. This involved building forward kinematics using body-frame screw axes, computing the body Jacobian through adjoint transformations, and developing a gradient descent IK solver that prioritizes translational accuracy over orientation. I validated the controller in Webots simulation and it performed well with a quick convergence.` },
     { type: 'video', src: 'media/advanced-mobile-robotics/advanced-mobile-robotics_preview.mov', caption: 'Spot leg inverse kinematics demo' },
-  ],
+    ],
     gallery: []
   },
+  {
+    slug: "tactile-sensing",
+    title: "Tactile Sensing for Robotic Manipulation and Collaborative Tasks",
+    blurb: "Research in tactile sensing and reinforcement learning with dextrous manipulators for human-robot and robot-robot collaborative tasks.",
+    tags: ["Robotics", "Isaac Sim", "Sensors", "Manipulation", "Controls", "Fusion360"],
+    area: "Robotics",
+    status: "Active",
+    thumb: "media/tactile-sensing/tactile-sensing_thumb.jpeg",
+    previewVideo: "media/tactile-sensing/tactile-sensing_preview.mov",
+    mainVideo: "",
+    links: { code: "" },
+    sections: [
+      { type: 'text', content: `I'm working on the design of a parallel gripper with linear actuation for the Unitree G1, intended to accept custom flexible tactile sensors I am developing, inspired by [3D‑ViTac](https://binghao-huang.github.io/3D-ViTac/). This work is ongoing at the LIDAR Lab, Georgia Tech.` },
+      { type: 'text', content: `The second gripper I am working on engineering tasks for is the Inspire hand from Inspire robotics. This hand has built-in tactile sensing, and I am working on real to sim in Issac Sim for this hand too. We're working on collecting tactile sensor data at the moment, and beyond characterizing the real pressure to analog value mapping, we've done some initial testing to see which gripper design works best for the collaborative tasks we're trying to optimize for. I wrote a python script that outputs the sensor readings to a GUI and logs pose as well as tactile sensor values to a csv.` },
+      { type: 'video', src: `media/tactile-sensing/lipobattery-grip-trial.mp4`, caption: 'Testing of the inspire hand.' },
+    ],
+    gallery: [
+    ]
+  },
+  // {
+  //   slug: "quantum-in-the-loop",
+  //   title: "Quantum-in-the-Loop Control: Opportunities and Limitations",
+  //   blurb: "Exploring quantum-assisted optimization for control systems, analyzing hybrid classical–quantum architectures with a case study for MPC.",
+  //   tags: ["Quantum Computing", "Qiskit", "Control Systems", "Optimization"],
+  //   area: "Other",
+  //   status: "Complete",
+  //   thumb: "media/quantum-in-the-loop/quantum-in-the-loop_thumb.jpg",
+  //   previewVideo: "media/quantum-in-the-loop/quantum-in-the-loop_preview.mp4",
+  //   mainVideo: "",
+  //   links: { paper: "" },
+  //   sections: [
+  //   { type: 'text', content: `This project explores the concept of "quantum-in-the-loop control", a hybrid architecture where a classical control system delegates certain optimization problems to a quantum processor. Many modern control approaches in robotics, such as Model Predictive Control (MPC), trajectory optimization, and combinatorial planning require repeatedly solving optimization problems in real time. As systems scale in complexity, these optimization steps can become a computational bottleneck, motivating exploration of alternative computational paradigms.` },
+  //   { type: 'text', content: `I pursued this work as a class project for ECE 8803: Quantum Devices and Hardware at Georgia Tech, a course I took out of deep personal interest in quantum physics. Rather than studying quantum algorithms in isolation, I wanted to explore how quantum computing might intersect with my primary research area of robotics and control systems. The project investigates how hybrid classical-quantum architectures could theoretically integrate with feedback control loops, where a quantum optimizer acts as a co-processor for solving discrete optimization problems.` },
+  //   { type: 'text', content: `As a concrete demonstration, I implemented the Quantum Approximate Optimization Algorithm (QAOA) using Qiskit to solve a representative combinatorial optimization problem (Max-Cut) on small graphs. While this problem is not itself a control problem, it serves as a canonical example of the types of optimization tasks that arise in planning, scheduling, and resource allocation. The results help illustrate both the capabilities of hybrid quantum algorithms and the practical challenges, such as noise, latency, and qubit scaling that currently limit their use in real-time control applications.` }
+  //   ],
+  //   gallery: [
+  //   ]
+  // },
   {
     slug: "turtlebot3-ros2",
     title: "ROS2 Perception, Planning, and Control Experiments with TurtleBot3",

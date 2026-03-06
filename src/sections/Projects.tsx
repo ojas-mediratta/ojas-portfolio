@@ -5,7 +5,7 @@ import StatusIndicator from '@/components/StatusIndicator'
 import MediaPreview, { withBase } from '@/components/MediaPreview'
 import { PROJECTS } from '@/data/projects'
 import { Link } from 'react-router-dom'
-import { Github, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react'
+import { Github, ExternalLink, ChevronDown, ChevronUp, FileText } from 'lucide-react'
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState<
@@ -157,7 +157,7 @@ export default function Projects() {
                 </div>
 
                 {/* Buttons/Active indicator - anchored to bottom */}
-                {(p.links?.link || p.links?.code || p.status === 'Active') && (
+                {(p.links?.link || p.links?.code || p.links?.paper || p.status === 'Active') && (
                   <div className="mt-4 flex items-center gap-4 items-center">
                     {p.links?.link && (
                       <a
@@ -181,6 +181,18 @@ export default function Projects() {
                       >
                         Code{' '}
                         <Github className="size-4 transition-transform" />
+                      </a>
+                    )}
+                    {p.links?.paper && (
+                      <a
+                        href={/^https?:\/\//.test(p.links.paper) ? p.links.paper : `${import.meta.env.BASE_URL}${p.links.paper.replace(/^\/+/, '')}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple cursor-pointer"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        Paper{' '}
+                        <FileText className="size-4 transition-transform" />
                       </a>
                     )}
 
