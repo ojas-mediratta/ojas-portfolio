@@ -164,7 +164,7 @@ export default function ProjectDetail() {
               ) : null}
             </div>
 
-            {/* Top-right links: Live / Code */}
+            {/* Top-right links: Link / Code / Paper*/}
             <div className="mb-3 flex items-center gap-4 md:absolute md:right-8 md:top-8 md:mt-0 ">
               {project.links?.link && (
                 <a
@@ -173,7 +173,7 @@ export default function ProjectDetail() {
                   rel="noreferrer"
                   className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple"
                 >
-                  Live <ExternalLink className="size-4 transition-transform group-hover:translate-x-0.5" />
+                  Link <ExternalLink className="size-4 transition-transform group-hover:translate-x-0.5" />
                 </a>
               )}
               {project.links?.code && (
