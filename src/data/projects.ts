@@ -104,25 +104,25 @@ export const PROJECTS: Project[] = [
     ],
     gallery: []
   },
-  {
-    slug: "tactile-sensing",
-    title: "Tactile Sensing for Robotic Manipulation and Collaborative Tasks",
-    blurb: "Research in tactile sensing and reinforcement learning with dextrous manipulators for human-robot and robot-robot collaborative tasks.",
-    tags: ["Robotics", "Isaac Sim", "Sensors", "Manipulation", "Controls", "Fusion360"],
-    area: "Robotics",
-    status: "Active",
-    thumb: "media/tactile-sensing/tactile-sensing_thumb.jpeg",
-    previewVideo: "media/tactile-sensing/tactile-sensing_preview.mov",
-    mainVideo: "",
-    links: { code: "" },
-    sections: [
-      { type: 'text', content: `I'm working on the design of a parallel gripper with linear actuation for the Unitree G1, intended to accept custom flexible tactile sensors I am developing, inspired by [3D‑ViTac](https://binghao-huang.github.io/3D-ViTac/). This work is ongoing at the LIDAR Lab, Georgia Tech.` },
-      { type: 'text', content: `The second gripper I am working on engineering tasks for is the Inspire hand from Inspire robotics. This hand has built-in tactile sensing, and I am working on real to sim in Issac Sim for this hand too. We're working on collecting tactile sensor data at the moment, and beyond characterizing the real pressure to analog value mapping, we've done some initial testing to see which gripper design works best for the collaborative tasks we're trying to optimize for. I wrote a python script that outputs the sensor readings to a GUI and logs pose as well as tactile sensor values to a csv.` },
-      { type: 'video', src: `media/tactile-sensing/lipobattery-grip-trial.mp4`, caption: 'Testing of the inspire hand.' },
-    ],
-    gallery: [
-    ]
-  },
+  // {
+  //   slug: "tactile-sensing",
+  //   title: "Tactile Sensing for Robotic Manipulation and Collaborative Tasks",
+  //   blurb: "Research in tactile sensing and reinforcement learning with dextrous manipulators for human-robot and robot-robot collaborative tasks.",
+  //   tags: ["Robotics", "Isaac Sim", "Sensors", "Manipulation", "Controls", "Fusion360"],
+  //   area: "Robotics",
+  //   status: "Active",
+  //   thumb: "media/tactile-sensing/tactile-sensing_thumb.jpeg",
+  //   previewVideo: "media/tactile-sensing/tactile-sensing_preview.mov",
+  //   mainVideo: "",
+  //   links: { code: "" },
+  //   sections: [
+  //     { type: 'text', content: `I'm working on the design of a parallel gripper with linear actuation for the Unitree G1, intended to accept custom flexible tactile sensors I am developing, inspired by [3D‑ViTac](https://binghao-huang.github.io/3D-ViTac/). This work is ongoing at the LIDAR Lab, Georgia Tech.` },
+  //     { type: 'text', content: `The second gripper I am working on engineering tasks for is the Inspire hand from Inspire robotics. This hand has built-in tactile sensing, and I am working on real to sim in Issac Sim for this hand too. We're working on collecting tactile sensor data at the moment, and beyond characterizing the real pressure to analog value mapping, we've done some initial testing to see which gripper design works best for the collaborative tasks we're trying to optimize for. I wrote a python script that outputs the sensor readings to a GUI and logs pose as well as tactile sensor values to a csv.` },
+  //     { type: 'video', src: `media/tactile-sensing/lipobattery-grip-trial.mp4`, caption: 'Testing of the inspire hand.' },
+  //   ],
+  //   gallery: [
+  //   ]
+  // },
   // {
   //   slug: "quantum-in-the-loop",
   //   title: "Quantum-in-the-Loop Control: Opportunities and Limitations",

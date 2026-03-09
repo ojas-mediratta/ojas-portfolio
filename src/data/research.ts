@@ -20,7 +20,7 @@ export type Research = {
 export const RESEARCH: Research[] = [
   {
     title: "BLIP: An Underwater Robot for Facilitating Acoustic Interactions with Dolphins",
-    outlet: "Tangible, Embedded and Embodied Interaction (TEI) Conference",
+    outlet: "IEEE Robotics and Automation (RAM) Magazine",
     date: "2026",
     type: "Paper",
     authors: ["Riley Mehrman", "Ojas Mediratta", "Charles D. Ramey", "Thad Starner"],
@@ -28,32 +28,5 @@ export const RESEARCH: Research[] = [
     // href: "https://example.com/project", 
     thumb: "media/blip-auv/blippub_thumb.png",
     previewVideo: "media/blip-auv/blippub_preview.mp4",
-  },
-  // {
-  //   title: "Contestant on The 1% Club",
-  //   outlet: "Amazon Prime Video TV Series",
-  //   date: "2026",
-  //   type: "Other",
-  //   href: "https://example.com/link", // external link
-  //   thumb: "thumbnail.png",
-  //   previewVideo: "preview.mp4",
-  // },
-  // {
-  //   title: "First in Track Winner! (Snowflake AI Cloud) AI ATL '25 Hackathon",
-  //   outlet: "AI ATL",
-  //   date: "2025",
-  //   type: "Award",
-  //   authors: ["Ojas Mediratta", "Fawaz Sabir", "Navadeep Budda", "Aditya Mukker"],
-  //   href: "https://devpost.com/software/lucid-nijx3r", 
-  //   thumb: "media/ai-atl25/winner_pub_thumb.JPEG",
-  // },
-  // {
-  //   title: "Best Overall Winners! HackGT 12 Hackathon Competition",
-  //   outlet: "HackGT 12",
-  //   date: "2026",
-  //   type: "Award",
-  //   authors: ["Ojas Mediratta", "Dawson Pent", "James Li", "David Serrao"],
-  //   href: "https://devpost.com/software/dose-ebmo9z", // external link
-  //   thumb: "media/hackGT12/dose_pub_thumb.jpeg",
-  // },
+  }
 ];
