@@ -10,6 +10,7 @@ interface MediaPreviewProps {
   title: string;
   thumb?: string;
   previewVideo?: string;
+  previewGif?: string;
   hovering: boolean;
   /**
    * Size variant:
@@ -30,6 +31,7 @@ export default function MediaPreview({
   title,
   thumb,
   previewVideo,
+  previewGif,
   hovering,
   size = "lg",
   rounded = "2xl",
@@ -52,7 +54,14 @@ export default function MediaPreview({
 
   return (
     <div className={`relative overflow-hidden ${roundedClass} border border-border bg-bg`}>
-      {hovering && previewVideo ? (
+      {hovering && previewGif ? (
+        <img
+          className={`${sizeClass} object-cover`}
+          src={withBase(previewGif)}
+          alt={`${title} preview`}
+          loading="lazy"
+        />
+      ) : hovering && previewVideo ? (
         <video
           ref={videoRef}
           className={`${sizeClass} object-cover`}

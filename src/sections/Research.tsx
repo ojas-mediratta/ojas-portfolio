@@ -54,6 +54,7 @@ export default function Research() {
                   title={p.title}
                   thumb={p.thumb}
                   previewVideo={p.previewVideo}
+                  previewGif={p.previewGif}
                   hovering={hoveredIndex === idx}
                   size="sm"
                   rounded="xl"

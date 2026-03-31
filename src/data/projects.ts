@@ -63,24 +63,23 @@ export const PROJECTS: Project[] = [
       "media/blip-auv/blip_10.jpg",
       "media/blip-auv/blip_11.jpg"]
   },
-  // {
-  //   slug: "mine-track",
-  //   title: "MineTrack: Visual Odometry from Minecraft Gameplay",
-  //   blurb: "Using Minecraft as a controlled simulation to study learning-based visual odometry, pose estimation, and SLAM from raw vision data.",
-  //   tags: ["AI/ML", "Robotics", "Python", "Pytorch", "Computer Vision", "SLAM"],
-  //   area: ["AI/ML", "Robotics"],
-  //   status: "Active",
-  //   thumb: "media/mine-track/mine-track_preview.gif",
-  //   previewVideo: "media/mine-track/mine-track_preview.gif",
-  //   mainVideo: "",
-  //   links: { code: "" },
-  //   sections: [
-  //     { type: 'text', content: `This project is currently being built.` },
-  //     { type: 'text', content: `MineTrack is a machine learning course project that combines unsupervised representation learning with supervised regression to study vision-based motion estimation. Minecraft gameplay data will be used as a synthetic dataset, pairing video frames with ground-truth pose information for training and evaluation.` },
-  //     { type: 'text', content: `Further details, experiments, and results will be added as the project is implemented.` },
-  //   ],
-  //   gallery: []
-  // },
+  {
+    slug: "mine-track",
+    title: "MineTrack: Visual Odometry from Minecraft Gameplay",
+    blurb: "Using Minecraft as a controlled simulation to study learning-based visual odometry, pose estimation, and localization from raw vision data.",
+    tags: ["AI/ML", "Python", "Pytorch", "Machine Learning", "Computer Vision"],
+    area: ["AI/ML"],
+    status: "Active",
+    thumb: "media/mine-track/mine-track_thumb.png",
+    previewGif: "media/mine-track/mine-track_preview.gif",
+    mainVideo: "media/mine-track/mine-track_preview.gif",
+    links: {link: "https://ojas-mediratta.github.io/Minetrack-Website/index.html", code: "https://github.com/ojas-mediratta/Minetrack" },
+    sections: [
+      { type: 'text', content: `MineTrack is a machine learning course project that combines unsupervised representation learning with supervised regression to study vision-based motion estimation. Minecraft gameplay data is used as a synthetic dataset, pairing video frames with ground-truth pose information for training and evaluation.`},
+      { type: 'text', content: `Further details, experiments, and results can be viewed on the project [website](https://ojas-mediratta.github.io/Minetrack-Website/index.html) and [repo](https://github.com/ojas-mediratta/Minetrack).` },
+    ],
+    gallery: []
+  },
   {
     slug: "advanced-mobile-robotics",
     title: "Advanced Mobile Robotics: Estimation, SLAM, and Control",

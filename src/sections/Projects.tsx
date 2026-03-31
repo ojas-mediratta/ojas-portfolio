@@ -114,6 +114,7 @@ export default function Projects() {
                   title={p.title}
                   thumb={p.thumb}
                   previewVideo={p.previewVideo}
+                  previewGif={p.previewGif}
                   hovering={hoveredSlug === p.slug}
                 />
               </div>
