@@ -16,7 +16,7 @@ function formatAuthors(authors?: string[] | string) {
       {list.map((name, i) => {
         const isOjas = /ojas\s+mediratta/i.test(name);
         return (
-          <span key={`${name}-${i}`} className={isOjas ? "text-accent-red" : undefined}>
+          <span key={`${name}-${i}`} className={isOjas ? "font-semibold text-accent-red" : undefined}>
             {name}
             {i < list.length - 1 ? ", " : ""}
           </span>

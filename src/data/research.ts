@@ -22,7 +22,7 @@ export const RESEARCH: Research[] = [
     title: "BLIP: An Underwater Robot for Facilitating Acoustic Interactions with Dolphins",
     outlet: "IEEE Robotics and Automation (RAM) Magazine",
     date: "2026",
-    type: "Paper",
+    type: "Article",
     authors: ["Riley Mehrman", "Ojas Mediratta", "Charles D. Ramey", "Thad Starner"],
     status: "Under Review",
     // href: "https://example.com/project", 
