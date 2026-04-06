@@ -15,6 +15,7 @@ export type Project = {
   tags: string[];
   thumb?: string;
   previewVideo?: string;
+  fitPreviewVideo?: boolean;
   mainVideo?: string;
   youtubeVideo?: string;
   previewGif?: string;
@@ -71,8 +72,9 @@ export const PROJECTS: Project[] = [
     area: ["AI/ML"],
     status: "Active",
     thumb: "media/mine-track/mine-track_thumb.png",
-    previewGif: "media/mine-track/mine-track_preview.gif",
-    mainVideo: "media/mine-track/mine-track_preview.gif",
+    previewVideo: "media/mine-track/mine-track_preview.mp4",
+    fitPreviewVideo: true,
+    mainVideo: "media/mine-track/mine-track_preview.mp4",
     links: {link: "https://ojas-mediratta.github.io/Minetrack-Website/index.html", code: "https://github.com/ojas-mediratta/Minetrack" },
     sections: [
       { type: 'text', content: `MineTrack is a machine learning course project that combines unsupervised representation learning with supervised regression to study vision-based motion estimation. Minecraft gameplay data is used as a synthetic dataset, pairing video frames with ground-truth pose information for training and evaluation.`},

@@ -115,6 +115,7 @@ export default function Projects() {
                   thumb={p.thumb}
                   previewVideo={p.previewVideo}
                   previewGif={p.previewGif}
+                  fitVideoToWindow={Boolean(p.fitPreviewVideo)}
                   hovering={hoveredSlug === p.slug}
                 />
               </div>

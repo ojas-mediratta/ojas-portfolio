@@ -12,6 +12,8 @@ interface MediaPreviewProps {
   previewVideo?: string;
   previewGif?: string;
   hovering: boolean;
+  /** If true, preview videos use object-contain instead of object-cover. */
+  fitVideoToWindow?: boolean;
   /**
    * Size variant:
    * - "lg" (default): Used in Projects grid (h-44/md:h-48, full width)
@@ -33,6 +35,7 @@ export default function MediaPreview({
   previewVideo,
   previewGif,
   hovering,
+  fitVideoToWindow = false,
   size = "lg",
   rounded = "2xl",
 }: MediaPreviewProps) {
@@ -51,6 +54,7 @@ export default function MediaPreview({
 
   const sizeClass = sizeClasses[size];
   const roundedClass = rounded === "xl" ? "rounded-xl" : "rounded-2xl";
+  const videoFitClass = fitVideoToWindow ? "object-contain" : "object-cover";
 
   return (
     <div className={`relative overflow-hidden ${roundedClass} border border-border bg-bg`}>
@@ -64,7 +68,7 @@ export default function MediaPreview({
       ) : hovering && previewVideo ? (
         <video
           ref={videoRef}
-          className={`${sizeClass} object-cover`}
+          className={`${sizeClass} ${videoFitClass}`}
           muted
           playsInline
           loop
