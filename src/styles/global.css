@@ -49,12 +49,12 @@
   --color-text: #454545;
   --color-subtext: #5a5a5a;
 
-  --color-accent-blue: #556B2F;
-  --color-accent-green: #556B2F;
-  --color-accent-yellow: #556B2F;
-  --color-accent-red: #556B2F;
-  --color-accent-purple: #556B2F;
-  --color-accent-cyan: #556B2F;
+  --color-accent-blue: #004f83;
+  --color-accent-green: #004f83;
+  --color-accent-yellow: #004f83;
+  --color-accent-red: #004f83;
+  --color-accent-purple: #004f83;
+  --color-accent-cyan: #004f83;
   
   --color-mouse-glow: rgb(255, 255, 255, 1);
 }

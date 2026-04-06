@@ -30,8 +30,8 @@ export type Project = {
 export const PROJECTS: Project[] = [
   {
     slug: "blip-auv",
-    title: "BLIP: Autonomous Underwater Vehicle for Dolphin Research",
-    blurb: "Autonomous underwater robot for dolphin research with real-time whistle/click classification and closed-loop control.",
+    title: "BLIP: Marine ROV for Dolphin Research",
+    blurb: "A marine robot for dolphin research with real-time whistle/click classification and closed-loop control.",
     tags: ["Robotics", "C++", "ESP32", "Android", "Controls", "Audio DSP"],
     area: "Robotics",
     status: "Active",
@@ -67,7 +67,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "mine-track",
     title: "MineTrack: Visual Odometry from Minecraft Gameplay",
-    blurb: "Uses Minecraft gameplay as synthetic data for learning-based visual odometry and pose estimation.",
+    blurb: "Using Minecraft gameplay as synthetic data for learning-based visual odometry and pose estimation.",
     tags: ["AI/ML", "Python", "Pytorch", "Machine Learning", "Computer Vision"],
     area: ["AI/ML"],
     status: "Active",
@@ -90,7 +90,7 @@ export const PROJECTS: Project[] = [
     area: "Robotics",
     status: "Active",
     thumb: "media/advanced-mobile-robotics/advanced-mobile-robotics_thumb.jpg",
-    previewVideo: "media/advanced-mobile-robotics/advanced-mobile-robotics_preview.mov",
+    previewVideo: "media/advanced-mobile-robotics/advanced-mobile-robotics_6.mp4",
     mainVideo: "media/advanced-mobile-robotics/advanced-mobile-robotics_preview.mov",
     links: { code: "" },
     sections: [
@@ -172,7 +172,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "buzzcaster-guitar",
     title: "BuzzCaster: Gig-Ready, Teensy-Powered Guitar Effects",
-    blurb: "Custom electric guitar with built-in Teensy 4.1 DSP effects, LCD UI, and onboard controls.",
+    blurb: "A custom electric guitar with built-in Teensy 4.1 DSP effects, LCD UI, and onboard controls.",
     tags: ["Embedded Systems", "C++", "Teensy 4.1", "Arduino", "Rapid Prototyping", "Audio DSP"],
     area: "Embedded",
     status: "Complete",
@@ -203,7 +203,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "et55-keyboard",
     title: "ET55: A Custom 55‑key, Hand‑Wired Mechanical Keyboard.",
-    blurb: "Hand-wired 55-key keyboard with QMK firmware, USB-C, an OLED status screen, and a rotary encoder.",
+    blurb: "A hand-wired 55-key keyboard with QMK firmware, USB-C, an OLED status screen, and a rotary encoder.",
     tags: ["Embedded Systems", "C++", "ATMega34U4", "Fusion360", "Rapid Prototyping"],
     area: "Embedded",
     status: "Complete",
@@ -308,7 +308,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "ai-atl25",
     title: "Lucid: Vision That Keeps Highways Safe [AI ATL 25 Winner]",
-    blurb: "Computer vision system for truck-driver fatigue detection with live fleet dashboard streaming.",
+    blurb: "A computer vision system for truck-driver fatigue detection with live fleet dashboard streaming.",
     tags: ["AI/ML", "React", "Typescript", "OpenCV", "Mediapipe", "Snowflake API"],
     area: "AI/ML",
     thumb: "media/ai-atl25/lucid_thumb.png",

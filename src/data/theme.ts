@@ -26,14 +26,14 @@ export const LIGHT_THEME = {
     subtext: '#5a5a5a',
     mouseGlow: 'rgba(255, 255, 255, 1)', // White glow for light mode
     // Single accent color scheme
-    blue: '#556B2F',
-    green: '#556B2F',
-    yellow: '#556B2F',
-    red: '#556B2F',
-    purple: '#556B2F',
-    cyan: '#556B2F',
+    blue: '#004f83',
+    green: '#004f83',
+    yellow: '#004f83',
+    red: '#004f83',
+    purple: '#004f83',
+    cyan: '#004f83',
     // Status indicator colors (brighter version)
-    statusGreen: '#B5D482',
+    statusBlue: '#2bb0c2',
     // Accents array derived from individual colors
     get accents() { return [this.blue, this.green, this.yellow, this.red, this.purple]; },
 }
@@ -44,15 +44,15 @@ export const THEME = DARK_THEME; // Default export for compatibility
 export const getStatusColors = (theme: 'dark' | 'light') => {
   if (theme === 'dark') {
     return {
-      color: DARK_THEME.green,
+      color: '#34d399',
       shadowRgba: '16,185,129', // emerald-400 equivalent
-      backgroundHex: DARK_THEME.green,
+      backgroundHex: '#34d399',
     };
   } else {
     return {
-      color: LIGHT_THEME.statusGreen,
-      shadowRgba: '181,212,130', // #B5D482 as RGB
-      backgroundHex: LIGHT_THEME.statusGreen,
+      color: LIGHT_THEME.statusBlue,
+      shadowRgba: '0,98,163', // statusBlue as RGB
+      backgroundHex: LIGHT_THEME.statusBlue,
     };
   }
 };

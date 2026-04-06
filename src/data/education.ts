@@ -16,7 +16,7 @@ export const EDUCATION: Education[] = [
         details: [
             "Concentration: Artificial Intelligence, Perception, and Mechanics",
             "Activities and Societies: Graduate Research, HackGT Hackathon Overall Winner, AI ATL Hackathon Winner, Transfer2Tech Mentor",
-            "Coursework: Artificial Intelligence, Machine Learning, Computer Vision, Advanced Mobile Robotics, Deep Reinforcement Learning, Mechatronics",
+            "Coursework: Artificial Intelligence, Machine Learning, Computer Vision, Advanced Mobile Robotics, Robotics, Mechatronics",
         ],
         logoKey: "gt",
         logoSize: 72,
