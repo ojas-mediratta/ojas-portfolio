@@ -92,7 +92,7 @@ export const PROJECTS: Project[] = [
     thumb: "media/advanced-mobile-robotics/advanced-mobile-robotics_thumb.jpg",
     previewVideo: "media/advanced-mobile-robotics/advanced-mobile-robotics_6.mp4",
     mainVideo: "media/advanced-mobile-robotics/advanced-mobile-robotics_preview.mov",
-    links: { code: "https://gitfront.io/r/ojasmediratta/6PN211aHvhQ5/Advanced-Mobile-Robotics/" },
+    links: { code: "https://github.com/ojas-mediratta/Advanced-Mobile-Robotics.git" },
     sections: [
     { type: 'text', content: `This project tracks my work in Georgia Tech's Advanced Mobile Robotics course (CS 8803 AMR). The course is split into four projects: 'Swim', 'Walk', 'Drive', and 'Fly'. Each uses GTSAM (Python) and Webots for estimation and control.` },
     { type: 'text', content: `First, I worked on 'Swim', which mostly focused on state estimation and control for an underwater ROV in the Webots simulator. I implemented an EKF using GTSAM's NavStateImuEKF package to fuse IMU data with position, depth, and range measurements for real-time localization.` },
