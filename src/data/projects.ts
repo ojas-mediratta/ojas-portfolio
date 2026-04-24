@@ -5,6 +5,7 @@ export type ContentSection =
   | { type: 'image'; src: string; caption?: string }
   | { type: 'images'; items: string[]; caption?: string }
   | { type: 'carousel'; items: { src: string; caption?: string }[] }
+  | { type: 'pdfSlides'; src: string; caption?: string; slides: { title?: string; body: string }[] }
   | { type: 'youtube'; videoId: string; caption?: string };
 
 export type ProjectArea = "Robotics" | "Embedded" | "AI/ML" | "Other";
@@ -14,6 +15,7 @@ export type Project = {
   title: string;
   blurb: string;
   tags: string[];
+  hideHeroMedia?: boolean;
   thumb?: string;
   previewVideo?: string;
   fitPreviewVideo?: boolean;
@@ -97,7 +99,7 @@ export const PROJECTS: Project[] = [
     sections: [
     { type: 'text', content: `This project tracks my work in Georgia Tech's Advanced Mobile Robotics course (CS 8803 AMR). The course is split into four projects: 'Swim', 'Walk', 'Drive', and 'Fly'. Each uses GTSAM (Python) and Webots for estimation and control.` },
     { type: 'text', content: `First, I worked on 'Swim', which mostly focused on state estimation and control for an underwater ROV in the Webots simulator. I implemented an EKF using GTSAM's NavStateImuEKF package to fuse IMU data with position, depth, and range measurements for real-time localization.` },
-    { type: 'text', content: `I also had to build autonomous control functionality. I built a proportional controller that tracks desired trajectories. I broke it into four independent control channels: XY-plane distance error for forward thrust, depth error for vertical control, yaw error for heading, and roll error for stabilization. The key challenge was handling angle wrapping correctly—yaw and roll errors had to be mapped to [-π, π) to avoid discontinuities. I tuned the gains empirically until the robot tracked smoothly without too much oscillation.` },
+    { type: 'text', content: `I also had to build autonomous control functionality. I built a proportional controller that tracks desired trajectories. I broke it into four independent control channels: XY-plane distance error for forward thrust, depth error for vertical control, yaw error for heading, and roll error for stabilization. The key challenge was handling angle wrapping correctlyΓÇöyaw and roll errors had to be mapped to [-╧Ç, ╧Ç) to avoid discontinuities. I tuned the gains empirically until the robot tracked smoothly without too much oscillation.` },
     { type: 'images', items: ['media/advanced-mobile-robotics/advanced-mobile-robotics_1.jpg', 'media/advanced-mobile-robotics/advanced-mobile-robotics_2.mp4'], caption: 'Autonomous trajectory following and tracking error over time' },
     { type: 'text', content: `This project gave me solid experience with nonlinear filtering on Lie groups (the state lives in SE(3)) and sensor fusion with heterogeneous measurements. Working with GTSAM's factor graph library had a learning curve but was useful for understanding how to handle uncertainty with estimation.` },
     { type: 'text', content: `I then moved to the 'Walk' project, which focuses on legged locomotion and control for Boston Dynamics' Spot quadruped, including forward and inverse kinematics and probabilistic roadmaps.` },
@@ -149,7 +151,7 @@ export const PROJECTS: Project[] = [
   //   mainVideo: "",
   //   links: { code: "" },
   //   sections: [
-  //     { type: 'text', content: `I'm working on the design of a parallel gripper with linear actuation for the Unitree G1, intended to accept custom flexible tactile sensors I am developing, inspired by [3D‑ViTac](https://binghao-huang.github.io/3D-ViTac/). This work is ongoing at the LIDAR Lab, Georgia Tech.` },
+  //     { type: 'text', content: `I'm working on the design of a parallel gripper with linear actuation for the Unitree G1, intended to accept custom flexible tactile sensors I am developing, inspired by [3DΓÇæViTac](https://binghao-huang.github.io/3D-ViTac/). This work is ongoing at the LIDAR Lab, Georgia Tech.` },
   //     { type: 'text', content: `The second gripper I am working on engineering tasks for is the Inspire hand from Inspire robotics. This hand has built-in tactile sensing, and I am working on real to sim in Issac Sim for this hand too. We're working on collecting tactile sensor data at the moment, and beyond characterizing the real pressure to analog value mapping, we've done some initial testing to see which gripper design works best for the collaborative tasks we're trying to optimize for. I wrote a python script that outputs the sensor readings to a GUI and logs pose as well as tactile sensor values to a csv.` },
   //     { type: 'video', src: `media/tactile-sensing/lipobattery-grip-trial.mp4`, caption: 'Testing of the inspire hand.' },
   //   ],
@@ -159,7 +161,7 @@ export const PROJECTS: Project[] = [
   // {
   //   slug: "quantum-in-the-loop",
   //   title: "Quantum-in-the-Loop Control: Opportunities and Limitations",
-  //   blurb: "Exploring quantum-assisted optimization for control systems, analyzing hybrid classical–quantum architectures with a case study for MPC.",
+  //   blurb: "Exploring quantum-assisted optimization for control systems, analyzing hybrid classicalΓÇôquantum architectures with a case study for MPC.",
   //   tags: ["Quantum Computing", "Qiskit", "Control Systems", "Optimization"],
   //   area: "Other",
   //   status: "Complete",
@@ -175,6 +177,134 @@ export const PROJECTS: Project[] = [
   //   gallery: [
   //   ]
   // },
+  {
+    slug: "quantum-in-the-loop",
+    title: "Quantum-in-the-Loop Control: MPC with QAOA for Robotics",
+    blurb: "Exploring quantum-assisted optimization for robotic control, analyzing a hybrid classical-quantum architecture with a case study for MPC.",
+    tags: ["Quantum Computing", "Python", "Qiskit", "Control Systems", "Optimization"],
+    hideHeroMedia: true,
+    area: "Other",
+    status: "Complete",
+    thumb: "media/quantum-in-the-loop/quantum-in-the-loop_thumb.png",
+    previewGif: "media/quantum-in-the-loop/quantum-in-the-loop_preview.gif",
+    links: { paper: "", code: "https://github.com/ojas-mediratta/quantum-in-the-loop-MPC.git" },
+    sections: [
+      {
+        type: 'pdfSlides',
+        src: 'media/quantum-in-the-loop/quantum-in-the-loop_slides.pdf',
+        caption: 'Slide deck viewer (loops through all pages)',
+        slides: [
+          {
+            title: 'Introduction',
+            body: `This project explores the concept of "quantum-in-the-loop control", a hybrid architecture where a classical control system delegates certain optimization problems to a quantum processor. Many modern control approaches in robotics, such as Model Predictive Control (MPC), trajectory optimization, and combinatorial planning require repeatedly solving optimization problems in real time. As systems scale in complexity, these optimization steps can become a computational bottleneck, motivating exploration of alternative computational paradigms.`
+          },
+          {
+            title: 'What is QAOA?',
+            body: `QAOA is a quantum algorithm for approximate combinatorial optimization. It starts from a problem written in a QUBO or Ising form, builds a cost Hamiltonian from that problem, and then alternates between evolution under the cost Hamiltonian and a mixer Hamiltonian. The parameters of those alternating steps are optimized classically so that, when the circuit is measured, it is more likely to return low-cost bitstrings. In this project, QAOA is the quantum solver I want to use after reformulating a discretized MPC problem into a QUBO.
+
+            $$
+            \lvert \psi(\boldsymbol{\gamma},\boldsymbol{\beta}) \rangle =
+            \left(\prod_{\ell=1}^{p} e^{-i \beta_{\ell} H_M} e^{-i \gamma_{\ell} H_C}\right)
+            \lvert + \rangle^{\otimes n}
+            $$
+
+            The equation at the bottom is the quantum state used in QAOA. It shows that the state is built by repeatedly alternating two unitaries: one generated by the cost Hamiltonian, which encodes the optimization objective, and one generated by the mixer Hamiltonian, which helps explore different bitstrings. The angles gamma ell and beta ell are the parameters that get tuned by the classical optimizer.
+
+            Notes for the equation:
+
+            |+⟩^(⨂𝑛) is the initial state, which is a superposition multiplied over n qubits which means they all start in an equal superposition. QAOA usually starts in an equal superposition over all computational basis states, so every candidate bitstring is initially represented.
+            H_c is the Cost Hamiltonian built from the optimization problem. The discretized MPC becomes a QUBO, which is mapped into an Ising form, that becomes the H_c. It assigns lower energy to better solutions (low cost control sequences).
+            H_M is the Mixer Hamiltonian. Usually something simple like H_M = sum_i X_i, where X_i is a Pauli-X operator on qubit i. The mixer Hamiltonian drives transitions between basis states, which helps the algorithm explore the solution space rather than getting stuck in one fixed configuration. Essentially, something like a Pauli-X operator based mixer can be thought of as connecting nearby bitstrings, kind of like allowing single-bit changes in the candidate solution. But QAOA does this in superposition, not one candidate at a time. The cost Hamiltonian then encodes the objective through phases, and repeated alternation of those two effects biases the final measurement toward good solutions.
+            gamma_l is the evolution under the cost Hamiltonian which applies phase shifts based on the cost of each bitstring. Better and worse solutions get different phases.
+            beta_l is the evolution under the mixer Hamiltonian which redistributes amplitude through the search space.
+            The large product operator just means that we're alternating between those steps repeatedly. The integer p is the QAOA depth. Bigger p means a potentially better approximation, but deeper circuits are more sensitive to noise and more hardware difficulty.
+            gamma_l and beta_l are the parameters that get tuned.
+
+            The cost unitary does not directly lower the cost the way a classical descent step would. Instead, it encodes the objective into phases, and then the mixer allows those phases to interfere. The hope is that constructive interference increases the probability of measuring good solutions.`
+          },
+          {
+            title: 'What is MPC?',
+            body: `MPC is a control method that repeatedly solves a short-horizon optimization problem. Instead of only reacting to the current error, it uses a model of the system to predict future behavior, chooses the best sequence of control inputs over a finite horizon, applies only the first control action, and then repeats the process at the next time step. For this project, the optimization stage is the key part, because that is the piece I'll reformulate into a quantum-compatible problem.
+
+            Notes:
+            It is predictive because it does not just react to the current state. It explicitly uses a system model to simulate future state evolution over a finite horizon.
+            The reason we solve for the whole control sequence across the horizon is because the best control action now depends on what we plan to do later. Optimizing a full sequence lets MPC account for future consequences, but applying only the first action makes it robust to updated measurements and disturbances when the problem is solved again at the next step.
+            The prediction horizon is the number of future time steps over which the controller predicts the system and optimizes the input sequence. A longer horizon gives more foresight, but it also makes the optimization larger and more computationally expensive.
+            Typically the optimization variables are the future control inputs over the horizon, such as u_0,u_1,...,u_(N-1). The state trajectory is then determined by those inputs through the dynamics model.
+            MPC is useful because it can account for dynamics, actuator limits, and future consequences in one optimization problem. That makes it attractive for robotics problems where constraints and multi-step planning matter.
+            The quantum part would only replace or augment the optimization subproblem inside the MPC loop. The sensing, dynamics model, and control-loop structure remain classical; the quantum contribution is specifically at the optimization stage after reformulation.`
+          },
+          {
+            title: 'Robotics Example',
+            body: `Here I use a simple 1D point robot with position and velocity as the state and acceleration as the control input. The important simplification is that acceleration is limited to three discrete choices: decelerate, coast, or accelerate. That makes the MPC problem combinatorial rather than fully continuous, which is the key step that allows a binary reformulation for QAOA.
+
+            Notes:
+            This toy robot is intentionally simple because the goal is not to build a highly realistic controller, but to make the MPC-to-QUBO-to-QAOA reformulation easy to explain. A simple 1D system preserves the main control structure while keeping the optimization setup readable.
+            The state is $x_k = \begin{bmatrix} p_k \\ v_k \end{bmatrix}$, meaning the robot is described by its position and velocity at each time step. Position alone is not enough to predict future motion, so velocity must also be included.
+            The equations $p_{k+1} = p_k + \Delta t \, v_k$ and $v_{k+1} = v_k + \Delta t \, a_k$ are dynamics constraints. They tell the optimizer how the system is allowed to evolve, so the predicted trajectory remains physically valid.
+            The control input is the acceleration $a_k \in \{-1, 0, 1\}$. This means that at each step the controller must choose between decelerating, coasting, or accelerating.
+            Standard MPC often uses continuous control inputs, but here the input is discretized on purpose. That is what turns the finite-horizon optimization into a discrete decision problem and makes a binary encoding possible.
+            Over a horizon of length N, the optimization is choosing a sequence of future control actions a_0,a_1,...,a_(N-1), where each one must come from the allowed discrete set.
+            The goal terms on the slide correspond to a typical control objective: reach the target, minimize control effort, and satisfy the model and any constraints. In a simple cost function, minimizing effort would usually mean penalizing large acceleration values, for example with a term proportional to sum_k a_k^2.
+            The slide only shows the basic dynamics and input restriction, but a fuller MPC problem could also include state constraints such as velocity bounds, workspace limits, or obstacle avoidance. Even though this is a simplified robot, it still captures the key ingredients of a robotics MPC problem: state, dynamics, control input, objective, and constrained planning over a finite horizon.`
+          },
+          {
+            title: 'From MPC to QAOA',
+            body: `On the left, I encode the robot's discrete control choices using binary variables. At each timestep, the robot can decelerate, coast, or accelerate, so I assign one binary variable to each option and enforce a one-hot constraint so exactly one action is selected. I then recover the acceleration value directly from those binary variables.
+
+            On the right, I rewrite the finite-horizon MPC objective in terms of those binary decision variables. I don't have the original finite-horizon MPC equation listed on this slide, but the top right is the form with all terms with respect to the binary vector z, that's what J_MPC(z) is. I also add the one-hot constraints into the objective using quadratic penalty terms, that's what's after the lambda. After expansion, the result is a quadratic cost over binary variables, which is the QUBO form. Z is the binary decision vector from before, H contains the quadratic terms, g contains the linear terms, and c is a constant. QAOA uses a cost Hamiltonian written in Ising form which means the energy is measured by the interacting spins, so the binary optimization problem is mapped into spin variables and then into a Hamiltonian.
+
+            Finally, that Ising objective becomes the cost Hamiltonian used by QAOA. So low-energy states of the Hamiltonian correspond to low-cost control sequences. QAOA then tries to bias the final measurement toward those low-cost solutions.
+
+            Notes:
+            On the left side of the slide, the discrete control input is encoded using binary variables. At each timestep, the robot has three possible actions: decelerate, coast, or accelerate. Those three options are represented by three binary variables, and the one-hot constraint ensures that exactly one of them is active at a time.
+            The expression a_k = -z_(k,-1) + z_(k,+1) shows how the actual acceleration value is recovered from the binary encoding. If the decelerate variable is active, the acceleration is -1; if the coast variable is active, the acceleration is 0; and if the accelerate variable is active, the acceleration is +1.
+            The key idea is that once the future control inputs are written in terms of binary variables, the predicted future trajectory and the MPC objective can also be rewritten in terms of those same binary variables. That is what creates the bridge from the control problem to a binary optimization problem.
+            On the right side of the slide, the one-hot constraints are absorbed into the objective using quadratic penalty terms. This is necessary because QUBO stands for quadratic unconstrained binary optimization, so any constraints must be incorporated into the objective rather than enforced separately.
+            After adding those penalties and expanding the objective, the result takes the standard QUBO form min_{z in {0,1}^m} z^T H z + g^T z + c. This means the optimization is now written as a quadratic cost over binary decision variables, which is a standard form that both classical and quantum combinatorial solvers can work with.
+            The binary variables are then converted into spin variables using z_i = (1-s_i)/2 where s_i in {-1,+1}. This gives the equivalent Ising form of the same optimization problem.
+            From there, the Ising objective becomes the cost Hamiltonian H_hat_c = sum_i h_i Z_i + sum_{i<j} J_ij Z_i Z_j, which is the operator that QAOA actually uses. In other words, the QUBO is the classical binary optimization form, and the Ising Hamiltonian is the quantum operator form of that same cost.
+            A useful way to interpret the last step is that low-cost control sequences in the MPC problem correspond to low-energy states of the Ising Hamiltonian. QAOA then searches for a quantum state that is more likely to produce those low-energy, low-cost solutions when measured.
+            This slide is really the central mathematical bridge of the whole presentation: discrete control choices become binary variables, the binary objective becomes a QUBO, and the QUBO becomes the Ising Hamiltonian used by QAOA.`
+          },
+          {
+            title: 'Performance Comparison Using Qiskit',
+            body: `For this small instance, QAOA converged to the same optimal solution as the exact classical methods, which validates the MPC-to-QUBO-to-Ising pipeline. However, its runtime was much larger, which reinforces the point that current quantum optimization is better viewed here as a proof of concept than as a practical real-time controller.
+
+            The nice part is that QAOA found the same control solution, so the formulation worked. The downside is that it took much longer, which shows that for a small MPC problem like this, classical solvers are still much more practical.
+
+            Notes:
+            The most important result is that QAOA found the same solution as the exact classical baselines. That validates the binary encoding, the QUBO construction, the Ising mapping, and the QAOA workflow itself.
+            Matching the exact solution means the control-side reformulation worked. The optimization problem seen by QAOA was consistent with the original discretized MPC problem.
+            The long runtime is expected for a small problem. QAOA has overhead from circuit preparation, repeated cost evaluations, and classical parameter tuning. A tiny finite-horizon MPC problem is exactly the kind of case where brute force or exact classical QUBO solving should be faster.
+            That means the result is not a failure. It is actually a good proof of concept: QAOA can recover the correct control sequence, but current quantum optimization is not competitive with classical methods on this scale.
+            The slide supports the broader conclusion of the presentation: the MPC-to-QAOA formulation is plausible, but practicality is limited by the current quantum hardware and algorithm stack.
+
+            The main point of the next slide is that hardware is the real bottleneck, not just the control-side reformulation. Quantum-in-the-loop robotic control is still difficult today because the processor, support electronics, and system environment are all demanding.`
+          },
+          {
+            title: 'Limitations and Future Work',
+            body: `While a hybrid system like this is still difficult today, there are several research directions for hardware that could make this sort of thing more plausible over time. 
+
+            The first area is fault-tolerant quantum hardware. If logical qubits become more reliable and error-correction overhead drops, then algorithms like QAOA become more meaningful on larger optimization problems. IBM’s roadmap is a good example of that direction, with its Starling fault-tolerant target.
+
+            The second area is low- or no-EM-noise actuators. If robots ever need to operate near sensitive quantum hardware, then conventional high-current actuation may not be ideal. Piezoelectric actuators are interesting here because they can operate with minimal electromagnetic interference, and there is also current cryogenic actuator work from NASA and early superconducting-material actuator concepts for robotics.
+
+            The third area is cryogenic and low-latency integration. Even with better qubits, the quantum processor still needs a large classical support stack for control, readout, and feedback. That is why cryo-CMOS and tighter classical-quantum integration matter so much. IBM and others are already working on that kind of system integration.
+
+            So my conclusion is that this is not practical real-time robot control today, but there are real hardware trends that could make hybrid systems more plausible over time.”
+
+            Notes:
+            The main point of this slide is that hardware is the real bottleneck, not just the control-side reformulation. Quantum-in-the-loop robotic control is still difficult today because the processor, support electronics, and system environment are all demanding.
+            Fault-tolerant QC hardware matters because current noisy devices limit circuit depth, reliability, and scalability. IBM’s public roadmap is a useful example to name-drop here, especially Starling and the broader move toward logical-qubit-based systems.
+            Low- or no-EM-noise actuators matter because quantum hardware is highly sensitive to its environment. Piezoelectric actuators are worth mentioning because they are often discussed as low-EMI options, and there is also active NASA cryogenic actuator work plus early superconducting-material robotic actuator concepts.
+            Cryogenic and low-latency integration matters because even a good quantum processor still depends on classical control, readout, and feedback electronics. That is why cryo-CMOS and tighter system integration are important enabling technologies for any future hybrid control loop.
+            The conclusion is not that robots will soon carry quantum computers onboard. The conclusion is that there are real adjacent hardware research directions that could eventually make specialized hybrid quantum-robotic systems more plausible.`
+          }
+        ]
+      }
+    ],
+  },
   {
     slug: "turtlebot3-ros2",
     title: "ROS2 Perception, Planning, and Control Experiments with TurtleBot3",
@@ -231,7 +361,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "et55-keyboard",
-    title: "ET55: A Custom 55‑key, Hand‑Wired Mechanical Keyboard.",
+    title: "ET55: A Custom 55ΓÇækey, HandΓÇæWired Mechanical Keyboard.",
     blurb: "A hand-wired 55-key keyboard with QMK firmware, USB-C, an OLED status screen, and a rotary encoder.",
     tags: ["Embedded Systems", "C++", "ATMega34U4", "Fusion360", "Rapid Prototyping"],
     area: "Embedded",
@@ -246,7 +376,7 @@ export const PROJECTS: Project[] = [
       { type: 'video', src: 'media/et55/et55_4.mp4', caption: 'Internals and physical design' },
       { type: 'text', content: `Building ET55 involved several key steps. First, I designed the layout and wiring schematic, ensuring that every switch was correctly placed and connected for NKRO functionality. I hand-wired each switch using diodes and copper wire, taking care to insulate connections with heat shrink tubing to prevent shorts.` },
       { type: 'images', items: ['media/et55/et55_2.jpg', 'media/et55/et55_3.jpg'], caption: 'Hand-wiring the switches and diodes' },
-      { type: 'text', content: `Next, I integrated a Pro Micro (ATmega32U4) microcontroller to handle the keyboard’s logic and communication. I programmed it using QMK firmware, customizing the keymap to fit the compact layout and adding layers for additional functionality. The rotary encoder was set up to control volume and switch layers, while the OLED display provided real-time status updates.` },
+      { type: 'text', content: `Next, I integrated a Pro Micro (ATmega32U4) microcontroller to handle the keyboardΓÇÖs logic and communication. I programmed it using QMK firmware, customizing the keymap to fit the compact layout and adding layers for additional functionality. The rotary encoder was set up to control volume and switch layers, while the OLED display provided real-time status updates.` },
       { type: 'text', content: `For the case and plate, I modeled custom parts in Fusion 360 and 3D-printed them to achieve a precise fit. This process involved several iterations to refine tolerances and ensure that the switches seated properly despite the wiring underneath.` },
       { type: 'text', content: `The final result is a compact keyboard that I use daily, and it was a strong project for applying both embedded and mechanical design skills.` },
     ],

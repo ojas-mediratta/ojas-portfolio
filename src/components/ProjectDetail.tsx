@@ -7,49 +7,106 @@ import { PROJECTS, ContentSection } from "@/data/projects";
 import { ArrowLeft, ExternalLink, Github, ChevronLeft, ChevronRight, FileText } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { DARK_THEME, LIGHT_THEME } from "@/data/theme";
+import { Document, Page, pdfjs } from "react-pdf";
+import katex from "katex";
+import "katex/dist/katex.min.css";
+
+pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 const withBase = (path?: string) =>
   path ? `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}` : undefined;
 
-// Helper function to parse markdown links in text
-const parseMarkdownLinks = (text: string) => {
-  const parts: (string | React.ReactElement)[] = [];
+const renderKatex = (expression: string, displayMode = false, key?: string) => (
+  <span
+    key={key}
+    className={displayMode ? "my-4 block overflow-x-auto text-center" : "align-baseline"}
+    dangerouslySetInnerHTML={{
+      __html: katex.renderToString(expression, { displayMode, throwOnError: false, strict: "warn" }),
+    }}
+  />
+);
+
+const renderInlineContent = (text: string) => {
+  const nodes: (string | React.ReactElement)[] = [];
   let lastIndex = 0;
-  
-  // Match markdown links: [text](url)
-  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const tokenRegex = /\[([^\]]+)\]\(([^)]+)\)|\$([^$\n]+?)\$/g;
   let match;
-  
-  while ((match = linkRegex.exec(text)) !== null) {
-    // Add text before the link
+
+  while ((match = tokenRegex.exec(text)) !== null) {
     if (match.index > lastIndex) {
-      parts.push(text.substring(lastIndex, match.index));
+      nodes.push(text.slice(lastIndex, match.index));
     }
-    
-    // Add the link
-    const linkText = match[1];
-    const url = match[2];
-    parts.push(
-      <a
-        key={match.index}
-        href={url}
-        target="_blank"
-        rel="noreferrer"
-        className="text-accent-blue hover:text-accent-purple underline"
-      >
-        {linkText}
-      </a>
-    );
-    
+
+    if (match[1] && match[2]) {
+      nodes.push(
+        <a
+          key={match.index}
+          href={match[2]}
+          target="_blank"
+          rel="noreferrer"
+          className="text-accent-blue underline hover:text-accent-purple"
+        >
+          {match[1]}
+        </a>
+      );
+    } else if (match[3]) {
+      nodes.push(renderKatex(match[3], false, String(match.index)));
+    }
+
     lastIndex = match.index + match[0].length;
   }
-  
-  // Add remaining text
+
   if (lastIndex < text.length) {
-    parts.push(text.substring(lastIndex));
+    nodes.push(text.slice(lastIndex));
   }
-  
-  return parts.length > 0 ? parts : [text];
+
+  return nodes.length > 0 ? nodes : [text];
+};
+
+const renderRichText = (text: string) => {
+  const blocks = text.split(/\n{2,}/).map((block) => block.trim()).filter(Boolean);
+
+  return blocks.map((block, index) => {
+    const trimmed = block.trim();
+    const isDisplayMath = trimmed.startsWith("$$") && trimmed.endsWith("$$");
+
+    if (isDisplayMath) {
+      const expression = trimmed.slice(2, -2).trim();
+      return renderKatex(expression, true, `math-${index}`);
+    }
+
+    return (
+      <p key={index} className="whitespace-pre-line leading-relaxed">
+        {renderInlineContent(trimmed)}
+      </p>
+    );
+  });
+};
+
+const renderSlideBody = (text: string) => {
+  const notesMatch = text.match(/\n\s*Notes(?: for the equation)?:\s*\n/);
+
+  if (!notesMatch || notesMatch.index === undefined) {
+    return renderRichText(text);
+  }
+
+  const bodyText = text.slice(0, notesMatch.index).trim();
+  const notesText = text.slice(notesMatch.index + notesMatch[0].length).trim();
+  const noteLines = notesText.split(/\n+/).map((line) => line.trim()).filter(Boolean);
+
+  return [
+    ...renderRichText(bodyText),
+    <div key="notes-section" className="mt-6">
+      <p className="font-semibold text-text">Notes</p>
+      <ul className="mt-3 list-disc space-y-2 pl-6 text-text">
+        {noteLines.map((line, index) => (
+          <li key={index} className="leading-relaxed">
+            {renderInlineContent(line)}
+          </li>
+        ))}
+      </ul>
+    </div>,
+  ];
 };
 
 // Helper function to extract YouTube video ID from URL or return ID if already provided
@@ -129,6 +186,131 @@ function SectionCarousel({
       {items.length > 1 && (
         <div className="flex justify-center gap-2">
           {items.map((_, itemIdx) => (
+            <button
+              key={itemIdx}
+              onClick={() => setIndex(itemIdx)}
+              className={`h-2 rounded-full transition-all ${
+                itemIdx === index ? "w-8 bg-accent-purple" : "w-2 bg-border hover:bg-subtext"
+              }`}
+              aria-label={`Go to slide ${itemIdx + 1}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function PdfSlidesViewer({
+  src,
+  caption,
+  slides,
+  title,
+}: {
+  src: string;
+  caption?: string;
+  slides: { title?: string; body: string }[];
+  title: string;
+}) {
+  const [index, setIndex] = useState(0);
+  const [numPages, setNumPages] = useState<number | null>(null);
+  const [pageWidth, setPageWidth] = useState(0);
+  const [container, setContainer] = useState<HTMLDivElement | null>(null);
+  const hasSlides = slides.length > 0;
+  const totalSlides = numPages ?? Math.max(slides.length, 1);
+  const currentSlide = hasSlides ? slides[index % slides.length] : undefined;
+  const pdfSrc = withBase(src);
+  const pdfFile = useMemo(() => (pdfSrc ? { url: pdfSrc } : null), [pdfSrc]);
+
+  useEffect(() => {
+    if (!container) return;
+    const observer = new ResizeObserver(() => {
+      setPageWidth(container.clientWidth);
+    });
+    observer.observe(container);
+    setPageWidth(container.clientWidth);
+    return () => observer.disconnect();
+  }, [container]);
+
+  useEffect(() => {
+    setIndex(0);
+    setNumPages(null);
+  }, [src]);
+
+  useEffect(() => {
+    if (!totalSlides) return;
+    setIndex((prev) => prev % totalSlides);
+  }, [totalSlides]);
+
+  if (!hasSlides) {
+    return null;
+  }
+
+  const next = () => setIndex((prev) => (prev + 1) % totalSlides);
+  const prev = () => setIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
+
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <div className="relative w-full max-w-5xl overflow-hidden rounded-2xl border border-border bg-panel" ref={setContainer}>
+        {pdfFile ? (
+          <div className="flex min-h-[320px] w-full items-center justify-center p-2">
+            <Document
+              file={pdfFile}
+              onLoadSuccess={({ numPages: loadedPages }) => setNumPages(loadedPages)}
+              loading={<p className="text-subtext">Loading slides...</p>}
+              error={<p className="px-4 text-center text-subtext">Unable to load PDF slides.</p>}
+            >
+              <Page
+                pageNumber={Math.min(index + 1, totalSlides)}
+                width={pageWidth > 0 ? Math.max(pageWidth - 16, 280) : undefined}
+                renderTextLayer={false}
+                renderAnnotationLayer={false}
+              />
+            </Document>
+          </div>
+        ) : (
+          <div className="flex min-h-[320px] items-center justify-center px-6 text-center text-subtext">
+            Slides unavailable.
+          </div>
+        )}
+
+        {totalSlides > 1 && (
+          <>
+            <button
+              onClick={prev}
+              className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full border border-border bg-panel p-2 text-text transition-colors hover:bg-bg hover:text-accent-purple"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="size-6" />
+            </button>
+            <button
+              onClick={next}
+              className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full border border-border bg-panel p-2 text-text transition-colors hover:bg-bg hover:text-accent-purple"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="size-6" />
+            </button>
+          </>
+        )}
+      </div>
+
+      <div className="w-full max-w-5xl rounded-2xl border border-border bg-bg/40 p-4">
+        <p className="text-xs uppercase tracking-wider text-subtext">
+          Slide {index + 1} / {totalSlides}
+        </p>
+        {currentSlide?.title && (
+          <h3 className="mt-1 text-lg font-semibold text-text">{currentSlide.title}</h3>
+        )}
+        <div className="mt-2 text-text">
+          {currentSlide ? renderSlideBody(currentSlide.body) : null}
+        </div>
+      </div>
+
+      {caption && <p className="text-center text-sm text-subtext italic">{caption}</p>}
+
+      {totalSlides > 1 && (
+        <div className="flex justify-center gap-2">
+          {slides.map((_, itemIdx) => (
             <button
               key={itemIdx}
               onClick={() => setIndex(itemIdx)}
@@ -271,38 +453,40 @@ export default function ProjectDetail() {
           </div>
 
           {/* Hero media */}
-          <div className="mt-6 overflow-hidden rounded-2xl border border-border bg-panel">
-            {project.youtubeVideo ? (
-              <div className="aspect-video w-full">
-                <iframe
-                  className="h-full w-full"
-                  src={`https://www.youtube.com/embed/${getYouTubeVideoId(project.youtubeVideo)}`}
-                  title={`${project.title} video`}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
+          {!project.hideHeroMedia && (
+            <div className="mt-6 overflow-hidden rounded-2xl border border-border bg-panel">
+              {project.youtubeVideo ? (
+                <div className="aspect-video w-full">
+                  <iframe
+                    className="h-full w-full"
+                    src={`https://www.youtube.com/embed/${getYouTubeVideoId(project.youtubeVideo)}`}
+                    title={`${project.title} video`}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              ) : project.mainVideo ? (
+                <video
+                  className="h-[340px] sm:h-[420px] md:h-[500px] w-full object-contain"
+                  muted
+                  playsInline
+                  controls
+                  preload="metadata"
+                  poster={project.thumb ? withBase(project.thumb) : undefined}
+                  src={withBase(project.mainVideo)}
                 />
-              </div>
-            ) : project.mainVideo ? (
-              <video
-                className="h-[340px] sm:h-[420px] md:h-[500px] w-full object-contain"
-                muted
-                playsInline
-                controls
-                preload="metadata"
-                poster={project.thumb ? withBase(project.thumb) : undefined}
-                src={withBase(project.mainVideo)}
-              />
-            ) : project.thumb ? (
-              <img
-                className="h-[340px] sm:h-[420px] md:h-[500px] w-full object-contain"
-                src={withBase(project.thumb)}
-                alt={`${project.title} hero`}
-              />
-            ) : (
-              <div className="flex h-[340px] items-center justify-center text-subtext">No preview</div>
-            )}
-          </div>
+              ) : project.thumb ? (
+                <img
+                  className="h-[340px] sm:h-[420px] md:h-[500px] w-full object-contain"
+                  src={withBase(project.thumb)}
+                  alt={`${project.title} hero`}
+                />
+              ) : (
+                <div className="flex h-[340px] items-center justify-center text-subtext">No preview</div>
+              )}
+            </div>
+          )}
 
           {/* Body (legacy) */}
           {project.body && (
@@ -318,8 +502,8 @@ export default function ProjectDetail() {
                 switch (section.type) {
                   case 'text':
                     return (
-                      <div key={idx} className="whitespace-pre-line text-text leading-relaxed">
-                        {parseMarkdownLinks(section.content)}
+                      <div key={idx} className="space-y-3 text-text">
+                        {renderRichText(section.content)}
                       </div>
                     );
                   case 'video':
@@ -407,6 +591,17 @@ export default function ProjectDetail() {
                     return (
                       <div key={idx}>
                         <SectionCarousel items={section.items} title={project.title} />
+                      </div>
+                    );
+                  case 'pdfSlides':
+                    return (
+                      <div key={idx}>
+                        <PdfSlidesViewer
+                          src={section.src}
+                          caption={section.caption}
+                          slides={section.slides}
+                          title={project.title}
+                        />
                       </div>
                     );
                   case 'youtube':
