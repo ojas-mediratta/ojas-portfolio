@@ -73,6 +73,77 @@ const getYouTubeVideoId = (input: string): string => {
   return input; // Return as-is if no pattern matches
 };
 
+function SectionCarousel({
+  items,
+  title,
+}: {
+  items: { src: string; caption?: string }[];
+  title: string;
+}) {
+  const [index, setIndex] = useState(0);
+
+  const next = () => setIndex((prev) => (prev + 1) % items.length);
+  const prev = () => setIndex((prev) => (prev - 1 + items.length) % items.length);
+
+  return (
+    <div className="flex flex-col items-center gap-3">
+      <div className="relative w-full max-w-4xl overflow-hidden rounded-2xl border border-border bg-panel">
+        {items.map((item, itemIdx) => (
+          <div
+            key={item.src}
+            className={`transition-opacity duration-300 ${itemIdx === index ? "block" : "hidden"}`}
+          >
+            <img
+              src={withBase(item.src)}
+              alt={item.caption || `${title} carousel ${itemIdx + 1}`}
+              className="w-full max-h-[650px] object-contain bg-bg/50"
+              loading="lazy"
+            />
+          </div>
+        ))}
+
+        {items.length > 1 && (
+          <>
+            <button
+              onClick={prev}
+              className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full border border-border bg-panel p-2 text-text transition-colors hover:bg-bg hover:text-accent-purple"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft className="size-6" />
+            </button>
+            <button
+              onClick={next}
+              className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full border border-border bg-panel p-2 text-text transition-colors hover:bg-bg hover:text-accent-purple"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="size-6" />
+            </button>
+          </>
+        )}
+      </div>
+
+      {items[index]?.caption && (
+        <p className="text-center text-sm text-subtext italic">{items[index].caption}</p>
+      )}
+
+      {items.length > 1 && (
+        <div className="flex justify-center gap-2">
+          {items.map((_, itemIdx) => (
+            <button
+              key={itemIdx}
+              onClick={() => setIndex(itemIdx)}
+              className={`h-2 rounded-full transition-all ${
+                itemIdx === index ? "w-8 bg-accent-purple" : "w-2 bg-border hover:bg-subtext"
+              }`}
+              aria-label={`Go to slide ${itemIdx + 1}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
   const project = useMemo(() => PROJECTS.find(p => p.slug === slug), [slug]);
@@ -330,6 +401,12 @@ export default function ProjectDetail() {
                         {section.caption && (
                           <p className="text-sm text-subtext italic">{section.caption}</p>
                         )}
+                      </div>
+                    );
+                  case 'carousel':
+                    return (
+                      <div key={idx}>
+                        <SectionCarousel items={section.items} title={project.title} />
                       </div>
                     );
                   case 'youtube':

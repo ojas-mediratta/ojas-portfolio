@@ -4,6 +4,7 @@ export type ContentSection =
   | { type: 'videos'; items: string[]; caption?: string }
   | { type: 'image'; src: string; caption?: string }
   | { type: 'images'; items: string[]; caption?: string }
+  | { type: 'carousel'; items: { src: string; caption?: string }[] }
   | { type: 'youtube'; videoId: string; caption?: string };
 
 export type ProjectArea = "Robotics" | "Embedded" | "AI/ML" | "Other";
@@ -88,7 +89,7 @@ export const PROJECTS: Project[] = [
     blurb: "Course projects on estimation, SLAM, and control across underwater, legged, ground, and aerial robots.",
     tags: ["Robotics", "Python", "GTSAM", "Webots", "Control", "SLAM"],
     area: "Robotics",
-    status: "Active",
+    status: "Complete",
     thumb: "media/advanced-mobile-robotics/advanced-mobile-robotics_thumb.jpg",
     previewVideo: "media/advanced-mobile-robotics/advanced-mobile-robotics_6.mp4",
     mainVideo: "media/advanced-mobile-robotics/advanced-mobile-robotics_preview.mov",
@@ -105,6 +106,34 @@ export const PROJECTS: Project[] = [
     { type: 'text', content: `I then moved into the 'Drive' project, which focused on pose-graph SLAM. I built a full pipeline around wheel encoder odometry, ICP scan matching, and GTSAM factor graphs. The single-robot version combined odometry with ICP loop closures, and the multi-robot version added inter-robot range factors so separate trajectories could be merged into one map.` },
     { type: 'text', content: `The most useful lesson from this part of the course was how much global consistency matters. ICP could look good locally and still converge to the wrong answer without a strong initial guess, while the Robotarium runs made it obvious that a map can look sharp in places but still be globally worse if the merged graph is tilted or weakly constrained.` },
     { type: 'images', items: ['media/advanced-mobile-robotics/advanced-mobile-robotics_5.png', 'media/advanced-mobile-robotics/advanced-mobile-robotics_6.mp4'], caption: 'Results from the Robotarium experiment.' },
+    { type: 'text', content: `In the 'Fly' project, I built a 3D LiDAR-Inertial SLAM pipeline for a drone dataset.` },
+    { type: 'text', content: `I fused IMU and LiDAR in GTSAM using IMU preintegration, IMU factors, and bias random-walk factors. I used scan registration to estimate relative LiDAR motion, then added those constraints to the graph. I implemented both backends: full batch optimization (Levenberg-Marquardt) and incremental optimization (iSAM2).` },
+    { type: 'text', content: `I also added loop closure by finding revisit candidates and inserting extra LiDAR constraints when scans matched. Then I stitched keyframe point clouds into a global map by transforming each cloud into the world frame.` },
+    {
+      type: 'carousel',
+      items: [
+        {
+          src: 'media/advanced-mobile-robotics/advanced-mobile-robotics_7.png',
+          caption: 'Trajectory with batch LiDAR-inertial odometry.',
+        },
+        {
+          src: 'media/advanced-mobile-robotics/advanced-mobile-robotics_8.png',
+          caption: 'Trajectory with iSAM2 LiDAR-inertial odometry.',
+        },
+        {
+          src: 'media/advanced-mobile-robotics/advanced-mobile-robotics_9.png',
+          caption: 'Batch optimization with and without IMU preintegration.',
+        },
+        {
+          src: 'media/advanced-mobile-robotics/advanced-mobile-robotics_10.png',
+          caption: 'Optimization timing comparison between batch and iSAM2.',
+        },
+        {
+          src: 'media/advanced-mobile-robotics/advanced-mobile-robotics_11.png',
+          caption: 'Point cloud map from the UCLA dataset.',
+        },
+      ],
+    },
     ],
     gallery: []
   },
