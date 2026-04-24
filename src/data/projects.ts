@@ -73,7 +73,7 @@ export const PROJECTS: Project[] = [
     blurb: "Using Minecraft gameplay as synthetic data for learning-based visual odometry and pose estimation.",
     tags: ["AI/ML", "Python", "Pytorch", "Machine Learning", "Computer Vision"],
     area: ["AI/ML"],
-    status: "Active",
+    status: "Complete",
     thumb: "media/mine-track/mine-track_thumb.png",
     previewVideo: "media/mine-track/mine-track_preview.mp4",
     fitPreviewVideo: true,
@@ -200,7 +200,7 @@ export const PROJECTS: Project[] = [
           },
           {
             title: 'What is QAOA?',
-            body: `QAOA is a quantum algorithm for approximate combinatorial optimization. It starts from a problem written in a QUBO or Ising form, builds a cost Hamiltonian from that problem, and then alternates between evolution under the cost Hamiltonian and a mixer Hamiltonian. The parameters of those alternating steps are optimized classically so that, when the circuit is measured, it is more likely to return low-cost bitstrings. In this project, QAOA is the quantum solver I want to use after reformulating a discretized MPC problem into a QUBO.
+            body: String.raw`QAOA is a quantum algorithm for approximate combinatorial optimization. It starts from a problem written in a QUBO or Ising form, builds a cost Hamiltonian from that problem, and then alternates between evolution under the cost Hamiltonian and a mixer Hamiltonian. The parameters of those alternating steps are optimized classically so that, when the circuit is measured, it is more likely to return low-cost bitstrings. In this project, QAOA is the quantum solver I want to use after reformulating a discretized MPC problem into a QUBO.
 
             $$
             \lvert \psi(\boldsymbol{\gamma},\boldsymbol{\beta}) \rangle =
@@ -212,13 +212,13 @@ export const PROJECTS: Project[] = [
 
             Notes for the equation:
 
-            |+⟩^(⨂𝑛) is the initial state, which is a superposition multiplied over n qubits which means they all start in an equal superposition. QAOA usually starts in an equal superposition over all computational basis states, so every candidate bitstring is initially represented.
-            H_c is the Cost Hamiltonian built from the optimization problem. The discretized MPC becomes a QUBO, which is mapped into an Ising form, that becomes the H_c. It assigns lower energy to better solutions (low cost control sequences).
-            H_M is the Mixer Hamiltonian. Usually something simple like H_M = sum_i X_i, where X_i is a Pauli-X operator on qubit i. The mixer Hamiltonian drives transitions between basis states, which helps the algorithm explore the solution space rather than getting stuck in one fixed configuration. Essentially, something like a Pauli-X operator based mixer can be thought of as connecting nearby bitstrings, kind of like allowing single-bit changes in the candidate solution. But QAOA does this in superposition, not one candidate at a time. The cost Hamiltonian then encodes the objective through phases, and repeated alternation of those two effects biases the final measurement toward good solutions.
-            gamma_l is the evolution under the cost Hamiltonian which applies phase shifts based on the cost of each bitstring. Better and worse solutions get different phases.
-            beta_l is the evolution under the mixer Hamiltonian which redistributes amplitude through the search space.
+            $\lvert + \rangle^{\otimes n}$ is the initial state, which is an equal superposition over $n$ qubits. QAOA starts with all candidate bitstrings represented.
+            $H_c$ is the cost Hamiltonian built from the optimization problem. The discretized MPC becomes a QUBO, which is mapped into an Ising form, which becomes $H_c$. It assigns lower energy to better solutions (low-cost control sequences).
+            $H_M$ is the mixer Hamiltonian. Usually something simple like $H_M = \sum_i X_i$, where $X_i$ is a Pauli-$X$ operator on qubit $i$. The mixer drives transitions between basis states, helping exploration instead of getting stuck in one configuration.
+            $\gamma_\ell$ is the evolution parameter for the cost Hamiltonian, applying phase shifts based on the cost of each bitstring.
+            $\beta_\ell$ is the evolution parameter for the mixer Hamiltonian, redistributing amplitude through the search space.
             The large product operator just means that we're alternating between those steps repeatedly. The integer p is the QAOA depth. Bigger p means a potentially better approximation, but deeper circuits are more sensitive to noise and more hardware difficulty.
-            gamma_l and beta_l are the parameters that get tuned.
+            $\gamma_\ell$ and $\beta_\ell$ are the parameters that get tuned.
 
             The cost unitary does not directly lower the cost the way a classical descent step would. Instead, it encodes the objective into phases, and then the mixer allows those phases to interfere. The hope is that constructive interference increases the probability of measuring good solutions.`
           },
@@ -230,13 +230,13 @@ export const PROJECTS: Project[] = [
             It is predictive because it does not just react to the current state. It explicitly uses a system model to simulate future state evolution over a finite horizon.
             The reason we solve for the whole control sequence across the horizon is because the best control action now depends on what we plan to do later. Optimizing a full sequence lets MPC account for future consequences, but applying only the first action makes it robust to updated measurements and disturbances when the problem is solved again at the next step.
             The prediction horizon is the number of future time steps over which the controller predicts the system and optimizes the input sequence. A longer horizon gives more foresight, but it also makes the optimization larger and more computationally expensive.
-            Typically the optimization variables are the future control inputs over the horizon, such as u_0,u_1,...,u_(N-1). The state trajectory is then determined by those inputs through the dynamics model.
+            Typically the optimization variables are the future control inputs over the horizon, such as $u_0, u_1, \ldots, u_{N-1}$. The state trajectory is then determined by those inputs through the dynamics model.
             MPC is useful because it can account for dynamics, actuator limits, and future consequences in one optimization problem. That makes it attractive for robotics problems where constraints and multi-step planning matter.
             The quantum part would only replace or augment the optimization subproblem inside the MPC loop. The sensing, dynamics model, and control-loop structure remain classical; the quantum contribution is specifically at the optimization stage after reformulation.`
           },
           {
             title: 'Robotics Example',
-            body: `Here I use a simple 1D point robot with position and velocity as the state and acceleration as the control input. The important simplification is that acceleration is limited to three discrete choices: decelerate, coast, or accelerate. That makes the MPC problem combinatorial rather than fully continuous, which is the key step that allows a binary reformulation for QAOA.
+            body: String.raw`Here I use a simple 1D point robot with position and velocity as the state and acceleration as the control input. The important simplification is that acceleration is limited to three discrete choices: decelerate, coast, or accelerate. That makes the MPC problem combinatorial rather than fully continuous, which is the key step that allows a binary reformulation for QAOA.
 
             Notes:
             This toy robot is intentionally simple because the goal is not to build a highly realistic controller, but to make the MPC-to-QUBO-to-QAOA reformulation easy to explain. A simple 1D system preserves the main control structure while keeping the optimization setup readable.
@@ -244,26 +244,26 @@ export const PROJECTS: Project[] = [
             The equations $p_{k+1} = p_k + \Delta t \, v_k$ and $v_{k+1} = v_k + \Delta t \, a_k$ are dynamics constraints. They tell the optimizer how the system is allowed to evolve, so the predicted trajectory remains physically valid.
             The control input is the acceleration $a_k \in \{-1, 0, 1\}$. This means that at each step the controller must choose between decelerating, coasting, or accelerating.
             Standard MPC often uses continuous control inputs, but here the input is discretized on purpose. That is what turns the finite-horizon optimization into a discrete decision problem and makes a binary encoding possible.
-            Over a horizon of length N, the optimization is choosing a sequence of future control actions a_0,a_1,...,a_(N-1), where each one must come from the allowed discrete set.
-            The goal terms on the slide correspond to a typical control objective: reach the target, minimize control effort, and satisfy the model and any constraints. In a simple cost function, minimizing effort would usually mean penalizing large acceleration values, for example with a term proportional to sum_k a_k^2.
+            Over a horizon of length $N$, the optimization is choosing a sequence of future control actions $a_0, a_1, \ldots, a_{N-1}$, where each one must come from the allowed discrete set.
+            The goal terms on the slide correspond to a typical control objective: reach the target, minimize control effort, and satisfy the model and any constraints. In a simple cost function, minimizing effort would usually mean penalizing large acceleration values, for example with a term proportional to $\sum_k a_k^2$.
             The slide only shows the basic dynamics and input restriction, but a fuller MPC problem could also include state constraints such as velocity bounds, workspace limits, or obstacle avoidance. Even though this is a simplified robot, it still captures the key ingredients of a robotics MPC problem: state, dynamics, control input, objective, and constrained planning over a finite horizon.`
           },
           {
             title: 'From MPC to QAOA',
-            body: `On the left, I encode the robot's discrete control choices using binary variables. At each timestep, the robot can decelerate, coast, or accelerate, so I assign one binary variable to each option and enforce a one-hot constraint so exactly one action is selected. I then recover the acceleration value directly from those binary variables.
+            body: String.raw`On the left, I encode the robot's discrete control choices using binary variables. At each timestep, the robot can decelerate, coast, or accelerate, so I assign one binary variable to each option and enforce a one-hot constraint so exactly one action is selected. I then recover the acceleration value directly from those binary variables.
 
-            On the right, I rewrite the finite-horizon MPC objective in terms of those binary decision variables. I don't have the original finite-horizon MPC equation listed on this slide, but the top right is the form with all terms with respect to the binary vector z, that's what J_MPC(z) is. I also add the one-hot constraints into the objective using quadratic penalty terms, that's what's after the lambda. After expansion, the result is a quadratic cost over binary variables, which is the QUBO form. Z is the binary decision vector from before, H contains the quadratic terms, g contains the linear terms, and c is a constant. QAOA uses a cost Hamiltonian written in Ising form which means the energy is measured by the interacting spins, so the binary optimization problem is mapped into spin variables and then into a Hamiltonian.
+            On the right, I rewrite the finite-horizon MPC objective in terms of those binary decision variables. I don't have the original finite-horizon MPC equation listed on this slide, but the top right is the form with all terms with respect to the binary vector $z$, that's what $J_{MPC}(z)$ is. I also add the one-hot constraints into the objective using quadratic penalty terms, that's what's after the lambda. After expansion, the result is a quadratic cost over binary variables, which is the QUBO form. $z$ is the binary decision vector from before, $H$ contains the quadratic terms, $g$ contains the linear terms, and $c$ is a constant. QAOA uses a cost Hamiltonian written in Ising form, so the binary optimization problem is mapped into spin variables and then into a Hamiltonian.
 
             Finally, that Ising objective becomes the cost Hamiltonian used by QAOA. So low-energy states of the Hamiltonian correspond to low-cost control sequences. QAOA then tries to bias the final measurement toward those low-cost solutions.
 
             Notes:
             On the left side of the slide, the discrete control input is encoded using binary variables. At each timestep, the robot has three possible actions: decelerate, coast, or accelerate. Those three options are represented by three binary variables, and the one-hot constraint ensures that exactly one of them is active at a time.
-            The expression a_k = -z_(k,-1) + z_(k,+1) shows how the actual acceleration value is recovered from the binary encoding. If the decelerate variable is active, the acceleration is -1; if the coast variable is active, the acceleration is 0; and if the accelerate variable is active, the acceleration is +1.
+            The expression $a_k = -z_{(k,-1)} + z_{(k,+1)}$ shows how the actual acceleration value is recovered from the binary encoding. If the decelerate variable is active, the acceleration is $-1$; if the coast variable is active, the acceleration is $0$; and if the accelerate variable is active, the acceleration is $+1$.
             The key idea is that once the future control inputs are written in terms of binary variables, the predicted future trajectory and the MPC objective can also be rewritten in terms of those same binary variables. That is what creates the bridge from the control problem to a binary optimization problem.
             On the right side of the slide, the one-hot constraints are absorbed into the objective using quadratic penalty terms. This is necessary because QUBO stands for quadratic unconstrained binary optimization, so any constraints must be incorporated into the objective rather than enforced separately.
-            After adding those penalties and expanding the objective, the result takes the standard QUBO form min_{z in {0,1}^m} z^T H z + g^T z + c. This means the optimization is now written as a quadratic cost over binary decision variables, which is a standard form that both classical and quantum combinatorial solvers can work with.
-            The binary variables are then converted into spin variables using z_i = (1-s_i)/2 where s_i in {-1,+1}. This gives the equivalent Ising form of the same optimization problem.
-            From there, the Ising objective becomes the cost Hamiltonian H_hat_c = sum_i h_i Z_i + sum_{i<j} J_ij Z_i Z_j, which is the operator that QAOA actually uses. In other words, the QUBO is the classical binary optimization form, and the Ising Hamiltonian is the quantum operator form of that same cost.
+            After adding those penalties and expanding the objective, the result takes the standard QUBO form $\min_{z \in \{0,1\}^m} z^T H z + g^T z + c$. This means the optimization is now written as a quadratic cost over binary decision variables, which is a standard form that both classical and quantum combinatorial solvers can work with.
+            The binary variables are then converted into spin variables using $z_i = (1-s_i)/2$ where $s_i \in \{-1,+1\}$. This gives the equivalent Ising form of the same optimization problem.
+            From there, the Ising objective becomes the cost Hamiltonian $\hat{H}_c = \sum_i h_i Z_i + \sum_{i<j} J_{ij} Z_i Z_j$, which is the operator that QAOA actually uses. In other words, the QUBO is the classical binary optimization form, and the Ising Hamiltonian is the quantum operator form of that same cost.
             A useful way to interpret the last step is that low-cost control sequences in the MPC problem correspond to low-energy states of the Ising Hamiltonian. QAOA then searches for a quantum state that is more likely to produce those low-energy, low-cost solutions when measured.
             This slide is really the central mathematical bridge of the whole presentation: discrete control choices become binary variables, the binary objective becomes a QUBO, and the QUBO becomes the Ising Hamiltonian used by QAOA.`
           },
