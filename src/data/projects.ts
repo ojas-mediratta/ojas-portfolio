@@ -179,15 +179,15 @@ export const PROJECTS: Project[] = [
   // },
   {
     slug: "quantum-in-the-loop",
-    title: "Quantum-in-the-Loop Control: MPC with QAOA for Robotics",
-    blurb: "Exploring quantum-assisted optimization for robotic control, analyzing a hybrid classical-quantum architecture with a case study for MPC.",
-    tags: ["Quantum Computing", "Python", "Qiskit", "Control Systems", "Optimization"],
+    title: "Quantum-in-the-Loop Control: MPC Optimization Using QAOA for Robotics",
+    blurb: "Quantum computing course project exploring quantum-assisted optimization for robotic control.",
+    tags: ["Quantum Computing", "Robotics","Python", "Qiskit", "Control Systems"],
     hideHeroMedia: true,
     area: "Other",
     status: "Complete",
     thumb: "media/quantum-in-the-loop/quantum-in-the-loop_thumb.png",
     previewGif: "media/quantum-in-the-loop/quantum-in-the-loop_preview.gif",
-    links: { paper: "", code: "https://github.com/ojas-mediratta/quantum-in-the-loop-MPC.git" },
+    links: {code: "https://github.com/ojas-mediratta/quantum-in-the-loop-MPC.git", paper: "media/quantum-in-the-loop/ECE_8803_QDH_Final_Report.pdf" },
     sections: [
       {
         type: 'pdfSlides',
