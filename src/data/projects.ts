@@ -99,7 +99,7 @@ export const PROJECTS: Project[] = [
     sections: [
     { type: 'text', content: `This project tracks my work in Georgia Tech's Advanced Mobile Robotics course (CS 8803 AMR). The course is split into four projects: 'Swim', 'Walk', 'Drive', and 'Fly'. Each uses GTSAM (Python) and Webots for estimation and control.` },
     { type: 'text', content: `First, I worked on 'Swim', which mostly focused on state estimation and control for an underwater ROV in the Webots simulator. I implemented an EKF using GTSAM's NavStateImuEKF package to fuse IMU data with position, depth, and range measurements for real-time localization.` },
-    { type: 'text', content: `I also had to build autonomous control functionality. I built a proportional controller that tracks desired trajectories. I broke it into four independent control channels: XY-plane distance error for forward thrust, depth error for vertical control, yaw error for heading, and roll error for stabilization. The key challenge was handling angle wrapping correctlyΓÇöyaw and roll errors had to be mapped to [-╧Ç, ╧Ç) to avoid discontinuities. I tuned the gains empirically until the robot tracked smoothly without too much oscillation.` },
+    { type: 'text', content: `I also had to build autonomous control functionality. I built a proportional controller that tracks desired trajectories. I broke it into four independent control channels: XY-plane distance error for forward thrust, depth error for vertical control, yaw error for heading, and roll error for stabilization. The key challenge was handling angle wrapping correctly — yaw and roll errors had to be mapped to [-π, π) to avoid discontinuities. I tuned the gains empirically until the robot tracked smoothly without too much oscillation.` },
     { type: 'images', items: ['media/advanced-mobile-robotics/advanced-mobile-robotics_1.jpg', 'media/advanced-mobile-robotics/advanced-mobile-robotics_2.mp4'], caption: 'Autonomous trajectory following and tracking error over time' },
     { type: 'text', content: `This project gave me solid experience with nonlinear filtering on Lie groups (the state lives in SE(3)) and sensor fusion with heterogeneous measurements. Working with GTSAM's factor graph library had a learning curve but was useful for understanding how to handle uncertainty with estimation.` },
     { type: 'text', content: `I then moved to the 'Walk' project, which focuses on legged locomotion and control for Boston Dynamics' Spot quadruped, including forward and inverse kinematics and probabilistic roadmaps.` },
@@ -151,7 +151,7 @@ export const PROJECTS: Project[] = [
   //   mainVideo: "",
   //   links: { code: "" },
   //   sections: [
-  //     { type: 'text', content: `I'm working on the design of a parallel gripper with linear actuation for the Unitree G1, intended to accept custom flexible tactile sensors I am developing, inspired by [3DΓÇæViTac](https://binghao-huang.github.io/3D-ViTac/). This work is ongoing at the LIDAR Lab, Georgia Tech.` },
+  //     { type: 'text', content: `I'm working on the design of a parallel gripper with linear actuation for the Unitree G1, intended to accept custom flexible tactile sensors I am developing, inspired by [3D-ViTac](https://binghao-huang.github.io/3D-ViTac/). This work is ongoing at the LIDAR Lab, Georgia Tech.` },
   //     { type: 'text', content: `The second gripper I am working on engineering tasks for is the Inspire hand from Inspire robotics. This hand has built-in tactile sensing, and I am working on real to sim in Issac Sim for this hand too. We're working on collecting tactile sensor data at the moment, and beyond characterizing the real pressure to analog value mapping, we've done some initial testing to see which gripper design works best for the collaborative tasks we're trying to optimize for. I wrote a python script that outputs the sensor readings to a GUI and logs pose as well as tactile sensor values to a csv.` },
   //     { type: 'video', src: `media/tactile-sensing/lipobattery-grip-trial.mp4`, caption: 'Testing of the inspire hand.' },
   //   ],
@@ -161,7 +161,7 @@ export const PROJECTS: Project[] = [
   // {
   //   slug: "quantum-in-the-loop",
   //   title: "Quantum-in-the-Loop Control: Opportunities and Limitations",
-  //   blurb: "Exploring quantum-assisted optimization for control systems, analyzing hybrid classicalΓÇôquantum architectures with a case study for MPC.",
+  //   blurb: "Exploring quantum-assisted optimization for control systems, analyzing hybrid classical–quantum architectures with a case study for MPC.",
   //   tags: ["Quantum Computing", "Qiskit", "Control Systems", "Optimization"],
   //   area: "Other",
   //   status: "Complete",
@@ -361,7 +361,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "et55-keyboard",
-    title: "ET55: A Custom 55ΓÇækey, HandΓÇæWired Mechanical Keyboard.",
+    title: "ET55: A Custom 55-key, Hand-Wired Mechanical Keyboard.",
     blurb: "A hand-wired 55-key keyboard with QMK firmware, USB-C, an OLED status screen, and a rotary encoder.",
     tags: ["Embedded Systems", "C++", "ATMega34U4", "Fusion360", "Rapid Prototyping"],
     area: "Embedded",
@@ -376,7 +376,7 @@ export const PROJECTS: Project[] = [
       { type: 'video', src: 'media/et55/et55_4.mp4', caption: 'Internals and physical design' },
       { type: 'text', content: `Building ET55 involved several key steps. First, I designed the layout and wiring schematic, ensuring that every switch was correctly placed and connected for NKRO functionality. I hand-wired each switch using diodes and copper wire, taking care to insulate connections with heat shrink tubing to prevent shorts.` },
       { type: 'images', items: ['media/et55/et55_2.jpg', 'media/et55/et55_3.jpg'], caption: 'Hand-wiring the switches and diodes' },
-      { type: 'text', content: `Next, I integrated a Pro Micro (ATmega32U4) microcontroller to handle the keyboardΓÇÖs logic and communication. I programmed it using QMK firmware, customizing the keymap to fit the compact layout and adding layers for additional functionality. The rotary encoder was set up to control volume and switch layers, while the OLED display provided real-time status updates.` },
+      { type: 'text', content: `Next, I integrated a Pro Micro (ATmega32U4) microcontroller to handle the keyboard's logic and communication. I programmed it using QMK firmware, customizing the keymap to fit the compact layout and adding layers for additional functionality. The rotary encoder was set up to control volume and switch layers, while the OLED display provided real-time status updates.` },
       { type: 'text', content: `For the case and plate, I modeled custom parts in Fusion 360 and 3D-printed them to achieve a precise fit. This process involved several iterations to refine tolerances and ensure that the switches seated properly despite the wiring underneath.` },
       { type: 'text', content: `The final result is a compact keyboard that I use daily, and it was a strong project for applying both embedded and mechanical design skills.` },
     ],
