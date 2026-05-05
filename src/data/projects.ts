@@ -71,7 +71,7 @@ export const PROJECTS: Project[] = [
     slug: "tactile-sensing",
     title: "Tactile Sensing for Whole-Body Manipulation and Collaborative Tasks",
     blurb: "Research in tactile sensing with diffusion-based controllers for whole-body manipulation and human-robot collaborative tasks.",
-    tags: ["Robotics", "Sensors", "Fusion360", "Python", "KiCAD"],
+    tags: ["Robotics", "C++", "Fusion360", "KiCAD", "Python"],
     area: "Robotics",
     status: "Active",
     thumb: "media/tactile-sensing/sensor_real2.png",
