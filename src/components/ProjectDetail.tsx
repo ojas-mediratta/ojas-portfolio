@@ -138,13 +138,23 @@ function SectionCarousel({
   title: string;
 }) {
   const [index, setIndex] = useState(0);
+  const AUTO_ROTATE_MS = 4500;
 
   const next = () => setIndex((prev) => (prev + 1) % items.length);
   const prev = () => setIndex((prev) => (prev - 1 + items.length) % items.length);
 
+  useEffect(() => {
+    if (items.length <= 1) return;
+    const intervalId = window.setInterval(() => {
+      setIndex((prev) => (prev + 1) % items.length);
+    }, AUTO_ROTATE_MS);
+
+    return () => window.clearInterval(intervalId);
+  }, [items.length]);
+
   return (
     <div className="flex flex-col items-center gap-3">
-      <div className="relative w-full max-w-4xl overflow-hidden rounded-2xl border border-border bg-panel">
+      <div className="relative flex h-[320px] w-full max-w-4xl items-center justify-center overflow-hidden rounded-2xl border border-border bg-panel sm:h-[420px] md:h-[520px] lg:h-[620px]">
         {items.map((item, itemIdx) => (
           <div
             key={item.src}
@@ -153,7 +163,7 @@ function SectionCarousel({
             <img
               src={withBase(item.src)}
               alt={item.caption || `${title} carousel ${itemIdx + 1}`}
-              className="w-full max-h-[650px] object-contain bg-bg/50"
+              className="h-full w-full object-contain bg-bg/50"
               loading="lazy"
             />
           </div>
