@@ -3,10 +3,9 @@ import { useParams, Link } from "react-router-dom";
 import Container from "@/components/Container";
 import Section from "@/components/Section";
 import Gallery from "@/components/Gallery";
+import MouseGlow from "@/components/MouseGlow";
 import { PROJECTS, ContentSection } from "@/data/projects";
 import { ArrowLeft, ExternalLink, Github, ChevronLeft, ChevronRight, FileText } from "lucide-react";
-import { useTheme } from "@/contexts/ThemeContext";
-import { DARK_THEME, LIGHT_THEME } from "@/data/theme";
 import { Document, Page, pdfjs } from "react-pdf";
 import katex from "katex";
 import "katex/dist/katex.min.css";
@@ -339,22 +338,12 @@ function PdfSlidesViewer({
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
   const project = useMemo(() => PROJECTS.find(p => p.slug === slug), [slug]);
-  const { theme } = useTheme();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Scroll to top when component mounts or slug changes
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
-
-  const [pos, setPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => setPos({ x: e.clientX, y: e.clientY });
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
-
-  const glowColor = theme === 'dark' ? DARK_THEME.mouseGlow : LIGHT_THEME.mouseGlow;
 
   const nextSlide = () => {
     if (project?.gallery) {
@@ -383,21 +372,10 @@ export default function ProjectDetail() {
   }
 
   return (
-    <Section id={`project-detail-${slug ?? "unknown"}`} className="relative py-12 md:py-20">
-      <Container>
-        {/* mouse glow under content */}
-        <div className="pointer-events-none fixed inset-0 z-0">
-          <div
-            className="absolute h-[560px] w-[560px] rounded-full blur-3xl"
-            style={{
-              top: pos.y,
-              left: pos.x,
-              transform: "translate(-50%, -50%)",
-              background: `radial-gradient(600px, ${glowColor}, transparent 80%)`,
-            }}
-          />
-        </div>
-
+    <>
+      <MouseGlow />
+      <Section id={`project-detail-${slug ?? "unknown"}`} className="relative py-12 md:py-20">
+        <Container>
         <div className="relative z-10 rounded-3xl border border-border bg-panel p-5 md:p-8">
           <div className="mb-6">
             <Link to="/" className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple">
@@ -729,7 +707,8 @@ export default function ProjectDetail() {
             </div>
           ) : null}
         </div>
-      </Container>
-    </Section>
+        </Container>
+      </Section>
+    </>
   );
 }

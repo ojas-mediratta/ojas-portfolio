@@ -24,7 +24,7 @@ export const LIGHT_THEME = {
     border: '#9e9fa0',
     text: '#454545',
     subtext: '#5a5a5a',
-    mouseGlow: 'rgba(255, 255, 255, 1)', // White glow for light mode
+    mouseGlow: 'rgba(69, 69, 69, 0.18)', // Subtle text-tone glow for light mode
     // Single accent color scheme
     blue: '#004f83',
     green: '#004f83',
