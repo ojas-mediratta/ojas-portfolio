@@ -10,14 +10,36 @@ export default function MouseGlow() {
   const lastGridRefreshRef = useRef(0);
   const gridRef = useRef<string[]>([]);
   const gridSizeRef = useRef({ cols: 0, rows: 0 });
+  const isCoarseRef = useRef(false);
   const { theme } = useTheme();
 
   useEffect(() => {
+    const media = window.matchMedia("(pointer: coarse), (hover: none)");
+    const updateInputMode = () => {
+      isCoarseRef.current = media.matches;
+      if (media.matches) {
+        posRef.current = {
+          x: window.innerWidth * 0.85,
+          y: window.innerHeight * 0.2,
+        };
+      }
+    };
+
+    updateInputMode();
     const move = (e: MouseEvent) => {
+      if (isCoarseRef.current) return;
       posRef.current = { x: e.clientX, y: e.clientY };
     };
+
     window.addEventListener("mousemove", move);
-    return () => window.removeEventListener("mousemove", move);
+    media.addEventListener("change", updateInputMode);
+    window.addEventListener("resize", updateInputMode);
+
+    return () => {
+      window.removeEventListener("mousemove", move);
+      media.removeEventListener("change", updateInputMode);
+      window.removeEventListener("resize", updateInputMode);
+    };
   }, []);
 
   const glowColor = theme === 'dark' ? DARK_THEME.mouseGlow : LIGHT_THEME.mouseGlow;
