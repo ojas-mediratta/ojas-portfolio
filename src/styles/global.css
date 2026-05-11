@@ -49,14 +49,14 @@
   --color-text: #454545;
   --color-subtext: #5a5a5a;
 
-  --color-accent-blue: #004f83;
-  --color-accent-green: #004f83;
-  --color-accent-yellow: #004f83;
-  --color-accent-red: #004f83;
-  --color-accent-purple: #004f83;
-  --color-accent-cyan: #004f83;
+  --color-accent-blue: #2f8f5a;
+  --color-accent-green: #2f8f5a;
+  --color-accent-yellow: #2f8f5a;
+  --color-accent-red: #2f8f5a;
+  --color-accent-purple: #2f8f5a;
+  --color-accent-cyan: #2f8f5a;
   
-  --color-mouse-glow: rgb(255, 255, 255, 1);
+  --color-mouse-glow: rgba(47, 143, 90, 0.18);
 }
 
 html, body, #root {
