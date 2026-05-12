@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { PROJECTS } from '@/data/projects';
-import avatarFile from '@/assets/avatar.jpg';
+import avatarFile from '@/assets/avatar.webp';
 
 const withBase = (path?: string) =>
   path ? `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}` : undefined;

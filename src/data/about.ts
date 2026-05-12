@@ -12,7 +12,7 @@ export const PROFILE = {
         linkedin: 'https://www.linkedin.com/in/ojas-mediratta/',
     },
     assets: {
-        avatar: 'assets/avatar.jpg', 
+        avatar: 'assets/avatar.webp', 
     },
 }
 
