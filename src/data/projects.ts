@@ -79,37 +79,14 @@ export const PROJECTS: Project[] = [
     mainVideo: "media/tactile-sensing/yoga_ball_cropped.mp4",
     links: { code: "" },
     sections: [
-      { type: 'text', content: `At Georgia Tech's LIDAR Lab, I'm on the design team for a project that equips humanoid robots with tactile sensing as a complementary data source to vision in a diffusion-based controller. The robot is trained on whole-body manipulation of bulky objects and collaborative locomotion tasks, like pushing a rolling table or carrying long objects with a person.` },
+      { type: 'text', content: `At Georgia Tech's LIDAR Lab, I'm on the design team for a project that equips humanoid robots with tactile sensing as a complementary data source to vision in a diffusion-based control policy. The robot is trained on whole-body manipulation of bulky objects and collaborative locomotion tasks, like pushing a rolling table or carrying long objects with a person.` },
       { type: 'text', content: `My focus is hardware systems integration and tactile sensor design. I designed the sensor hardware and mounting systems for the Unitree G1 chest, forearms, and palms, and I built wearable mounts for human participants so the tactile signal distribution stays consistent between data collection and real-time inference.` },
-      {
-        type: 'videos',
-        items: [
-          'media/tactile-sensing/data_gathering_ball.mp4',
-          'media/tactile-sensing/data_gathering_beam.mp4',
-        ],
-        caption: 'Training data collection with handheld palm end effectors (ball task) and collaborative beam transport.',
-      },
+      { type: 'videos', items: ['media/tactile-sensing/data_gathering_ball.mp4', 'media/tactile-sensing/data_gathering_beam.mp4'], caption: 'Training data collection with handheld palm end effectors (ball task) and collaborative beam transport.' },
       { type: 'text', content: `When we collect demos, we keep the sensor layout and logging pipeline as close to the robot setup as possible. That makes the tactile signatures line up between human data collection and G1 inference.` },
-      {
-        type: 'images',
-        items: [
-          'media/tactile-sensing/data_streaming.webm',
-          'media/tactile-sensing/g1_with_sensors.webp',
-        ],
-        caption: 'Foxglove interface streaming synchronized camera and force sensor data alongside the Unitree G1 sensor setup.',
-      },
+      { type: 'images', items: ['media/tactile-sensing/data_streaming.webm', 'media/tactile-sensing/g1_with_sensors.webp'], caption: 'Foxglove interface streaming synchronized camera and force sensor data alongside the Unitree G1 sensor setup.' },
       { type: 'text', content: `The tactile array is based on the [3D-ViTac](https://binghao-huang.github.io/3D-ViTac/) architecture. I use velostat as the piezoresistive layer, compressed between two polyamide electrode layers. One layer is routed in rows and the other in columns, allowing the array to be scanned so pressure at each cell shows up as a measurable resistance change. The chest sensor is a Touchtronix 187X (17 x 11 taxels), and the forearm arrays are my design at 17 x 26.` },
       { type: 'text', content: `The mounting hardware was its own project. The mounts had to be worn by a person during data collection, then fit the Unitree G1 in nearly the same pose so the model sees comparable signals at inference time. I iterated through multiple prototypes for the chest, forearms, and palms, and tested attachment approaches like binder clips and low-profile brackets with screws to avoid adhesives that could damage the sensors. The palm mounts also needed Pico controller mounting points because we use Pico VR controllers for teleoperation and pose data.` },
-      {
-        type: 'images',
-        items: [
-          'media/tactile-sensing/assembling_forearm.mp4',
-          'media/tactile-sensing/forearm_sensor_testing.mp4',
-          'media/tactile-sensing/forearm sensors.webp',
-          'media/tactile-sensing/forearm_gelpad.webp',
-        ],
-        caption: 'Forearm sensor assembly, mounting, gel pad layer (5N to ~15N usable range), and functionality testing.'
-      },
+      { type: 'images', items: ['media/tactile-sensing/assembling_forearm.mp4', 'media/tactile-sensing/forearm_sensor_testing.mp4', 'media/tactile-sensing/forearm sensors.webp', 'media/tactile-sensing/forearm_gelpad.webp'], caption: 'Forearm sensor assembly, mounting, gel pad layer (5N to ~15N usable range), and functionality testing.' },
       { type: 'text', content: `I also updated the sensor pipeline to reduce noise and calibrate each array so tactile activation maps to real force values. That tightened repeatability across sessions and reduced drift during long demos.` },
       {
         type: 'carousel',
@@ -127,8 +104,7 @@ export const PROJECTS: Project[] = [
       { type: 'video', src: 'media/tactile-sensing/lipobattery-grip-trial.mp4', caption: 'Early dextrous gripper sensing test.' },
       { type: 'text', content: `Ongoing work, with a paper in progress for CoRL submission.` },
     ],
-    gallery: [
-    ]
+    gallery: []
   },
   {
     slug: "mine-track",
