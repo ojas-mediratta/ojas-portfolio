@@ -137,6 +137,7 @@ function SectionCarousel({
   title: string;
 }) {
   const [index, setIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
   const AUTO_ROTATE_MS = 4500;
 
   const next = () => setIndex((prev) => (prev + 1) % items.length);
@@ -150,6 +151,30 @@ function SectionCarousel({
 
     return () => window.clearInterval(intervalId);
   }, [items.length]);
+
+  useEffect(() => {
+    if (items.length <= 1) {
+      setProgress(0);
+      return undefined;
+    }
+
+    let animationId = 0;
+    const start = performance.now();
+
+    const tick = (now: number) => {
+      const elapsed = now - start;
+      const nextProgress = Math.min(elapsed / AUTO_ROTATE_MS, 1);
+      setProgress(nextProgress);
+
+      if (nextProgress < 1) {
+        animationId = window.requestAnimationFrame(tick);
+      }
+    };
+
+    animationId = window.requestAnimationFrame(tick);
+
+    return () => window.cancelAnimationFrame(animationId);
+  }, [index, items.length]);
 
   return (
     <div className="flex flex-col items-center gap-3">
@@ -187,6 +212,15 @@ function SectionCarousel({
           </>
         )}
       </div>
+
+      {items.length > 1 && (
+        <div className="h-1 w-36 overflow-hidden rounded-full bg-border/60">
+          <div
+            className="h-full bg-accent-purple transition-[width] duration-100"
+            style={{ width: `${Math.round(progress * 100)}%` }}
+          />
+        </div>
+      )}
 
       {items[index]?.caption && (
         <p className="text-center text-sm text-subtext italic">{items[index].caption}</p>
@@ -339,6 +373,8 @@ export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
   const project = useMemo(() => PROJECTS.find(p => p.slug === slug), [slug]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [galleryProgress, setGalleryProgress] = useState(0);
+  const GALLERY_ROTATE_MS = 4500;
 
   // Scroll to top when component mounts or slug changes
   useEffect(() => {
@@ -356,6 +392,43 @@ export default function ProjectDetail() {
       setCurrentIndex((prev) => (prev - 1 + project.gallery!.length) % project.gallery!.length);
     }
   };
+
+  useEffect(() => {
+    if (!project?.gallery || project.gallery.length <= 1) {
+      setGalleryProgress(0);
+      return undefined;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % project.gallery!.length);
+    }, GALLERY_ROTATE_MS);
+
+    return () => window.clearInterval(intervalId);
+  }, [project?.gallery?.length]);
+
+  useEffect(() => {
+    if (!project?.gallery || project.gallery.length <= 1) {
+      setGalleryProgress(0);
+      return undefined;
+    }
+
+    let animationId = 0;
+    const start = performance.now();
+
+    const tick = (now: number) => {
+      const elapsed = now - start;
+      const nextProgress = Math.min(elapsed / GALLERY_ROTATE_MS, 1);
+      setGalleryProgress(nextProgress);
+
+      if (nextProgress < 1) {
+        animationId = window.requestAnimationFrame(tick);
+      }
+    };
+
+    animationId = window.requestAnimationFrame(tick);
+
+    return () => window.cancelAnimationFrame(animationId);
+  }, [currentIndex, project?.gallery?.length]);
 
 
   if (!project) {
@@ -687,20 +760,30 @@ export default function ProjectDetail() {
 
               {/* Indicators */}
               {project.gallery.length > 1 && (
-                <div className="mt-4 flex justify-center gap-2">
-                  {project.gallery.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCurrentIndex(idx)}
-                      className={`h-2 rounded-full transition-all ${
-                        idx === currentIndex
-                          ? 'w-8 bg-accent-purple'
-                          : 'w-2 bg-border hover:bg-subtext'
-                      }`}
-                      aria-label={`Go to slide ${idx + 1}`}
-                    />
-                  ))}
-                </div>
+                <>
+                  <div className="mt-4 flex justify-center">
+                    <div className="h-1 w-36 overflow-hidden rounded-full bg-border/60">
+                      <div
+                        className="h-full bg-accent-purple transition-[width] duration-100"
+                        style={{ width: `${Math.round(galleryProgress * 100)}%` }}
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-3 flex justify-center gap-2">
+                    {project.gallery.map((_, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setCurrentIndex(idx)}
+                        className={`h-2 rounded-full transition-all ${
+                          idx === currentIndex
+                            ? 'w-8 bg-accent-purple'
+                            : 'w-2 bg-border hover:bg-subtext'
+                        }`}
+                        aria-label={`Go to slide ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
+                </>
               )}
               </div>
               </div>
