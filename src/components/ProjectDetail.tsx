@@ -178,16 +178,16 @@ function SectionCarousel({
 
   return (
     <div className="flex flex-col items-center gap-3">
-      <div className="relative flex h-[320px] w-full max-w-4xl items-center justify-center overflow-hidden rounded-2xl border border-border bg-panel sm:h-[420px] md:h-[520px] lg:h-[620px]">
+      <div className="relative flex h-[180px] w-full max-w-2xl items-center justify-center overflow-hidden rounded-2xl border border-border bg-panel sm:h-[240px] md:h-[300px] lg:h-[340px]">
         {items.map((item, itemIdx) => (
           <div
             key={item.src}
-            className={`transition-opacity duration-300 ${itemIdx === index ? "block" : "hidden"}`}
+            className={`h-full w-full items-center justify-center transition-opacity duration-300 ${itemIdx === index ? "flex" : "hidden"}`}
           >
             <img
               src={withBase(item.src)}
               alt={item.caption || `${title} carousel ${itemIdx + 1}`}
-              className="h-full w-full object-contain bg-bg/50"
+              className="max-h-full max-w-full object-contain"
               loading="lazy"
             />
           </div>
