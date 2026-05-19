@@ -19,7 +19,8 @@ export const PROFILE = {
 export const STATUS_MESSAGES = [
     "conference papers.",
     "robots.",
-    "tactile sensing.",
-    "grad ML.",
-    "class projects.",
+    "prototyping.",
+    "hiking trails.",
+    "bagging a return offer.",
+    "research.",
 ];
