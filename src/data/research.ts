@@ -26,7 +26,7 @@ export const RESEARCH: Research[] = [
     authors: ["Riley Mehrman", "Ojas Mediratta", "Charles D. Ramey", "Thad Starner"],
     status: "Under Review",
     // href: "https://example.com/project", 
-    thumb: "media/blip-auv/blippub_thumb.png",
+    thumb: "media/blip-auv/blippub_thumb.webp",
     previewVideo: "media/blip-auv/blippub_preview.mp4",
   }
 ];

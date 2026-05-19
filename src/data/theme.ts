@@ -24,16 +24,16 @@ export const LIGHT_THEME = {
     border: '#9e9fa0',
     text: '#454545',
     subtext: '#5a5a5a',
-    mouseGlow: 'rgba(255, 255, 255, 1)', // White glow for light mode
+    mouseGlow: 'rgba(47, 143, 90, 0.18)', // Green glow for light mode
     // Single accent color scheme
-    blue: '#004f83',
-    green: '#004f83',
-    yellow: '#004f83',
-    red: '#004f83',
-    purple: '#004f83',
-    cyan: '#004f83',
+    blue: '#2f8f5a',
+    green: '#2f8f5a',
+    yellow: '#2f8f5a',
+    red: '#2f8f5a',
+    purple: '#2f8f5a',
+    cyan: '#2f8f5a',
     // Status indicator colors (brighter version)
-    statusBlue: '#2bb0c2',
+    statusBlue: '#2f8f5a',
     // Accents array derived from individual colors
     get accents() { return [this.blue, this.green, this.yellow, this.red, this.purple]; },
 }
@@ -51,7 +51,7 @@ export const getStatusColors = (theme: 'dark' | 'light') => {
   } else {
     return {
       color: LIGHT_THEME.statusBlue,
-      shadowRgba: '0,98,163', // statusBlue as RGB
+      shadowRgba: '47,143,90', 
       backgroundHex: LIGHT_THEME.statusBlue,
     };
   }

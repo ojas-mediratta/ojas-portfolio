@@ -3,7 +3,7 @@ const GLITCH_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012345
 import Section from "@/components/Section";
 import Container from "@/components/Container";
 import TypingEffect from "@/components/TypingEffect";
-import avatarFile from "@/assets/avatar.jpg";
+import avatarFile from "@/assets/avatar.webp";
 import { Mail, Phone, MapPin, Github, Linkedin, Download } from "lucide-react";
 import { PROFILE, STATUS_MESSAGES } from "@/data/about";
 

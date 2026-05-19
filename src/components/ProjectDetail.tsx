@@ -3,10 +3,9 @@ import { useParams, Link } from "react-router-dom";
 import Container from "@/components/Container";
 import Section from "@/components/Section";
 import Gallery from "@/components/Gallery";
+import MouseGlow from "@/components/MouseGlow";
 import { PROJECTS, ContentSection } from "@/data/projects";
 import { ArrowLeft, ExternalLink, Github, ChevronLeft, ChevronRight, FileText } from "lucide-react";
-import { useTheme } from "@/contexts/ThemeContext";
-import { DARK_THEME, LIGHT_THEME } from "@/data/theme";
 import { Document, Page, pdfjs } from "react-pdf";
 import katex from "katex";
 import "katex/dist/katex.min.css";
@@ -138,6 +137,7 @@ function SectionCarousel({
   title: string;
 }) {
   const [index, setIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
   const AUTO_ROTATE_MS = 4500;
 
   const next = () => setIndex((prev) => (prev + 1) % items.length);
@@ -152,18 +152,42 @@ function SectionCarousel({
     return () => window.clearInterval(intervalId);
   }, [items.length]);
 
+  useEffect(() => {
+    if (items.length <= 1) {
+      setProgress(0);
+      return undefined;
+    }
+
+    let animationId = 0;
+    const start = performance.now();
+
+    const tick = (now: number) => {
+      const elapsed = now - start;
+      const nextProgress = Math.min(elapsed / AUTO_ROTATE_MS, 1);
+      setProgress(nextProgress);
+
+      if (nextProgress < 1) {
+        animationId = window.requestAnimationFrame(tick);
+      }
+    };
+
+    animationId = window.requestAnimationFrame(tick);
+
+    return () => window.cancelAnimationFrame(animationId);
+  }, [index, items.length]);
+
   return (
     <div className="flex flex-col items-center gap-3">
-      <div className="relative flex h-[320px] w-full max-w-4xl items-center justify-center overflow-hidden rounded-2xl border border-border bg-panel sm:h-[420px] md:h-[520px] lg:h-[620px]">
+      <div className="relative flex h-[180px] w-full max-w-2xl items-center justify-center overflow-hidden rounded-2xl border border-border bg-panel sm:h-[240px] md:h-[300px] lg:h-[340px]">
         {items.map((item, itemIdx) => (
           <div
             key={item.src}
-            className={`transition-opacity duration-300 ${itemIdx === index ? "block" : "hidden"}`}
+            className={`h-full w-full items-center justify-center transition-opacity duration-300 ${itemIdx === index ? "flex" : "hidden"}`}
           >
             <img
               src={withBase(item.src)}
               alt={item.caption || `${title} carousel ${itemIdx + 1}`}
-              className="h-full w-full object-contain bg-bg/50"
+              className="max-h-full max-w-full object-contain"
               loading="lazy"
             />
           </div>
@@ -188,6 +212,15 @@ function SectionCarousel({
           </>
         )}
       </div>
+
+      {items.length > 1 && (
+        <div className="h-1 w-36 overflow-hidden rounded-full bg-border/60">
+          <div
+            className="h-full bg-accent-purple transition-[width] duration-100"
+            style={{ width: `${Math.round(progress * 100)}%` }}
+          />
+        </div>
+      )}
 
       {items[index]?.caption && (
         <p className="text-center text-sm text-subtext italic">{items[index].caption}</p>
@@ -339,22 +372,14 @@ function PdfSlidesViewer({
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
   const project = useMemo(() => PROJECTS.find(p => p.slug === slug), [slug]);
-  const { theme } = useTheme();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [galleryProgress, setGalleryProgress] = useState(0);
+  const GALLERY_ROTATE_MS = 4500;
 
   // Scroll to top when component mounts or slug changes
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
-
-  const [pos, setPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => setPos({ x: e.clientX, y: e.clientY });
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
-
-  const glowColor = theme === 'dark' ? DARK_THEME.mouseGlow : LIGHT_THEME.mouseGlow;
 
   const nextSlide = () => {
     if (project?.gallery) {
@@ -367,6 +392,43 @@ export default function ProjectDetail() {
       setCurrentIndex((prev) => (prev - 1 + project.gallery!.length) % project.gallery!.length);
     }
   };
+
+  useEffect(() => {
+    if (!project?.gallery || project.gallery.length <= 1) {
+      setGalleryProgress(0);
+      return undefined;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % project.gallery!.length);
+    }, GALLERY_ROTATE_MS);
+
+    return () => window.clearInterval(intervalId);
+  }, [project?.gallery?.length]);
+
+  useEffect(() => {
+    if (!project?.gallery || project.gallery.length <= 1) {
+      setGalleryProgress(0);
+      return undefined;
+    }
+
+    let animationId = 0;
+    const start = performance.now();
+
+    const tick = (now: number) => {
+      const elapsed = now - start;
+      const nextProgress = Math.min(elapsed / GALLERY_ROTATE_MS, 1);
+      setGalleryProgress(nextProgress);
+
+      if (nextProgress < 1) {
+        animationId = window.requestAnimationFrame(tick);
+      }
+    };
+
+    animationId = window.requestAnimationFrame(tick);
+
+    return () => window.cancelAnimationFrame(animationId);
+  }, [currentIndex, project?.gallery?.length]);
 
 
   if (!project) {
@@ -383,21 +445,10 @@ export default function ProjectDetail() {
   }
 
   return (
-    <Section id={`project-detail-${slug ?? "unknown"}`} className="relative py-12 md:py-20">
-      <Container>
-        {/* mouse glow under content */}
-        <div className="pointer-events-none fixed inset-0 z-0">
-          <div
-            className="absolute h-[560px] w-[560px] rounded-full blur-3xl"
-            style={{
-              top: pos.y,
-              left: pos.x,
-              transform: "translate(-50%, -50%)",
-              background: `radial-gradient(600px, ${glowColor}, transparent 80%)`,
-            }}
-          />
-        </div>
-
+    <>
+      <MouseGlow />
+      <Section id={`project-detail-${slug ?? "unknown"}`} className="relative py-12 md:py-20">
+        <Container>
         <div className="relative z-10 rounded-3xl border border-border bg-panel p-5 md:p-8">
           <div className="mb-6">
             <Link to="/" className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple">
@@ -709,27 +760,38 @@ export default function ProjectDetail() {
 
               {/* Indicators */}
               {project.gallery.length > 1 && (
-                <div className="mt-4 flex justify-center gap-2">
-                  {project.gallery.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCurrentIndex(idx)}
-                      className={`h-2 rounded-full transition-all ${
-                        idx === currentIndex
-                          ? 'w-8 bg-accent-purple'
-                          : 'w-2 bg-border hover:bg-subtext'
-                      }`}
-                      aria-label={`Go to slide ${idx + 1}`}
-                    />
-                  ))}
-                </div>
+                <>
+                  <div className="mt-4 flex justify-center">
+                    <div className="h-1 w-36 overflow-hidden rounded-full bg-border/60">
+                      <div
+                        className="h-full bg-accent-purple transition-[width] duration-100"
+                        style={{ width: `${Math.round(galleryProgress * 100)}%` }}
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-3 flex justify-center gap-2">
+                    {project.gallery.map((_, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setCurrentIndex(idx)}
+                        className={`h-2 rounded-full transition-all ${
+                          idx === currentIndex
+                            ? 'w-8 bg-accent-purple'
+                            : 'w-2 bg-border hover:bg-subtext'
+                        }`}
+                        aria-label={`Go to slide ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
+                </>
               )}
               </div>
               </div>
             </div>
           ) : null}
         </div>
-      </Container>
-    </Section>
+        </Container>
+      </Section>
+    </>
   );
 }

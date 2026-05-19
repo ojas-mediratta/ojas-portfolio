@@ -16,9 +16,9 @@ export function preloadCriticalAssets(): void {
     requestIdleCallback(() => {
       // Preload avatar and first project thumbnail
       const criticalImages = [
-        '/public/media/blip-auv/blip_thumb.jpg',
-        '/public/media/buzzcaster/buzzcaster_thumb.jpg',
-        '/public/media/et55/et55_thumb.jpg'
+        '/public/media/blip-auv/blip_thumb.webp',
+        '/public/media/buzzcaster/buzzcaster_thumb.webp',
+        '/public/media/et55/et55_thumb.webp'
       ];
 
       criticalImages.forEach(url => {
