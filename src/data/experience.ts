@@ -13,7 +13,6 @@ export const EXPERIENCES: Experience[] = [
     role: "Robotics Research Intern",
     org: "GE Vernova Advanced Research Center",
     date: "May 2026 – Aug 2026",
-    status: "Incoming",
     details: []
   },
   {
@@ -21,8 +20,10 @@ export const EXPERIENCES: Experience[] = [
     org: "Laboratory for Intelligent Decision and Autonomous Robots (LIDAR) @ Georgia Tech",
     date: "Jan 2026 – Present",
     details: [
-      "Conducting research on tactile sensing for humanoid loco-manipulation and diffusion-based controllers for collaborative transport tasks.",
-      "Integrating tactile sensors in custom robotic gripper designs, enabling enhanced manipulation capabilities for humanoid robots.",
+      "Engaged in research on tactile sensing for humanoid loco-manipulation and diffusion-based controllers for collaborative transport tasks.",
+      "Integrated tactile sensors in custom robotic gripper designs, enabling enhanced manipulation capabilities for humanoid robots.",
+      "Designed custom flexible tactile sensors for robot end effector and upper-body application. Fabricated and tested prototypes, iterating on design for larger and higher-resolution sensing area.",
+      "Co-authored a research paper for CoRL submission on diffusion-based control for collaborative transport, using tactile sensing data for trajectory planning."
     ]
   },
   {
@@ -45,7 +46,7 @@ export const EXPERIENCES: Experience[] = [
       "Engineered PCBs unifying microcontroller, power, and sensor interfaces, cutting wiring volume and failure points for reliability",
       "Designed mechanical components in Fusion 360, iterating and fabricating rapidly for waterproofing and durability for field use",
       "Designed and built a bone-conduction headset for underwater use by researchers, enabling clear audio playback for real-time dolphin vocalization translation and two-way communication",
-      "Co-authored research papers documenting system design and field findings for submission to international conferences in animal-computer interaction and marine robotics"
+      "Co-authored a research paper documenting system design and field findings for submission to international conferences in animal-computer interaction and marine robotics"
     ]
   },
   {
