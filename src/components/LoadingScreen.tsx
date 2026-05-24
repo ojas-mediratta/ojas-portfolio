@@ -7,14 +7,11 @@ interface LoadingScreenProps {
 }
 
 const LOADING_TIPS = [
-  "Does anyone actually read these?",
-  "Loading pixels with extra care...",
   "Convincing electrons to behave...",
-  "Downloading more RAM... just kidding!",
+  "Downloading more RAM...",
   "Teaching robots to dream...",
   "Loading... or is it?",
   "Compressing time and space...",
-  "Buffering your mind = 99%...",
 ];
 
 function useCyclingTips(tips: string[], interval: number = 2500) {
