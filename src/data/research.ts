@@ -36,7 +36,7 @@ export const RESEARCH: Research[] = [
     type: "Paper",
     authors: ["Jaehwi Jang", "Zhaoyuan Gu", "Name", "Name", "Name","Ojas Mediratta", "Name", "Name"],
     status: "Under Review",
-    // href: "https://example.com/project", 
+    href: "https://wt-umi.github.io/WTUMI/", 
     thumb: "",
     previewVideo: "media/tactile-sensing/bucket-demo_activation.mp4",
   }
