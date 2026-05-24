@@ -75,7 +75,7 @@ export const PROJECTS: Project[] = [
     area: "Robotics",
     status: "Active",
     thumb: "media/tactile-sensing/g1_thumbnail.png",
-    previewVideo: "media/tactile-sensing/yoga_ball_cropped.mp4",
+    previewVideo: "media/tactile-sensing/bucket-demo_activation.mp4",
     mainVideo: "media/tactile-sensing/yoga_ball_cropped.mp4",
     links: { code: "" },
     sections: [

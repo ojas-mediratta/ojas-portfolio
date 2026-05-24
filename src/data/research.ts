@@ -28,5 +28,5 @@ export const RESEARCH: Research[] = [
     // href: "https://example.com/project", 
     thumb: "media/blip-auv/blippub_thumb.webp",
     previewVideo: "media/blip-auv/blippub_preview.mp4",
-  }
+  },
 ];
