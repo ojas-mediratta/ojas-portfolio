@@ -10,6 +10,7 @@ export type Research = {
   status?: Status;  // publication status
   // Media
   href?: string;           // canonical link (paper page, YouTube, arXiv, etc.)
+  paper?: string;          // direct paper PDF or paper page
   code?: string;
   pdf?: string;            // if you want a direct pdf link (public/…)
   thumb?: string;          // poster/thumbnail image (public/… or remote)
@@ -38,6 +39,7 @@ export const RESEARCH: Research[] = [
     authors: ["Anonymized for Review"],
     status: "Under Review",
     href: "https://wt-umi.github.io/WTUMI/", 
+    paper: "",
     thumb: "media/tactile-sensing/tactile-sensing-research_thumb.png",
     previewVideo: "media/tactile-sensing/bucket-demo_activation.mp4",
   }

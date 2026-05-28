@@ -4,7 +4,7 @@ import Container from "@/components/Container";
 import StatusIndicator from "@/components/StatusIndicator";
 import MediaPreview from "@/components/MediaPreview";
 import { RESEARCH } from "@/data/research";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, FileText, Github } from "lucide-react";
 
 function formatAuthors(authors?: string[] | string) {
   if (!authors) return null;
@@ -82,8 +82,8 @@ export default function Research() {
                     <span className="text-accent-red capitalize">{p.type}</span>
                   </p>
 
-                  {/* Links: Paper / Code */}
-                  {(p.href || p.code || p.status === "Under Review") && (
+                  {/* Links: Website / Paper / Code */}
+                  {(p.href || p.paper || p.code || p.status === "Under Review") && (
                     <div className="mt-3 flex items-center gap-4">
                       {p.href && (
                         <a
@@ -92,8 +92,19 @@ export default function Research() {
                           target="_blank"
                           rel="noreferrer"
                         >
-                          Link
+                          Website
                           <ExternalLink className="size-4 transition-transform" />
+                        </a>
+                      )}
+                      {p.paper && (
+                        <a
+                          className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-red hover:border-accent-red"
+                          href={p.paper}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          Paper
+                          <FileText className="size-4 transition-transform" />
                         </a>
                       )}
                       {p.code && (
