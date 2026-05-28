@@ -29,4 +29,16 @@ export const RESEARCH: Research[] = [
     thumb: "media/blip-auv/blippub_thumb.webp",
     previewVideo: "media/blip-auv/blippub_preview.mp4",
   },
+  {
+    title: "WT-UMI: Whole-Body Tactile UMI for Force-Supervised Humanoid Manipulation",
+    outlet: "Conference on Robot Learning (CoRL) 2026",
+    date: "2026",
+    type: "Paper",
+    // authors: ["Jaehwi Jang", "Zhaoyuan Gu", "Name", "Name", "Name","Ojas Mediratta", "Name", "Name"],
+    authors: ["Anonymized for Review"],
+    status: "Under Review",
+    href: "https://wt-umi.github.io/WTUMI/", 
+    thumb: "media/tactile-sensing/tactile-sensing-research_thumb.png",
+    previewVideo: "media/tactile-sensing/bucket-demo_activation.mp4",
+  }
 ];

@@ -620,14 +620,14 @@ export default function ProjectDetail() {
                   case 'images':
                     return (
                       <div key={idx} className="flex flex-col items-center gap-2">
-                        <div className="flex w-full flex-wrap justify-center gap-4">
+                        <div className="flex w-full flex-wrap justify-center gap-3">
                           {section.items.map((src, imgIdx) => {
                             const isVideo = /\.(mp4|webm|mov)$/i.test(src);
                             return isVideo ? (
                               <video
                                 key={imgIdx}
                                 src={withBase(src)}
-                                className="w-[calc(50%-1rem)] min-w-[250px] max-h-[500px] rounded-2xl border border-border bg-bg/50 object-contain"
+                                className="w-[calc(50%-0.75rem)] min-w-[180px] max-h-[360px] rounded-2xl border border-border bg-bg/50 object-contain"
                                 muted
                                 playsInline
                                 controls
@@ -638,7 +638,7 @@ export default function ProjectDetail() {
                                 key={imgIdx}
                                 src={withBase(src)}
                                 alt={section.caption || ''}
-                                className="w-[calc(50%-1rem)] min-w-[250px] max-h-[500px] rounded-2xl border border-border object-contain"
+                                className="w-[calc(50%-0.75rem)] min-w-[180px] max-h-[360px] rounded-2xl border border-border object-contain"
                               />
                             );
                           })}
