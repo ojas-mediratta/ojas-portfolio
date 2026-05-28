@@ -70,14 +70,14 @@ export const PROJECTS: Project[] = [
   {
     slug: "tactile-sensing",
     title: "Humanoid Tactile Sensing for Whole-Body Manipulation and Collaborative Tasks",
-    blurb: "Research in tactile sensing with diffusion-based controllers for whole-body manipulation and human-robot collaborative tasks.",
+    blurb: "Hardware design for research in tactile sensing for whole-body manipulation and human-robot collaborative tasks.",
     tags: ["Robotics", "C++", "Fusion360", "KiCAD", "Python"],
     area: "Robotics",
     status: "Active",
     thumb: "media/tactile-sensing/g1_thumbnail.png",
     previewVideo: "media/tactile-sensing/bucket-demo_activation.mp4",
     mainVideo: "media/tactile-sensing/yoga_ball_cropped.mp4",
-    links: { code: "" },
+    links: { link: "https://wt-umi.github.io/WTUMI/", paper: ""},
     sections: [
       { type: 'text', content: `At Georgia Tech's LIDAR Lab, I'm on the design team for a project that equips humanoid robots with tactile sensing as a complementary data source to vision in a diffusion-based control policy. The robot is trained on whole-body manipulation of bulky objects and collaborative locomotion tasks, like pushing a rolling table or carrying long objects with a person.` },
       { type: 'text', content: `My focus is hardware systems integration and tactile sensor design. I designed the sensor hardware and mounting systems for the Unitree G1 chest, forearms, and palms, and I built wearable mounts for human participants so the tactile signal distribution stays consistent between data collection and real-time inference.` },
