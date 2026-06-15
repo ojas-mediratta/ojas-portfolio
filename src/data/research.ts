@@ -38,7 +38,7 @@ export const RESEARCH: Research[] = [
     authors: ["Jaehwi Jang*", "Zhaoyuan Gu*", "Alfred Cueva", "Zimeng Chai", "Junjie Sheng", "Thong Nguyen", "Himank Galundia", "Yifan Wu", "Huishu Xue", "Isaac Legene", "Ojas Mediratta", "Davin Doan", "Andrew Collins", "Sarah Sadegh", "KyoungMok Kim", "Rishita Dhalbisoi", "Zun Chen", "Ye Zhao"],
     status: "Under Review",
     href: "https://wt-umi.github.io/WTUMI/", 
-    paper: "",
+    paper: "https://arxiv.org/abs/2606.13232",
     thumb: "media/tactile-sensing/tactile-sensing-research_thumb.png",
     previewVideo: "media/tactile-sensing/bucket-demo_activation.mp4",
   }

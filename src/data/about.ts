@@ -17,10 +17,10 @@ export const PROFILE = {
 }
 
 export const STATUS_MESSAGES = [
-    "conference papers.",
     "robots.",
     "prototyping.",
     "hiking trails.",
     "bagging a return offer.",
     "research.",
+    "designing hardware.",
 ];
