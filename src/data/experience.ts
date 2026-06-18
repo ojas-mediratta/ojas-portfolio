@@ -1,4 +1,4 @@
-export type Status = "Incoming" | "Ongoing" | "Completed";
+export type Status = "Incoming" | "Ongoing" | "Completed" | "Active";
 
 export type Experience = {
   role: string;
@@ -9,6 +9,13 @@ export type Experience = {
 };
 
 export const EXPERIENCES: Experience[] = [
+  {
+    role: "Hardware Engineering Intern",
+    org: "Physical Intelligence (π)",
+    date: "Aug 2026 – Dec 2026",
+    details: [],
+    status: "Incoming"
+  },
   {
     role: "Robotics Research Intern",
     org: "GE Vernova Advanced Research Center",
@@ -21,15 +28,15 @@ export const EXPERIENCES: Experience[] = [
     date: "Jan 2026 – Present",
     details: [
       "Engaged in research on tactile sensing for humanoid loco-manipulation and diffusion-based controllers for collaborative transport tasks.",
-      "Integrated tactile sensors in custom robotic gripper designs, enabling enhanced manipulation capabilities for humanoid robots.",
       "Designed custom flexible tactile sensors for robot end effector and upper-body application. Fabricated and tested prototypes, iterating on design for larger and higher-resolution sensing area.",
+      "Designed and fabricated hardware prototypes of harnesses and mounts for human data collection and online deployment of tactile sensors.",
       "Co-authored a research paper for CoRL submission on diffusion-based control for collaborative transport, using tactile sensing data for trajectory planning."
     ]
   },
   {
     role: "Graduate Teaching Assistant",
     org: "Georgia Institute of Technology",
-    date: "May 2025 – Present",
+    date: "May 2025 – May 2026",
     details: [
       "Served as a teaching assistant for Mobile and Ubiquitous Computing and Prototyping Intelligent Devices; graduate-level, project based courses on embedded systems, firmware development, and edge machine learning",
       "Guided 8 student teams per semester in developing app prototypes and custom microcontroller-based projects, providing mentorship on report authorship that led to higher project success rates and more polished deliverables.",
@@ -39,7 +46,7 @@ export const EXPERIENCES: Experience[] = [
   {
     role: "Graduate Research Assistant",
     org: "Contextual Computing Group @ Georgia Tech",
-    date: "Aug 2024 – Present",
+    date: "Aug 2024 – May 2026",
     details: [
       "Built a remotely operated vehicle (ROV) for dolphin research and enrichment, contributing across firmware, electronics, and mechanical design; successfully deployed in 15+ pool trials and 4 open-water trials in the Atlantic",
       "Designed and implemented an ESP32 firmware stack, orchestrating a cascaded PID-based controller, ESC-driven thrusters, internal sensors, over-the-air telemetry, and LED signaling, unifying system operation in the field",
