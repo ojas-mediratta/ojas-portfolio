@@ -20,7 +20,6 @@ export const STATUS_MESSAGES = [
     "robots.",
     "prototyping.",
     "hiking trails.",
-    "bagging a return offer.",
     "research.",
     "designing hardware.",
 ];

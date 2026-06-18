@@ -10,7 +10,7 @@ export type Experience = {
 
 export const EXPERIENCES: Experience[] = [
   {
-    role: "Hardware Engineering Intern",
+    role: "Hardware Systems Intern",
     org: "Physical Intelligence (π)",
     date: "Aug 2026 – Dec 2026",
     details: [],
@@ -20,7 +20,11 @@ export const EXPERIENCES: Experience[] = [
     role: "Robotics Research Intern",
     org: "GE Vernova Advanced Research Center",
     date: "May 2026 – Aug 2026",
-    details: []
+    details: [
+      // "Built out full-stack system integration for a novel marine robot for confined space inspection, with a focus on hardware, electronics, and firmware.",
+      // "Designed and fabricated a custom carrier board for Raspberry Pi CM4 for power distribution, sensor integration, and communication.",
+      // "Implemented a firmware stack with BlueOS for motor control, sensor integration, and data streaming over a tethered connection, enabling remote operation and data collection for maintenance.",
+    ]
   },
   {
     role: "Graduate Research Assistant",
