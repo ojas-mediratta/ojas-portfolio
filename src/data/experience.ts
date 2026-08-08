@@ -16,22 +16,22 @@ export const EXPERIENCES: Experience[] = [
     details: [
       // "Working on hardware and electronics for the defining technology of our time."
     ],
-    status: "Incoming"
+    status: "Active"
   },
   {
     role: "Robotics Research Intern",
     org: "GE Vernova Advanced Research Center",
     date: "May 2026 – Aug 2026",
     details: [
-      "Led end-to-end integration and validation of a marine robot for confined-space inspection, spanning hardware, electronics, embedded software, and field-ready operation",
-      "Developed a Linux-based control and telemetry stack integrating motors, onboard sensors, and tethered data streaming for remote inspection and maintenance data collection with BlueOS",
+      "Designed and built a Hardware-in-the-loop testbench for integration and validation of a marine robot for confined-space inspection, spanning computing hardware, electronics, embedded software, and power",
+      "Developed a Linux-based control and telemetry stack integrating 13 acutators, onboard sensing, and tethered data streaming with I2C, Ethernet, and RS-232 Serial devices with a flight controller and Raspberry Pi compute stack",
       "Operationalized newly-acquired Voltera PCB fabrication systems and authored standard operating procedures for safe, repeatable in-house PCB prototyping"
     ]
   },
   {
     role: "Graduate Research Assistant",
     org: "Laboratory for Intelligent Decision and Autonomous Robots (LIDAR) @ Georgia Tech",
-    date: "Jan 2026 – Present",
+    date: "Jan 2026 – Aug 2026",
     details: [
       "Engaged in research on tactile sensing for humanoid loco-manipulation and diffusion-based controllers for collaborative transport tasks.",
       "Designed custom flexible tactile sensors for robot end effector and upper-body application. Fabricated and tested prototypes, iterating on design for larger and higher-resolution sensing area.",
@@ -42,7 +42,7 @@ export const EXPERIENCES: Experience[] = [
   {
     role: "Graduate Teaching Assistant",
     org: "Georgia Institute of Technology",
-    date: "May 2025 – Present",
+    date: "May 2025 – May 2026",
     details: [
       "Served as a teaching assistant for Mobile and Ubiquitous Computing and Prototyping Intelligent Devices; graduate-level, project based courses on embedded systems, firmware development, and edge machine learning",
       "Guided 8 student teams per semester in developing app prototypes and custom microcontroller-based projects, providing mentorship on report authorship that led to higher project success rates and more polished deliverables.",
@@ -52,7 +52,7 @@ export const EXPERIENCES: Experience[] = [
   {
     role: "Graduate Research Assistant",
     org: "Contextual Computing Group @ Georgia Tech",
-    date: "Aug 2024 – Present",
+    date: "Aug 2024 – Aug 2026",
     details: [
       "Built a remotely operated vehicle (ROV) for dolphin research and enrichment, contributing across firmware, electronics, and mechanical design; successfully deployed in 15+ pool trials and 4 open-water trials in the Atlantic",
       "Designed and implemented an ESP32 firmware stack, orchestrating a cascaded PID-based controller, ESC-driven thrusters, internal sensors, over-the-air telemetry, and LED signaling, unifying system operation in the field",

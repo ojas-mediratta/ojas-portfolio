@@ -34,9 +34,9 @@ export default function Experience() {
                   <p className="text-xs text-subtext">{exp.date}</p>
                 </div>
 
-                {exp.status === "Incoming" && (
+                {exp.status && (
                   <div className="flex-shrink-0">
-                    <StatusIndicator label="Incoming" />
+                    <StatusIndicator label={exp.status} />
                   </div>
                 )}
               </div>
