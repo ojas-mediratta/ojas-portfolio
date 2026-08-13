@@ -22,4 +22,5 @@ export const STATUS_MESSAGES = [
     "hiking trails.",
     "research.",
     "designing hardware.",
+    "climbing V3s.",
 ];
