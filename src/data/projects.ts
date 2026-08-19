@@ -110,7 +110,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "mine-track",
     title: "MineTrack: Learning-Based Visual Odometry from Minecraft Gameplay",
-    blurb: "Using Minecraft gameplay as synthetic data for learning-based visual odometry and pose estimation.",
+    blurb: "Using Minecraft gameplay as synthetic data for learning-based visual odometry and dead reckoning.",
     tags: ["AI/ML", "Python", "Pytorch", "Machine Learning", "Computer Vision"],
     area: ["AI/ML"],
     status: "Complete",
