@@ -41,11 +41,11 @@ export default function Research() {
         {empty ? (
           <p className="mt-2 text-subtext">Papers under review — check back soon!</p>
         ) : (
-          <div className="mt-8 space-y-4">
+          <div className="mt-8 space-y-10">
             {items.map((p, idx) => (
               <article
                 key={`${p.title}-${idx}`}
-                className="group flex items-center gap-4 rounded-2xl border border-border bg-panel p-4 transition-all hover:border-accent-red md:gap-5 md:p-5 hover:shadow-sm hover:-translate-y-1"
+                className="group flex flex-col items-start gap-5 sm:flex-row sm:gap-7"
                 onMouseEnter={() => setHoveredIndex(idx)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
@@ -57,7 +57,8 @@ export default function Research() {
                   previewGif={p.previewGif}
                   hovering={hoveredIndex === idx}
                   size="sm"
-                  rounded="xl"
+                  rounded="md"
+                  framed={false}
                 />
 
                 {/* Right: metadata */}
@@ -84,10 +85,10 @@ export default function Research() {
 
                   {/* Links: Website / Paper / Code */}
                   {(p.href || p.paper || p.code || p.status === "Under Review") && (
-                    <div className="mt-3 flex items-center gap-4">
+                    <div className="mt-3 flex flex-wrap items-center gap-4">
                       {p.href && (
                         <a
-                          className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-red hover:border-accent-red"
+                          className="inline-flex items-center gap-1 py-2 text-sm font-medium text-accent-white transition-colors hover:text-accent-red hover:underline underline-offset-4"
                           href={p.href}
                           target="_blank"
                           rel="noreferrer"
@@ -98,7 +99,7 @@ export default function Research() {
                       )}
                       {p.paper && (
                         <a
-                          className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-red hover:border-accent-red"
+                          className="inline-flex items-center gap-1 py-2 text-sm font-medium text-accent-white transition-colors hover:text-accent-red hover:underline underline-offset-4"
                           href={p.paper}
                           target="_blank"
                           rel="noreferrer"
@@ -109,7 +110,7 @@ export default function Research() {
                       )}
                       {p.code && (
                         <a
-                          className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-red hover:border-accent-red"
+                          className="inline-flex items-center gap-1 py-2 text-sm font-medium text-accent-white transition-colors hover:text-accent-red hover:underline underline-offset-4"
                           href={p.code}
                           target="_blank"
                           rel="noreferrer"

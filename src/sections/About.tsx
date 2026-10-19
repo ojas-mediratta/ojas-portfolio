@@ -124,7 +124,7 @@ export default function About() {
                 href={resumeHref}
                 target="_blank"
                 rel="noreferrer"
-                className={`resume-button inline-flex items-center gap-2 rounded-2xl border border-border bg-panel px-4 py-2 text-sm text-accent-white transition-colors hover:border-accent-cyan hover:text-accent-cyan`}
+                className="resume-button inline-flex items-center gap-2 py-2 text-sm text-accent-white transition-colors hover:text-accent-cyan hover:underline underline-offset-4"
               >
                 Résumé
                 <Download className="size-4" />
@@ -134,7 +134,7 @@ export default function About() {
 
           {/* Avatar panel */}
           <div
-            className="group rounded-3xl border border-border bg-panel md:col-span-2 transition-all hover:border-accent-cyan hover:shadow-sm hover:-translate-y-1"
+            className="md:col-span-2"
           >
             <div className="p-6">
               <div className="relative">

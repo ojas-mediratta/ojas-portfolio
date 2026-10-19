@@ -16,16 +16,17 @@ interface MediaPreviewProps {
   fitVideoToWindow?: boolean;
   /**
    * Size variant:
-   * - "lg" (default): Used in Projects grid (h-44/md:h-48, full width)
+   * - "lg" (default): Used in Projects grid (16:10 aspect ratio, full width)
    * - "sm": Used in Research list (fixed width, smaller height)
    */
   size?: MediaPreviewSize;
-  /** Border radius: "xl" or "2xl" (default) */
-  rounded?: "xl" | "2xl";
+  /** Border radius: "md", "xl", or "2xl" (default) */
+  rounded?: "md" | "xl" | "2xl";
+  framed?: boolean;
 }
 
 const sizeClasses: Record<MediaPreviewSize, string> = {
-  lg: "h-44 w-full md:h-48",
+  lg: "aspect-[16/10] w-full",
   sm: "h-24 w-40 sm:h-28 sm:w-48 md:h-32 md:w-56 lg:h-36 lg:w-64",
 };
 
@@ -38,6 +39,7 @@ export default function MediaPreview({
   fitVideoToWindow = false,
   size = "lg",
   rounded = "2xl",
+  framed = true,
 }: MediaPreviewProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -53,11 +55,11 @@ export default function MediaPreview({
   }, [hovering]);
 
   const sizeClass = sizeClasses[size];
-  const roundedClass = rounded === "xl" ? "rounded-xl" : "rounded-2xl";
+  const roundedClass = { md: "rounded-md", xl: "rounded-xl", "2xl": "rounded-2xl" }[rounded];
   const videoFitClass = fitVideoToWindow ? "object-contain" : "object-cover";
 
   return (
-    <div className={`relative overflow-hidden ${roundedClass} border border-border bg-bg`}>
+    <div className={`relative shrink-0 overflow-hidden ${roundedClass} ${framed ? 'border border-border' : ''} bg-bg`}>
       {hovering && previewGif ? (
         <img
           className={`${sizeClass} object-cover`}

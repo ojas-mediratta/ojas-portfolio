@@ -17,23 +17,23 @@ export const DARK_THEME = {
     get accents() { return [this.blue, this.green, this.yellow, this.red, this.purple]; },
 }
 
-// Botanical (Light Theme)
+// Warm paper (Light Theme)
 export const LIGHT_THEME = {
-    bg: '#f1f1f1',
-    panel: '#fafbfc',
-    border: '#9e9fa0',
-    text: '#454545',
-    subtext: '#5a5a5a',
-    mouseGlow: 'rgba(47, 143, 90, 0.18)', // Green glow for light mode
-    // Single accent color scheme
-    blue: '#2f8f5a',
-    green: '#2f8f5a',
-    yellow: '#2f8f5a',
-    red: '#2f8f5a',
-    purple: '#2f8f5a',
-    cyan: '#2f8f5a',
-    // Status indicator colors (brighter version)
-    statusBlue: '#2f8f5a',
+    bg: '#f7f5f0',
+    panel: '#fffdf9',
+    border: '#ded9cf',
+    text: '#30312f',
+    subtext: '#68665f',
+    mouseGlow: 'rgba(119, 96, 143, 0.08)',
+    // Muted ink accents
+    blue: '#456b85',
+    green: '#52735d',
+    yellow: '#8b6a2f',
+    red: '#a15b52',
+    purple: '#77608f',
+    cyan: '#48756f',
+    // Status indicator color
+    statusBlue: '#52735d',
     // Accents array derived from individual colors
     get accents() { return [this.blue, this.green, this.yellow, this.red, this.purple]; },
 }
@@ -51,7 +51,7 @@ export const getStatusColors = (theme: 'dark' | 'light') => {
   } else {
     return {
       color: LIGHT_THEME.statusBlue,
-      shadowRgba: '47,143,90', 
+      shadowRgba: '82,115,93',
       backgroundHex: LIGHT_THEME.statusBlue,
     };
   }

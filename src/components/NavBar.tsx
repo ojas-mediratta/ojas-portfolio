@@ -16,7 +16,7 @@ const darkButtonColors = [
   { border: DARK_THEME.blue, text: DARK_THEME.blue },
 ];
 
-// Color mapping for buttons - Light theme (Single Olive Green)
+// Color mapping for buttons - Light theme (Warm paper)
 const lightButtonColors = [
   { border: LIGHT_THEME.cyan, text: LIGHT_THEME.cyan },
   { border: LIGHT_THEME.purple, text: LIGHT_THEME.purple },
@@ -60,7 +60,7 @@ export default function Navbar() {
   });
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border backdrop-blur" style={{ backgroundColor: theme === 'dark' ? 'rgba(31,36,48,0.6)' : 'rgba(241,241,241,0.8)' }}>
+    <header className="sticky top-0 z-50 border-b border-border backdrop-blur" style={{ backgroundColor: theme === 'dark' ? 'rgba(31,36,48,0.6)' : 'rgba(247,245,240,0.88)' }}>
       <Container>
         <div className="relative flex h-16 items-center justify-between">
           {/* Left: Name */}
@@ -75,7 +75,7 @@ export default function Navbar() {
 
           {/* Center: Nav */}
           <nav 
-            className="absolute left-1/2 -translate-x-1/2 hidden items-center gap-4 md:flex"
+            className="absolute left-1/2 -translate-x-1/2 hidden items-center gap-6 lg:flex xl:gap-8"
             onMouseLeave={() => setHoveredItem(null)}
           >
             {navWithAccents.map((n) => {
@@ -87,7 +87,7 @@ export default function Navbar() {
                   key={n.href}
                   href={n.href}
                   onMouseEnter={() => setHoveredItem(n.href)}
-                  className="rounded-xl border px-3 py-1.5 text-sm transition-all duration-300 ease-out"
+                  className="py-2 text-sm transition-colors hover:underline underline-offset-4"
                   style={{
                     borderColor: isHighlighted ? colors.border : 'var(--color-border)',
                     color: isHighlighted ? colors.text : 'var(--color-subtext)'
@@ -100,7 +100,7 @@ export default function Navbar() {
           </nav>
 
           {/* Right: Theme toggle + Social links */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-4">
             <button
               onClick={toggleTheme}
               className="text-subtext hover:text-accent-yellow transition-colors"
@@ -135,17 +135,17 @@ export default function Navbar() {
           </div>
 
           {/* Mobile: Theme toggle + menu button */}
-          <div className="flex md:hidden items-center gap-2">
+          <div className="flex lg:hidden items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="rounded-xl border border-border p-2 text-subtext transition-colors hover:border-accent-yellow hover:text-accent-yellow"
+              className="p-2 text-subtext transition-colors hover:text-accent-yellow"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? <Sun className="size-5" /> : <Moon className="size-5" />}
             </button>
             <button
               onClick={() => setOpen((o) => !o)}
-              className="rounded-xl border border-border p-2 transition-colors hover:border-accent-purple"
+              className="p-2 transition-colors hover:text-accent-purple"
               aria-label="Toggle menu"
             >
               {open ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -156,7 +156,7 @@ export default function Navbar() {
         {/* Mobile nav */}
         {open && (
           <div 
-            className="grid gap-2 pb-4 md:hidden"
+            className="grid gap-3 pb-4 lg:hidden"
             onMouseLeave={() => setHoveredItem(null)}
           >
             {navWithAccents.map((n) => {
@@ -169,7 +169,7 @@ export default function Navbar() {
                   href={n.href}
                   onClick={() => setOpen(false)}
                   onMouseEnter={() => setHoveredItem(n.href)}
-                  className="rounded-xl border bg-panel px-3 py-2 transition-all duration-500 ease-out"
+                  className="py-2 transition-colors hover:underline underline-offset-4"
                   style={{
                     borderColor: isHighlighted ? colors.border : 'var(--color-border)',
                     color: isHighlighted ? colors.text : 'var(--color-subtext)'

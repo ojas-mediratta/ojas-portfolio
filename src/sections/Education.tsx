@@ -26,7 +26,7 @@ export default function Education() {
             return (
               <div
                 key={idx}
-                className="group rounded-xl border border-border bg-panel p-5 transition-all hover:border-accent-yellow hover:-translate-y-1"
+                className="group border-b border-border pb-6 last:border-b-0 last:pb-0"
               >
                 <div className="flex items-center gap-4">
                   {/* Left: logo — left-justified, vertically centered */}

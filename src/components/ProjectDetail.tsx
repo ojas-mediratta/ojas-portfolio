@@ -449,9 +449,9 @@ export default function ProjectDetail() {
       <MouseGlow />
       <Section id={`project-detail-${slug ?? "unknown"}`} className="relative py-12 md:py-20">
         <Container>
-        <div className="relative z-10 rounded-3xl border border-border bg-panel p-5 md:p-8">
+        <div className="relative z-10">
           <div className="mb-6">
-            <Link to="/" className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple">
+            <Link to="/" className="group inline-flex items-center gap-1 py-2 text-sm font-medium text-accent-white transition-colors hover:text-accent-purple hover:underline underline-offset-4">
               <ArrowLeft className="size-4" /> Back
             </Link>
           </div>
@@ -465,11 +465,11 @@ export default function ProjectDetail() {
 
               {/* Tags */}
               {project.tags?.length ? (
-                <div className="mt-3 flex flex-wrap gap-2">
+                <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
                   {project.tags.map((t) => (
                     <span
                       key={t}
-                      className="rounded-full border border-accent-purple bg-bg px-2.5 py-1 text-[11px] text-accent-purple"
+                      className="text-[11px] text-accent-purple"
                     >
                       {t}
                     </span>
@@ -485,7 +485,7 @@ export default function ProjectDetail() {
                   href={project.links.link}
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple"
+                  className="group inline-flex items-center gap-1 py-2 text-sm font-medium text-accent-white transition-colors hover:text-accent-purple hover:underline underline-offset-4"
                 >
                   Link <ExternalLink className="size-4 transition-transform group-hover:translate-x-0.5" />
                 </a>
@@ -495,7 +495,7 @@ export default function ProjectDetail() {
                   href={project.links.code}
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple"
+                  className="group inline-flex items-center gap-1 py-2 text-sm font-medium text-accent-white transition-colors hover:text-accent-purple hover:underline underline-offset-4"
                 >
                   Code <Github className="size-4 transition-transform group-hover:translate-x-0.5" />
                 </a>
@@ -505,7 +505,7 @@ export default function ProjectDetail() {
                   href={/^https?:\/\//.test(project.links.paper) ? project.links.paper : withBase(project.links.paper)}
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple"
+                  className="group inline-flex items-center gap-1 py-2 text-sm font-medium text-accent-white transition-colors hover:text-accent-purple hover:underline underline-offset-4"
                 >
                   Paper <FileText className="size-4 transition-transform group-hover:translate-x-0.5" />
                 </a>

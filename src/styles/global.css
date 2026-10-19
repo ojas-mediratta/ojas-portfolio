@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Menlo + Ayu Mirage (Dark) / Atom One Light variables */
+/* Menlo + Ayu Mirage (Dark) / Warm paper (Light) variables */
 :root {
   --font-sans: Menlo, monospace;
   
@@ -41,22 +41,22 @@
   --color-mouse-glow: rgba(89,194,255,0.15);
 }
 
-/* Light Theme - Cloud */
+/* Light Theme - Warm paper */
 .light {
-  --color-bg: #f1f1f1;
-  --color-panel: #fafbfc;
-  --color-border: #9e9fa0;
-  --color-text: #454545;
-  --color-subtext: #5a5a5a;
+  --color-bg: #f7f5f0;
+  --color-panel: #fffdf9;
+  --color-border: #ded9cf;
+  --color-text: #30312f;
+  --color-subtext: #68665f;
 
-  --color-accent-blue: #2f8f5a;
-  --color-accent-green: #2f8f5a;
-  --color-accent-yellow: #2f8f5a;
-  --color-accent-red: #2f8f5a;
-  --color-accent-purple: #2f8f5a;
-  --color-accent-cyan: #2f8f5a;
+  --color-accent-blue: #456b85;
+  --color-accent-green: #52735d;
+  --color-accent-yellow: #8b6a2f;
+  --color-accent-red: #a15b52;
+  --color-accent-purple: #77608f;
+  --color-accent-cyan: #48756f;
   
-  --color-mouse-glow: rgba(47, 143, 90, 0.18);
+  --color-mouse-glow: rgba(119, 96, 143, 0.08);
 }
 
 html, body, #root {

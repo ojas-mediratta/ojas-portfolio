@@ -12,7 +12,6 @@ export default function Projects() {
     'All' | 'Robotics' | 'Embedded' | 'AI/ML' | 'Other'
   >('All')
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null)
-  const [hoveredFilter, setHoveredFilter] = useState<string | null>(null)
   const [showAll, setShowAll] = useState(false)
 
   const filters = [
@@ -67,31 +66,22 @@ export default function Projects() {
   return (
     <Section id="projects" className="py-12 md:py-20">
       <Container>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between gap-4">
           <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
             Projects
           </h2>
           
           {/* Filter buttons */}
-          <div 
-            className="flex flex-wrap items-center gap-3"
-            onMouseLeave={() => setHoveredFilter(null)}
-          >
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {filters.map((filter) => {
-              const isActive = activeFilter === filter.value && !hoveredFilter
-              const isHovered = hoveredFilter === filter.value
-              const isHighlighted = isHovered || isActive
+              const isActive = activeFilter === filter.value
               
               return (
                 <button
                   key={filter.value}
                   onClick={() => setActiveFilter(filter.value)}
-                  onMouseEnter={() => setHoveredFilter(filter.value)}
-                  className="rounded-xl border px-3 py-1.5 text-sm transition-all duration-300 ease-out"
-                  style={{
-                    borderColor: isHighlighted ? 'var(--color-accent-purple)' : 'var(--color-border)',
-                    color: isHighlighted ? 'var(--color-accent-purple)' : 'var(--color-subtext)'
-                  }}
+                  aria-pressed={isActive}
+                  className={`py-2 text-sm underline-offset-4 transition-colors hover:text-accent-purple ${isActive ? 'text-accent-purple underline' : 'text-subtext'}`}
                 >
                   {filter.label}
                 </button>
@@ -100,16 +90,19 @@ export default function Projects() {
           </div>
         </div>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {displayedItems.map((p, idx) => (
-            <Link
+        <div className="mt-8 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          {displayedItems.map((p) => (
+            <article
               key={p.slug}
-              to={`/projects/${p.slug}`}
-              className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-panel transition-all hover:border-accent-purple hover:shadow-sm hover:-translate-y-1 cursor-pointer"
+              className="flex min-w-0 flex-col gap-5 border-b border-border pb-8"
               onMouseEnter={() => setHoveredSlug(p.slug)}
               onMouseLeave={() => setHoveredSlug(null)}
+              onFocus={() => setHoveredSlug(p.slug)}
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget)) setHoveredSlug(null)
+              }}
             >
-              <div className="pt-4 px-4">
+              <Link to={`/projects/${p.slug}`} className="block" aria-label={p.title}>
                 <MediaPreview
                   title={p.title}
                   thumb={p.thumb}
@@ -117,13 +110,16 @@ export default function Projects() {
                   previewGif={p.previewGif}
                   fitVideoToWindow={Boolean(p.fitPreviewVideo)}
                   hovering={hoveredSlug === p.slug}
+                  size="lg"
+                  rounded="md"
+                  framed={false}
                 />
-              </div>
+              </Link>
 
-              <div className="flex flex-1 flex-col p-5">
+              <div className="flex min-w-0 flex-1 flex-col">
                 {/* Title */}
-                <h3 className="text-base font-medium text-accent-white transition-all">
-                  {p.title}
+                <h3 className="text-lg font-medium text-accent-white">
+                  <Link to={`/projects/${p.slug}`} className="text-accent-white hover:text-accent-purple hover:underline underline-offset-4">{p.title}</Link>
                 </h3>
 
                 <div className="flex-grow">
@@ -134,39 +130,25 @@ export default function Projects() {
 
                   {/* Tags */}
                   {p.tags?.length ? (
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {p.tags.map((t, i) => {
-                        const accents = [
-                          'border-accent-purple text-accent-purple',
-                          'border-accent-green text-accent-green',
-                          'border-accent-red text-accent-red',
-                          'border-accent-yellow text-accent-yellow',
-                          'border-accent-blue text-accent-blue',
-                          'border-accent-cyan text-accent-cyan',
-                        ]
-                        const style = accents[i % accents.length]
-                        return (
-                          <span
-                            key={t}
-                            className={`rounded-full border px-2.5 py-1 text-[11px] ${style} bg-bg`}
-                          >
-                            {t}
-                          </span>
-                        )
-                      })}
+                    <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
+                      {p.tags.map((t) => (
+                        <span key={t} className="text-[11px] text-accent-purple">
+                          {t}
+                        </span>
+                      ))}
                     </div>
                   ) : null}
                 </div>
 
                 {/* Buttons/Active indicator - anchored to bottom */}
                 {(p.links?.link || p.links?.code || p.links?.paper || p.status === 'Active') && (
-                  <div className="mt-4 flex items-center gap-4 items-center">
+                  <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
                     {p.links?.link && (
                       <a
                         href={p.links.link}
                         target="_blank"
                         rel="noreferrer"
-                        className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple cursor-pointer"
+                        className="inline-flex items-center gap-1 py-2 text-sm font-medium text-accent-white transition-colors hover:text-accent-purple hover:underline underline-offset-4"
                         onClick={(e) => e.stopPropagation()}
                       >
                         Link{' '}
@@ -178,7 +160,7 @@ export default function Projects() {
                         href={p.links.code}
                         target="_blank"
                         rel="noreferrer"
-                        className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple cursor-pointer"
+                        className="inline-flex items-center gap-1 py-2 text-sm font-medium text-accent-white transition-colors hover:text-accent-purple hover:underline underline-offset-4"
                         onClick={(e) => e.stopPropagation()}
                       >
                         Code{' '}
@@ -190,7 +172,7 @@ export default function Projects() {
                         href={/^https?:\/\//.test(p.links.paper) ? p.links.paper : `${import.meta.env.BASE_URL}${p.links.paper.replace(/^\/+/, '')}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="group inline-flex items-center gap-1 rounded-2xl border border-border px-4 py-2 text-sm font-medium text-text transition-colors text-accent-white hover:text-accent-purple hover:border-accent-purple cursor-pointer"
+                        className="inline-flex items-center gap-1 py-2 text-sm font-medium text-accent-white transition-colors hover:text-accent-purple hover:underline underline-offset-4"
                         onClick={(e) => e.stopPropagation()}
                       >
                         Paper{' '}
@@ -204,7 +186,7 @@ export default function Projects() {
                   </div>
                 )}
               </div>
-            </Link>
+            </article>
           ))}
         </div>
 
@@ -213,7 +195,7 @@ export default function Projects() {
           <div className="mt-8 flex justify-center">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="group inline-flex items-center gap-2 rounded-2xl border border-border px-6 py-3 text-sm font-medium text-accent-white transition-all hover:border-accent-purple hover:text-accent-purple hover:shadow-sm"
+              className="group inline-flex items-center gap-2 py-3 text-sm font-medium text-accent-white transition-colors hover:text-accent-purple hover:underline underline-offset-4"
             >
               {showAll ? 'Show Less' : `Show ${hiddenCount} more`}
               {showAll ? (
