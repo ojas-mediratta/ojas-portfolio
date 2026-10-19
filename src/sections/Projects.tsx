@@ -94,7 +94,7 @@ export default function Projects() {
           {displayedItems.map((p) => (
             <article
               key={p.slug}
-              className="flex min-w-0 flex-col gap-5 border-b border-border pb-8"
+              className="flex min-w-0 flex-col gap-6 border-b border-border pb-8"
               onMouseEnter={() => setHoveredSlug(p.slug)}
               onMouseLeave={() => setHoveredSlug(null)}
               onFocus={() => setHoveredSlug(p.slug)}
@@ -111,8 +111,6 @@ export default function Projects() {
                   fitVideoToWindow={Boolean(p.fitPreviewVideo)}
                   hovering={hoveredSlug === p.slug}
                   size="lg"
-                  rounded="md"
-                  framed={false}
                 />
               </Link>
 

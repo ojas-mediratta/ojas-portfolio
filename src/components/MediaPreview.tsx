@@ -20,8 +20,6 @@ interface MediaPreviewProps {
    * - "sm": Used in Research list (fixed width, smaller height)
    */
   size?: MediaPreviewSize;
-  /** Border radius: "md", "xl", or "2xl" (default) */
-  rounded?: "md" | "xl" | "2xl";
   framed?: boolean;
 }
 
@@ -38,7 +36,6 @@ export default function MediaPreview({
   hovering,
   fitVideoToWindow = false,
   size = "lg",
-  rounded = "2xl",
   framed = true,
 }: MediaPreviewProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -55,11 +52,10 @@ export default function MediaPreview({
   }, [hovering]);
 
   const sizeClass = sizeClasses[size];
-  const roundedClass = { md: "rounded-md", xl: "rounded-xl", "2xl": "rounded-2xl" }[rounded];
   const videoFitClass = fitVideoToWindow ? "object-contain" : "object-cover";
 
   return (
-    <div className={`relative shrink-0 overflow-hidden ${roundedClass} ${framed ? 'border border-border' : ''} bg-bg`}>
+    <div className={`relative shrink-0 overflow-hidden ${framed ? 'border-2 border-border' : ''} bg-bg`}>
       {hovering && previewGif ? (
         <img
           className={`${sizeClass} object-cover`}

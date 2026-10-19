@@ -45,7 +45,7 @@ export default function Research() {
             {items.map((p, idx) => (
               <article
                 key={`${p.title}-${idx}`}
-                className="group flex flex-col items-start gap-5 sm:flex-row sm:gap-7"
+                className="group flex flex-col items-start gap-6 sm:flex-row sm:gap-7"
                 onMouseEnter={() => setHoveredIndex(idx)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
@@ -57,8 +57,6 @@ export default function Research() {
                   previewGif={p.previewGif}
                   hovering={hoveredIndex === idx}
                   size="sm"
-                  rounded="md"
-                  framed={false}
                 />
 
                 {/* Right: metadata */}

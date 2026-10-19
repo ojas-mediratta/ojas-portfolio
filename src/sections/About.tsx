@@ -5,10 +5,17 @@ import Container from "@/components/Container";
 import TypingEffect from "@/components/TypingEffect";
 import avatarFile from "@/assets/avatar.webp";
 import { Mail, Phone, MapPin, Github, Linkedin, Download } from "lucide-react";
-import { PROFILE, STATUS_MESSAGES } from "@/data/about";
+import { PROFILE, STATUS_MESSAGES, ABOUT_LINKS } from "@/data/about";
+import { Link } from "react-router-dom";
 
 
 const resumeHref = `${import.meta.env.BASE_URL}resume.pdf`;
+
+// Preserve the original copy and whitespace while linking selected phrases.
+const taglineParts = PROFILE.tagline.split(new RegExp(
+  `(${ABOUT_LINKS.map(({ text }) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`,
+  'g'
+));
 
 
 function useGlitchCycle(messages: string[], dwellMs = 2000, scrambleMs = 450) {
@@ -115,7 +122,14 @@ export default function About() {
             </p>
 
             <p className="mt-6 max-w-2xl leading-relaxed text-subtext whitespace-pre-line">
-              {PROFILE.tagline}
+              {taglineParts.map((part, index) => {
+                const link = ABOUT_LINKS.find(({ text }) => text === part);
+                return link ? (
+                  <Link key={index} to={link.to} className="text-accent-cyan hover:text-accent-cyan hover:underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-cyan">
+                    {part}
+                  </Link>
+                ) : part;
+              })}
             </p>
 
             {/* Resume button */}
@@ -139,12 +153,12 @@ export default function About() {
             <div className="p-6">
               <div className="relative">
                 {!avatarLoaded && (
-                  <div className="w-full aspect-square rounded-2xl bg-panel animate-pulse" />
+                  <div className="w-full aspect-square bg-panel animate-pulse" />
                 )}
                 <img
                   src={avatarFile}
                   alt="Headshot"
-                  className={`w-full rounded-2xl object-cover scale-105 transition-opacity duration-300 ${
+                  className={`w-full border-2 border-border object-cover scale-105 transition-opacity duration-300 ${
                     avatarLoaded ? 'opacity-100' : 'opacity-0'
                   }`}
                   onLoad={() => setAvatarLoaded(true)}

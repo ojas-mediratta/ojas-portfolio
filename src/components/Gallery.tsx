@@ -26,7 +26,7 @@ export default function Gallery({ items }: { items: Item[] }) {
                         alt={it.alt ?? `gallery image ${i + 1}`}
                         loading="lazy"
                         className="
-              mb-4 w-full rounded-xl border border-border bg-bg/50
+              mb-4 w-full border-2 border-border bg-bg/50
               object-cover
               break-inside-avoid
             "

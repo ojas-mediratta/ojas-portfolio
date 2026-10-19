@@ -178,7 +178,7 @@ function SectionCarousel({
 
   return (
     <div className="flex flex-col items-center gap-3">
-      <div className="relative flex h-[180px] w-full max-w-2xl items-center justify-center overflow-hidden rounded-2xl border border-border bg-panel sm:h-[240px] md:h-[300px] lg:h-[340px]">
+      <div className="relative flex h-[180px] w-full max-w-2xl items-center justify-center overflow-hidden border-2 border-border bg-panel sm:h-[240px] md:h-[300px] lg:h-[340px]">
         {items.map((item, itemIdx) => (
           <div
             key={item.src}
@@ -294,7 +294,7 @@ function PdfSlidesViewer({
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="relative w-full max-w-5xl overflow-hidden rounded-2xl border border-border bg-panel" ref={setContainer}>
+      <div className="relative w-full max-w-5xl overflow-hidden border-2 border-border bg-panel" ref={setContainer}>
         {pdfFile ? (
           <div className="flex min-h-[320px] w-full items-center justify-center p-2">
             <Document
@@ -515,7 +515,7 @@ export default function ProjectDetail() {
 
           {/* Hero media */}
           {!project.hideHeroMedia && (
-            <div className="mt-6 overflow-hidden rounded-2xl border border-border bg-panel">
+            <div className="mt-6 overflow-hidden border-2 border-border bg-panel">
               {project.youtubeVideo ? (
                 <div className="aspect-video w-full">
                   <iframe
@@ -572,7 +572,7 @@ export default function ProjectDetail() {
                       <div key={idx} className="flex flex-col items-center gap-2">
                         <video
                           src={withBase(section.src)}
-                          className="w-1/2 min-w-[250px] max-h-[500px] rounded-2xl border border-border bg-bg/50 object-contain"
+                          className="w-1/2 min-w-[250px] max-h-[500px] border-2 border-border bg-bg/50 object-contain"
                           muted
                           playsInline
                           controls
@@ -591,7 +591,7 @@ export default function ProjectDetail() {
                             <video
                               key={vidIdx}
                               src={withBase(src)}
-                              className="w-[calc(50%-1rem)] min-w-[250px] max-h-[500px] rounded-2xl border border-border bg-bg/50 object-contain"
+                              className="w-[calc(50%-1rem)] min-w-[250px] max-h-[500px] border-2 border-border bg-bg/50 object-contain"
                               muted
                               playsInline
                               controls
@@ -610,7 +610,7 @@ export default function ProjectDetail() {
                         <img
                           src={withBase(section.src)}
                           alt={section.caption || ''}
-                          className="w-1/2 min-w-[250px] max-h-[500px] rounded-2xl border border-border object-contain"
+                          className="w-1/2 min-w-[250px] max-h-[500px] border-2 border-border object-contain"
                         />
                         {section.caption && (
                           <p className="text-sm text-subtext italic">{section.caption}</p>
@@ -627,7 +627,7 @@ export default function ProjectDetail() {
                               <video
                                 key={imgIdx}
                                 src={withBase(src)}
-                                className="w-[calc(50%-0.75rem)] min-w-[180px] max-h-[360px] rounded-2xl border border-border bg-bg/50 object-contain"
+                                className="w-[calc(50%-0.75rem)] min-w-[180px] max-h-[360px] border-2 border-border bg-bg/50 object-contain"
                                 muted
                                 playsInline
                                 controls
@@ -638,7 +638,7 @@ export default function ProjectDetail() {
                                 key={imgIdx}
                                 src={withBase(src)}
                                 alt={section.caption || ''}
-                                className="w-[calc(50%-0.75rem)] min-w-[180px] max-h-[360px] rounded-2xl border border-border object-contain"
+                                className="w-[calc(50%-0.75rem)] min-w-[180px] max-h-[360px] border-2 border-border object-contain"
                               />
                             );
                           })}
@@ -668,7 +668,7 @@ export default function ProjectDetail() {
                   case 'youtube':
                     return (
                       <div key={idx} className="flex flex-col items-center gap-2">
-                        <div className="aspect-video w-1/2 min-w-[250px] overflow-hidden rounded-2xl border border-border">
+                        <div className="aspect-video w-1/2 min-w-[250px] overflow-hidden border-2 border-border">
                           <iframe
                             className="h-full w-full"
                             src={`https://www.youtube.com/embed/${section.videoId}`}
@@ -696,7 +696,7 @@ export default function ProjectDetail() {
               <div className="w-1/2 min-w-[400px]">
                 <h2 className="mb-4 text-center text-xl font-semibold">Gallery</h2>
                 <div className="relative">
-                <div className="overflow-hidden rounded-2xl border border-border bg-panel">
+                <div className="overflow-hidden border-2 border-border bg-panel">
                 {project.gallery.map((g, idx) => {
                   const isVideo = g.endsWith('.mp4') || g.endsWith('.webm') || g.endsWith('.mov');
                   const isImage = g.endsWith('.jpg') || g.endsWith('.jpeg') || g.endsWith('.png') || 
