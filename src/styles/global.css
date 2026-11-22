@@ -6,21 +6,21 @@
 :root {
   --font-sans: Menlo, monospace;
   
-  /* Default to dark theme */
-  --color-bg: #1f2430;
-  --color-panel: #232a36;
-  --color-border: #2b3240;
-  --color-text: #cbccc6;
-  --color-subtext: #828997;
+  /* Default to light theme */
+  --color-bg: #f7f5f0;
+  --color-panel: #fffdf9;
+  --color-border: #ded9cf;
+  --color-text: #30312f;
+  --color-subtext: #68665f;
 
-  --color-accent-blue: #59c2ff;
-  --color-accent-green: #bae67e;
-  --color-accent-yellow: #ffcc66;
-  --color-accent-red: #f28779;
-  --color-accent-purple: #d4bfff;
-  --color-accent-cyan: #95E6CB;
-  
-  --color-mouse-glow: rgba(89,194,255,0.15);
+  --color-accent-blue: #30312f;
+  --color-accent-green: #30312f;
+  --color-accent-yellow: #30312f;
+  --color-accent-red: #30312f;
+  --color-accent-purple: #30312f;
+  --color-accent-cyan: #30312f;
+
+  --color-mouse-glow: rgba(48, 49, 47, 0.08);
 }
 
 /* Dark Theme - Ayu Mirage */
@@ -49,14 +49,14 @@
   --color-text: #30312f;
   --color-subtext: #68665f;
 
-  --color-accent-blue: #456b85;
-  --color-accent-green: #52735d;
-  --color-accent-yellow: #8b6a2f;
-  --color-accent-red: #a15b52;
-  --color-accent-purple: #77608f;
-  --color-accent-cyan: #48756f;
+  --color-accent-blue: #30312f;
+  --color-accent-green: #30312f;
+  --color-accent-yellow: #30312f;
+  --color-accent-red: #30312f;
+  --color-accent-purple: #30312f;
+  --color-accent-cyan: #30312f;
   
-  --color-mouse-glow: rgba(119, 96, 143, 0.08);
+  --color-mouse-glow: rgba(48, 49, 47, 0.08);
 }
 
 html, body, #root {

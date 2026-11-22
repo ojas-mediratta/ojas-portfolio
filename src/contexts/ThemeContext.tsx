@@ -12,11 +12,15 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
     // Check localStorage first
-    const stored = localStorage.getItem('theme') as Theme;
-    if (stored) return stored;
+    try {
+      const stored = localStorage.getItem('theme');
+      if (stored === 'dark' || stored === 'light') return stored;
+    } catch {
+      // Storage may be unavailable in private or restricted browsing modes.
+    }
     
-    // Default to dark
-    return 'dark';
+    // Default to light for first-time visitors.
+    return 'light';
   });
 
   useEffect(() => {
@@ -25,7 +29,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.classList.add(theme);
     
     // Save to localStorage
-    localStorage.setItem('theme', theme);
+    try {
+      localStorage.setItem('theme', theme);
+    } catch {
+      // Keep the current theme for this visit if storage is unavailable.
+    }
   }, [theme]);
 
   const toggleTheme = () => {

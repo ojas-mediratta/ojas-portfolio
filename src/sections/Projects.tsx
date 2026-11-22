@@ -128,12 +128,8 @@ export default function Projects() {
 
                   {/* Tags */}
                   {p.tags?.length ? (
-                    <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
-                      {p.tags.map((t) => (
-                        <span key={t} className="text-[11px] text-accent-purple">
-                          {t}
-                        </span>
-                      ))}
+                    <div className="mt-3 text-[11px] text-accent-purple">
+                      {p.tags.join(' · ')}
                     </div>
                   ) : null}
                 </div>

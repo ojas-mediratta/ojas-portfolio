@@ -24,14 +24,14 @@ export const LIGHT_THEME = {
     border: '#ded9cf',
     text: '#30312f',
     subtext: '#68665f',
-    mouseGlow: 'rgba(119, 96, 143, 0.08)',
-    // Muted ink accents
-    blue: '#456b85',
-    green: '#52735d',
-    yellow: '#8b6a2f',
-    red: '#a15b52',
-    purple: '#77608f',
-    cyan: '#48756f',
+    mouseGlow: 'rgba(48, 49, 47, 0.08)',
+    // Match the section header ink across light-mode accents.
+    blue: '#30312f',
+    green: '#30312f',
+    yellow: '#30312f',
+    red: '#30312f',
+    purple: '#30312f',
+    cyan: '#30312f',
     // Status indicator color
     statusBlue: '#52735d',
     // Accents array derived from individual colors
