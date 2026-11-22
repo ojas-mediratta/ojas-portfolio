@@ -2,61 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Menlo + Ayu Mirage (Dark) / Warm paper (Light) variables */
+/* Menlo + warm orange/green portfolio palette */
 :root {
   --font-sans: Menlo, monospace;
   
   /* Default to light theme */
-  --color-bg: #f7f5f0;
-  --color-panel: #fffdf9;
-  --color-border: #ded9cf;
-  --color-text: #30312f;
-  --color-subtext: #68665f;
+  --color-bg: #f7f5ef;
+  --color-panel: #fffdf8;
+  --color-border: #dcd8cf;
+  --color-text: #242722;
+  --color-subtext: #666d67;
 
-  --color-accent-blue: #30312f;
-  --color-accent-green: #30312f;
-  --color-accent-yellow: #30312f;
-  --color-accent-red: #30312f;
-  --color-accent-purple: #30312f;
-  --color-accent-cyan: #30312f;
+  --color-accent-blue: #b94f16;
+  --color-accent-green: #26734a;
+  --color-accent-yellow: #b94f16;
+  --color-accent-red: #b94f16;
+  --color-accent-purple: #26734a;
+  --color-accent-cyan: #b94f16;
 
-  --color-mouse-glow: rgba(48, 49, 47, 0.08);
+  --color-mouse-glow: rgba(102, 109, 103, 0.09);
+  --color-selection: rgba(185, 79, 22, 0.2);
 }
 
-/* Dark Theme - Ayu Mirage */
+/* Dark theme - soft charcoal, warm white, orange and green */
 .dark {
-  --color-bg: #1f2430;
-  --color-panel: #232a36;
-  --color-border: #2b3240;
-  --color-text: #cbccc6;
-  --color-subtext: #828997;
+  --color-bg: #111512;
+  --color-panel: #171c18;
+  --color-border: #2d352f;
+  --color-text: #f4f2ec;
+  --color-subtext: #929a94;
 
-  --color-accent-blue: #59c2ff;
-  --color-accent-green: #bae67e;
-  --color-accent-yellow: #ffcc66;
-  --color-accent-red: #f28779;
-  --color-accent-purple: #d4bfff;
-  --color-accent-cyan: #95E6CB;
+  --color-accent-blue: #ff9d52;
+  --color-accent-green: #7bd6a0;
+  --color-accent-yellow: #ff9d52;
+  --color-accent-red: #ff9d52;
+  --color-accent-purple: #7bd6a0;
+  --color-accent-cyan: #ff9d52;
   
-  --color-mouse-glow: rgba(89,194,255,0.15);
+  --color-mouse-glow: rgba(146, 154, 148, 0.12);
+  --color-selection: rgba(255, 157, 82, 0.24);
 }
 
 /* Light Theme - Warm paper */
 .light {
-  --color-bg: #f7f5f0;
-  --color-panel: #fffdf9;
-  --color-border: #ded9cf;
-  --color-text: #30312f;
-  --color-subtext: #68665f;
+  --color-bg: #f7f5ef;
+  --color-panel: #fffdf8;
+  --color-border: #dcd8cf;
+  --color-text: #242722;
+  --color-subtext: #666d67;
 
-  --color-accent-blue: #30312f;
-  --color-accent-green: #30312f;
-  --color-accent-yellow: #30312f;
-  --color-accent-red: #30312f;
-  --color-accent-purple: #30312f;
-  --color-accent-cyan: #30312f;
+  --color-accent-blue: #b94f16;
+  --color-accent-green: #26734a;
+  --color-accent-yellow: #b94f16;
+  --color-accent-red: #b94f16;
+  --color-accent-purple: #26734a;
+  --color-accent-cyan: #b94f16;
   
-  --color-mouse-glow: rgba(48, 49, 47, 0.08);
+  --color-mouse-glow: rgba(102, 109, 103, 0.09);
+  --color-selection: rgba(185, 79, 22, 0.2);
 }
 
 html, body, #root {
@@ -65,6 +68,11 @@ html, body, #root {
   color: var(--color-text);
   font-family: var(--font-sans);
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background-color: var(--color-selection);
+  color: var(--color-text);
 }
 
 /* Base font size scaling for different screen sizes */

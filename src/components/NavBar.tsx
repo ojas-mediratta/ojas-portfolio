@@ -6,24 +6,23 @@ import { Menu, X, Github, Linkedin, Instagram, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { DARK_THEME, LIGHT_THEME } from "@/data/theme";
 
-// Color mapping for buttons - Dark theme (Ayu Mirage)
+// Keep active and hovered navigation items consistently orange.
 const darkButtonColors = [
   { border: DARK_THEME.cyan, text: DARK_THEME.cyan },
-  { border: DARK_THEME.purple, text: DARK_THEME.purple },
-  { border: DARK_THEME.green, text: DARK_THEME.green },
-  { border: DARK_THEME.yellow, text: DARK_THEME.yellow },
-  { border: DARK_THEME.red, text: DARK_THEME.red },
-  { border: DARK_THEME.blue, text: DARK_THEME.blue },
+  { border: DARK_THEME.cyan, text: DARK_THEME.cyan },
+  { border: DARK_THEME.cyan, text: DARK_THEME.cyan },
+  { border: DARK_THEME.cyan, text: DARK_THEME.cyan },
+  { border: DARK_THEME.cyan, text: DARK_THEME.cyan },
+  { border: DARK_THEME.cyan, text: DARK_THEME.cyan },
 ];
 
-// Color mapping for buttons - Light theme (Warm paper)
 const lightButtonColors = [
   { border: LIGHT_THEME.cyan, text: LIGHT_THEME.cyan },
-  { border: LIGHT_THEME.purple, text: LIGHT_THEME.purple },
-  { border: LIGHT_THEME.green, text: LIGHT_THEME.green },
-  { border: LIGHT_THEME.yellow, text: LIGHT_THEME.yellow },
-  { border: LIGHT_THEME.red, text: LIGHT_THEME.red },
-  { border: LIGHT_THEME.blue, text: LIGHT_THEME.blue },
+  { border: LIGHT_THEME.cyan, text: LIGHT_THEME.cyan },
+  { border: LIGHT_THEME.cyan, text: LIGHT_THEME.cyan },
+  { border: LIGHT_THEME.cyan, text: LIGHT_THEME.cyan },
+  { border: LIGHT_THEME.cyan, text: LIGHT_THEME.cyan },
+  { border: LIGHT_THEME.cyan, text: LIGHT_THEME.cyan },
 ];
 
 export default function Navbar() {
@@ -60,7 +59,7 @@ export default function Navbar() {
   });
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border backdrop-blur" style={{ backgroundColor: theme === 'dark' ? 'rgba(31,36,48,0.6)' : 'rgba(247,245,240,0.88)' }}>
+    <header className="sticky top-0 z-50 border-b border-border backdrop-blur" style={{ backgroundColor: theme === 'dark' ? 'rgba(17,21,18,0.78)' : 'rgba(247,245,239,0.9)' }}>
       <Container>
         <div className="relative flex h-16 items-center justify-between">
           {/* Left: Name */}
@@ -112,7 +111,7 @@ export default function Navbar() {
               href="https://github.com/ojas-mediratta"
               target="_blank"
               rel="noreferrer"
-              className="text-subtext hover:text-accent-purple transition-colors"
+              className="text-subtext hover:text-accent-cyan transition-colors"
             >
               <Github className="size-5" />
             </a>

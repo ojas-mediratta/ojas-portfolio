@@ -16,7 +16,7 @@ function formatAuthors(authors?: string[] | string) {
       {list.map((name, i) => {
         const isOjas = /ojas\s+mediratta/i.test(name);
         return (
-          <span key={`${name}-${i}`} className={isOjas ? "font-semibold text-accent-red" : undefined}>
+          <span key={`${name}-${i}`} className={isOjas ? "font-semibold text-accent-green" : undefined}>
             {name}
             {i < list.length - 1 ? ", " : ""}
           </span>
@@ -76,9 +76,9 @@ export default function Research() {
                   {/* Outlet, Date, Type line */}
                   <p className="mt-1 text-sm">
                     {p.outlet && <span className="text-subtext">{p.outlet}</span>}
-                    {p.date && <><span className="text-subtext"> • </span><span className="text-accent-red">{p.date}</span></>}
+                    {p.date && <><span className="text-subtext"> • </span><span className="text-accent-green">{p.date}</span></>}
                     <span className="text-subtext"> • </span>
-                    <span className="text-accent-red capitalize">{p.type}</span>
+                    <span className="text-accent-green capitalize">{p.type}</span>
                   </p>
 
                   {/* Links: Website / Paper / Code */}
@@ -86,7 +86,7 @@ export default function Research() {
                     <div className="mt-3 flex flex-wrap items-center gap-4">
                       {p.href && (
                         <a
-                          className="inline-flex items-center gap-1 py-2 text-sm font-medium text-accent-white transition-colors hover:text-accent-red hover:underline underline-offset-4"
+                          className="inline-flex items-center gap-1 py-2 text-sm font-medium text-accent-white transition-colors hover:text-accent-green hover:underline underline-offset-4"
                           href={p.href}
                           target="_blank"
                           rel="noreferrer"
@@ -97,7 +97,7 @@ export default function Research() {
                       )}
                       {p.paper && (
                         <a
-                          className="inline-flex items-center gap-1 py-2 text-sm font-medium text-accent-white transition-colors hover:text-accent-red hover:underline underline-offset-4"
+                          className="inline-flex items-center gap-1 py-2 text-sm font-medium text-accent-white transition-colors hover:text-accent-green hover:underline underline-offset-4"
                           href={p.paper}
                           target="_blank"
                           rel="noreferrer"
@@ -108,7 +108,7 @@ export default function Research() {
                       )}
                       {p.code && (
                         <a
-                          className="inline-flex items-center gap-1 py-2 text-sm font-medium text-accent-white transition-colors hover:text-accent-red hover:underline underline-offset-4"
+                          className="inline-flex items-center gap-1 py-2 text-sm font-medium text-accent-white transition-colors hover:text-accent-green hover:underline underline-offset-4"
                           href={p.code}
                           target="_blank"
                           rel="noreferrer"

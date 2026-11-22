@@ -138,7 +138,7 @@ export default function About() {
                 href={resumeHref}
                 target="_blank"
                 rel="noreferrer"
-                className="resume-button inline-flex items-center gap-2 py-2 text-sm text-accent-white transition-colors hover:text-accent-cyan hover:underline underline-offset-4"
+                className="resume-button inline-flex items-center gap-2 py-2 text-sm text-accent-white transition-colors hover:text-accent-green hover:underline underline-offset-4"
               >
                 Résumé
                 <Download className="size-4" />

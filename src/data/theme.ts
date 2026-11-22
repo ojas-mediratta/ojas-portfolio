@@ -1,40 +1,36 @@
-// Ayu Mirage (Dark Theme)
+// Dark theme: soft charcoal with warm white, orange, and green accents.
 export const DARK_THEME = {
-    bg: '#1f2430',
-    panel: '#232a36',
-    border: '#2b3240',
-    text: '#cbccc6',
-    subtext: '#828997',
-    mouseGlow: 'rgba(89,194,255,0.15)', // Blue glow for dark mode
-    // Individual accent colors for easy reference
-    blue: '#59c2ff',
-    green: '#bae67e', 
-    yellow: '#ffcc66',
-    red: '#f28779',
-    purple: '#d4bfff',
-    cyan: '#95E6CB',
-    // Accents array derived from individual colors
+    bg: '#111512',
+    panel: '#171c18',
+    border: '#2d352f',
+    text: '#f4f2ec',
+    subtext: '#929a94',
+    mouseGlow: 'rgba(146,154,148,0.12)',
+    // Legacy token names map to the two-color accent system.
+    blue: '#ff9d52',
+    green: '#7bd6a0',
+    yellow: '#ff9d52',
+    red: '#ff9d52',
+    purple: '#7bd6a0',
+    cyan: '#ff9d52',
     get accents() { return [this.blue, this.green, this.yellow, this.red, this.purple]; },
 }
 
 // Warm paper (Light Theme)
 export const LIGHT_THEME = {
-    bg: '#f7f5f0',
-    panel: '#fffdf9',
-    border: '#ded9cf',
-    text: '#30312f',
-    subtext: '#68665f',
-    mouseGlow: 'rgba(48, 49, 47, 0.08)',
-    // Match the section header ink across light-mode accents.
-    blue: '#30312f',
-    green: '#30312f',
-    yellow: '#30312f',
-    red: '#30312f',
-    purple: '#30312f',
-    cyan: '#30312f',
-    // Status indicator color
-    statusBlue: '#52735d',
-    // Accents array derived from individual colors
+    bg: '#f7f5ef',
+    panel: '#fffdf8',
+    border: '#dcd8cf',
+    text: '#242722',
+    subtext: '#666d67',
+    mouseGlow: 'rgba(102,109,103,0.09)',
+    blue: '#b94f16',
+    green: '#26734a',
+    yellow: '#b94f16',
+    red: '#b94f16',
+    purple: '#26734a',
+    cyan: '#b94f16',
+    statusGreen: '#26734a',
     get accents() { return [this.blue, this.green, this.yellow, this.red, this.purple]; },
 }
 
@@ -44,15 +40,11 @@ export const THEME = DARK_THEME; // Default export for compatibility
 export const getStatusColors = (theme: 'dark' | 'light') => {
   if (theme === 'dark') {
     return {
-      color: '#34d399',
-      shadowRgba: '16,185,129', // emerald-400 equivalent
-      backgroundHex: '#34d399',
+      color: DARK_THEME.green,
     };
   } else {
     return {
-      color: LIGHT_THEME.statusBlue,
-      shadowRgba: '82,115,93',
-      backgroundHex: LIGHT_THEME.statusBlue,
+      color: LIGHT_THEME.statusGreen,
     };
   }
 };

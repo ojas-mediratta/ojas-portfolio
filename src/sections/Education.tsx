@@ -32,7 +32,7 @@ export default function Education() {
                   {/* Left: logo — left-justified, vertically centered */}
                   {Logo && (
                     <Logo
-                      className={"text-subtext transition-colors group-hover:text-accent-yellow [&_*]:fill-current"}
+                      className={"text-subtext transition-colors group-hover:text-accent-green [&_*]:fill-current"}
                       style={{
                         width: size,
                         height: size,
@@ -46,7 +46,7 @@ export default function Education() {
                   {/* Right: content */}
                   <div className="min-w-0 flex-1">
                     <h3 className="text-lg font-medium">{edu.school}</h3>
-                    <p className="text-sm text-accent-yellow">{edu.degree}</p>
+                    <p className="text-sm text-accent-green">{edu.degree}</p>
                     <p className="text-xs text-subtext">{edu.date}</p>
 
                     {edu.details?.length ? (
