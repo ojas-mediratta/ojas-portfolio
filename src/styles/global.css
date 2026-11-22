@@ -19,28 +19,31 @@
   --color-accent-red: #b94f16;
   --color-accent-purple: #26734a;
   --color-accent-cyan: #b94f16;
+  --color-resume-hover: #26734a;
+  --color-github-hover: #b94f16;
 
   --color-mouse-glow: rgba(102, 109, 103, 0.09);
   --color-selection: rgba(185, 79, 22, 0.2);
 }
 
-/* Dark theme - soft charcoal, warm white, orange and green */
+/* Dark theme - original Ayu Mirage palette */
 .dark {
-  --color-bg: #111512;
-  --color-panel: #171c18;
-  --color-border: #2d352f;
-  --color-text: #f4f2ec;
-  --color-subtext: #929a94;
+  --color-bg: #1f2430;
+  --color-panel: #232a36;
+  --color-border: #2b3240;
+  --color-text: #cbccc6;
+  --color-subtext: #828997;
 
-  --color-accent-blue: #ff9d52;
-  --color-accent-green: #7bd6a0;
-  --color-accent-yellow: #ff9d52;
-  --color-accent-red: #ff9d52;
-  --color-accent-purple: #7bd6a0;
-  --color-accent-cyan: #ff9d52;
+  --color-accent-blue: #59c2ff;
+  --color-accent-green: #bae67e;
+  --color-accent-yellow: #ffcc66;
+  --color-accent-red: #f28779;
+  --color-accent-purple: #d4bfff;
+  --color-accent-cyan: #95e6cb;
+  --color-resume-hover: #95e6cb;
+  --color-github-hover: #d4bfff;
   
-  --color-mouse-glow: rgba(146, 154, 148, 0.12);
-  --color-selection: rgba(255, 157, 82, 0.24);
+  --color-mouse-glow: rgba(89, 194, 255, 0.15);
 }
 
 /* Light Theme - Warm paper */
@@ -53,10 +56,12 @@
 
   --color-accent-blue: #b94f16;
   --color-accent-green: #26734a;
-  --color-accent-yellow: #b94f16;
-  --color-accent-red: #b94f16;
+  --color-accent-yellow: #26734a;
+  --color-accent-red: #26734a;
   --color-accent-purple: #26734a;
   --color-accent-cyan: #b94f16;
+  --color-resume-hover: #26734a;
+  --color-github-hover: #b94f16;
   
   --color-mouse-glow: rgba(102, 109, 103, 0.09);
   --color-selection: rgba(185, 79, 22, 0.2);
@@ -70,7 +75,7 @@ html, body, #root {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-::selection {
+.light ::selection {
   background-color: var(--color-selection);
   color: var(--color-text);
 }
@@ -110,6 +115,11 @@ img[src*="avatar"], img[alt*="Headshot"] {
 }
 a { color: var(--color-accent-blue); transition: color .2s ease; }
 a:hover { color: var(--color-accent-green); }
+.light .header-icons > :is(a, button):hover { color: var(--color-accent-green); }
+.contact-link { color: var(--color-subtext); }
+.contact-link:hover { color: var(--color-accent-cyan); }
+.dark .contact-link { color: var(--color-accent-cyan); }
+.dark .contact-link:hover { color: var(--color-accent-purple); }
 .panel { background-color: var(--color-panel); border: 1px solid var(--color-border); border-radius: 1rem; padding: 1rem; }
 
 /* gentle fade for mobile */

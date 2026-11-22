@@ -1,18 +1,17 @@
-// Dark theme: soft charcoal with warm white, orange, and green accents.
+// Original Ayu Mirage dark theme.
 export const DARK_THEME = {
-    bg: '#111512',
-    panel: '#171c18',
-    border: '#2d352f',
-    text: '#f4f2ec',
-    subtext: '#929a94',
-    mouseGlow: 'rgba(146,154,148,0.12)',
-    // Legacy token names map to the two-color accent system.
-    blue: '#ff9d52',
-    green: '#7bd6a0',
-    yellow: '#ff9d52',
-    red: '#ff9d52',
-    purple: '#7bd6a0',
-    cyan: '#ff9d52',
+    bg: '#1f2430',
+    panel: '#232a36',
+    border: '#2b3240',
+    text: '#cbccc6',
+    subtext: '#828997',
+    mouseGlow: 'rgba(89,194,255,0.15)',
+    blue: '#59c2ff',
+    green: '#bae67e',
+    yellow: '#ffcc66',
+    red: '#f28779',
+    purple: '#d4bfff',
+    cyan: '#95e6cb',
     get accents() { return [this.blue, this.green, this.yellow, this.red, this.purple]; },
 }
 
@@ -26,8 +25,8 @@ export const LIGHT_THEME = {
     mouseGlow: 'rgba(102,109,103,0.09)',
     blue: '#b94f16',
     green: '#26734a',
-    yellow: '#b94f16',
-    red: '#b94f16',
+    yellow: '#26734a',
+    red: '#26734a',
     purple: '#26734a',
     cyan: '#b94f16',
     statusGreen: '#26734a',
@@ -40,7 +39,7 @@ export const THEME = DARK_THEME; // Default export for compatibility
 export const getStatusColors = (theme: 'dark' | 'light') => {
   if (theme === 'dark') {
     return {
-      color: DARK_THEME.green,
+      color: '#34d399',
     };
   } else {
     return {

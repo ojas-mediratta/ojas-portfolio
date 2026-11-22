@@ -6,16 +6,17 @@ import { Menu, X, Github, Linkedin, Instagram, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { DARK_THEME, LIGHT_THEME } from "@/data/theme";
 
-// Keep active and hovered navigation items consistently orange.
+// Preserve the original per-section colors in dark mode.
 const darkButtonColors = [
   { border: DARK_THEME.cyan, text: DARK_THEME.cyan },
-  { border: DARK_THEME.cyan, text: DARK_THEME.cyan },
-  { border: DARK_THEME.cyan, text: DARK_THEME.cyan },
-  { border: DARK_THEME.cyan, text: DARK_THEME.cyan },
-  { border: DARK_THEME.cyan, text: DARK_THEME.cyan },
-  { border: DARK_THEME.cyan, text: DARK_THEME.cyan },
+  { border: DARK_THEME.purple, text: DARK_THEME.purple },
+  { border: DARK_THEME.green, text: DARK_THEME.green },
+  { border: DARK_THEME.yellow, text: DARK_THEME.yellow },
+  { border: DARK_THEME.red, text: DARK_THEME.red },
+  { border: DARK_THEME.blue, text: DARK_THEME.blue },
 ];
 
+// Light-mode scrollspy uses the orange accent consistently.
 const lightButtonColors = [
   { border: LIGHT_THEME.cyan, text: LIGHT_THEME.cyan },
   { border: LIGHT_THEME.cyan, text: LIGHT_THEME.cyan },
@@ -59,7 +60,7 @@ export default function Navbar() {
   });
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border backdrop-blur" style={{ backgroundColor: theme === 'dark' ? 'rgba(17,21,18,0.78)' : 'rgba(247,245,239,0.9)' }}>
+    <header className="sticky top-0 z-50 border-b border-border backdrop-blur" style={{ backgroundColor: theme === 'dark' ? 'rgba(31,36,48,0.6)' : 'rgba(247,245,239,0.9)' }}>
       <Container>
         <div className="relative flex h-16 items-center justify-between">
           {/* Left: Name */}
@@ -99,7 +100,7 @@ export default function Navbar() {
           </nav>
 
           {/* Right: Theme toggle + Social links */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="header-icons hidden lg:flex items-center gap-4">
             <button
               onClick={toggleTheme}
               className="text-subtext hover:text-accent-yellow transition-colors"
@@ -111,7 +112,7 @@ export default function Navbar() {
               href="https://github.com/ojas-mediratta"
               target="_blank"
               rel="noreferrer"
-              className="text-subtext hover:text-accent-cyan transition-colors"
+              className="text-subtext hover:text-github-hover transition-colors"
             >
               <Github className="size-5" />
             </a>
@@ -134,7 +135,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile: Theme toggle + menu button */}
-          <div className="flex lg:hidden items-center gap-2">
+          <div className="header-icons flex lg:hidden items-center gap-2">
             <button
               onClick={toggleTheme}
               className="p-2 text-subtext transition-colors hover:text-accent-yellow"

@@ -18,6 +18,8 @@ export default {
         "accent-red": "var(--color-accent-red)",
         "accent-purple": "var(--color-accent-purple)",
         "accent-cyan": "var(--color-accent-cyan)",
+        "resume-hover": "var(--color-resume-hover)",
+        "github-hover": "var(--color-github-hover)",
         "accent-white": "var(--color-text)",
       },
       fontFamily: {

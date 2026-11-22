@@ -7,11 +7,15 @@ interface StatusIndicatorProps {
 }
 
 /**
- * A status label with a bright white, pulsing dot.
+ * A status label with a green, pulsing dot.
  */
 export default function StatusIndicator({ label, className = "" }: StatusIndicatorProps) {
   const { theme } = useTheme();
   const statusColors = getStatusColors(theme);
+  const indicatorColor = statusColors.color;
+  const indicatorCore = theme === 'light' ? `${indicatorColor}cc` : indicatorColor;
+  const indicatorShadow = theme === 'light' ? `${indicatorColor}99` : `${indicatorColor}e6`;
+  const indicatorHalo = theme === 'light' ? `${indicatorColor}73` : `${indicatorColor}cc`;
 
   return (
     <span
@@ -23,15 +27,15 @@ export default function StatusIndicator({ label, className = "" }: StatusIndicat
         <span
           className="absolute inset-0 rounded-full opacity-100"
           style={{
-            backgroundColor: '#ffffff',
-            boxShadow: '0 0 12px 3px rgba(255,255,255,0.9)',
+            backgroundColor: indicatorCore,
+            boxShadow: `0 0 12px 3px ${indicatorShadow}`,
           }}
           aria-hidden
         />
         {/* soft halo with enhanced pulse */}
         <span
           className="absolute inset-0 rounded-full blur-[4px] animate-[pulse_1.5s_ease-in-out_infinite]"
-          style={{ backgroundColor: 'rgba(255,255,255,0.8)' }}
+          style={{ backgroundColor: indicatorHalo }}
           aria-hidden
         />
       </span>
