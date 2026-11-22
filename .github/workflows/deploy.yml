@@ -4,8 +4,6 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-  schedule:
-    - cron: '23 14 * * *'
 
 permissions:
   contents: read
@@ -34,13 +32,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Test Goodreads sync
-        run: npm run test:reading
-
-      - name: Refresh Goodreads shelves
-        # If Goodreads is unavailable, fail before replacing the last successful deployment.
-        run: npm run sync:reading
 
       - name: Build
         run: npm run build

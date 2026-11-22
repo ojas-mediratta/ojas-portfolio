@@ -20,7 +20,6 @@ export const ABOUT_LINKS = [
     { text: 'marine robots', to: '/projects/blip-auv' },
     { text: 'tactile sensing', to: '/projects/tactile-sensing' },
     { text: 'IoT devices', to: '/projects/hackGT12' },
-    { text: 'reading', to: '/reading' },
 ];
 
 export const STATUS_MESSAGES = [

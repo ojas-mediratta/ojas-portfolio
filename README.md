@@ -120,21 +120,6 @@ Treat AI as a fast collaborator. Guide the direction, iterate quickly, and impro
 
 ## Deployment
 
-### Goodreads reading section
-
-The `/reading` page, linked from the About text, uses a saved snapshot of Ojas's public Goodreads shelves in
-`src/data/reading.json`. Local previews and builds work without contacting Goodreads.
-Refresh the snapshot with `npm run sync:reading`; run its tests with `npm run test:reading`.
-
-The Pages workflow refreshes the shelves on pushes to `main`, manual runs, and a daily
-schedule at 14:23 UTC. The schedule takes effect once the workflow is on the default
-branch. If either feed fails, the workflow stops and the previous deployment stays online.
-
-Each shelf shows up to six books. Read books are sorted by finish date, falling back
-to date added when Goodreads has no finish date. Only personal ratings are shown;
-unrated books and unknown finish dates are left blank. Book covers and links come
-from Goodreads. To change the account or display limit, edit `scripts/sync-reading.mjs`.
-
 ### Hosting
 
 You can deploy a site like this for free using:
